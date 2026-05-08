@@ -323,7 +323,8 @@ Rules:
 -   `username` UNIQUE
     
 -   `email` UNIQUE
-    
+
+- 	strict E.164-ready format support
 
 ----------
 
