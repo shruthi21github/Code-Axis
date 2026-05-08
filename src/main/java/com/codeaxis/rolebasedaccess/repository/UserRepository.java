@@ -1,4 +1,4 @@
-package com.codeaxis.rolebasedaccess.userrepository;
+package com.codeaxis.rolebasedaccess.repository;
 
 
 

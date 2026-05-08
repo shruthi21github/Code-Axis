@@ -3,7 +3,7 @@ package com.codeaxis.rolebasedaccess.config;
 
 import com.codeaxis.rolebasedaccess.entity.User;
 import com.codeaxis.rolebasedaccess.enums.Role;
-import com.codeaxis.rolebasedaccess.userrepository.UserRepository;
+import com.codeaxis.rolebasedaccess.repository.UserRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
