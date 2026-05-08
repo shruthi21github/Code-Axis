@@ -1,0 +1,8 @@
+package com.codeaxis.repository;
+
+import com.codeaxis.entity.Project;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public class ProjectRepository extends JpaRepository<Project, Long> {
+    
+}

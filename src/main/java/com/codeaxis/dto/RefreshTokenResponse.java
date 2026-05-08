@@ -1,4 +1,4 @@
-package com.codeaxis.dto.response;
+package com.codeaxis.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

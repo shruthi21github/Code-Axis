@@ -1,4 +1,4 @@
-package com.codeaxis.dto.request;
+package com.codeaxis.dto;
 
 import lombok.Data;
 

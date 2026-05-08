@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codeaxis.dto.RefreshTokenResponse;
 import com.codeaxis.dto.request.RefreshTokenRequest;
-import com.codeaxis.dto.response.RefreshTokenResponse;
 import com.codeaxis.service.RefreshTokenService;
 
 import lombok.RequiredArgsConstructor;
