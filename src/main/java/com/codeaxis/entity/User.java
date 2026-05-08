@@ -1,5 +1,6 @@
 package com.codeaxis.entity;
 
+
 public class User {
 
     private String username;

@@ -1,12 +1,1 @@
-[
-  {
-    "username": "admin",
-    "password": "$2a$10$pqSu3GzY9G8of2.dEwxn/eGAi7H2CEJsqqHJMWSBDjEkpwpWacV9m",
-    "role": "ADMIN"
-  },
-  {
-    "username": "employee",
-    "password": "$2a$10$V7Q1n7xW8L4sK9mY5pA4Q.cWQ1aM3mQ7m7vV9t8uV4xW2yL8rQ7zS",
-    "role": "EMPLOYEE"
-  }
-]
+[{"username":"admin","password":"$2a$10$pqSu3GzY9G8of2.dEwxn/eGAi7H2CEJsqqHJMWSBDjEkpwpWacV9m","role":"ADMIN"},{"username":"employee","password":"$2a$10$V7Q1n7xW8L4sK9mY5pA4Q.cWQ1aM3mQ7m7vV9t8uV4xW2yL8rQ7zS","role":"EMPLOYEE"},{"username":"customer","password":"$2a$10$X9s8v7n6m5p4o3l2k1j0h9g8f7e6d5c4b3a2z1y0x9w8v7u6t5r4q3","role":"CUSTOMER"},{"username":"admin","password":"$2a$10$x3o3WKH/RQ49l9N98jmK5OiGqw/sZecyqbA.ZN0Ns44WMRXZrQg/a","role":"EMPLOYEE"},{"username":"ravi","password":"$2a$10$A9Kl/GYkE87oBmrkBzTp9uBQ3LhRNzC7f/wWpN13oHxpmffp56DdO","role":"EMPLOYEE"},{"username":"ravi","password":"$2a$10$jSNvd10HC0rtdh/d87GUHOlk73Z61rlbSj5jWmWOEMR6ewCwiRDuG","role":"EMPLOYEE"}]

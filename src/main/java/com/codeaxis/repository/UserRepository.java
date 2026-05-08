@@ -1,7 +1,7 @@
 package com.codeaxis.repository;
 
 import com.codeaxis.entity.User;
-
+import java.io.File;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -48,5 +48,29 @@ public class UserRepository {
                 )
                 .findFirst()
                 .orElse(null);
+    }
+    
+
+    
+
+
+
+    public void saveUsers(List<User> users) {
+
+        try {
+
+            ObjectMapper mapper =
+                    new ObjectMapper();
+
+            File file = new File(
+                    "src/main/resources/users.json"
+            );
+
+            mapper.writeValue(file, users);
+
+        } catch (Exception e) {
+
+            throw new RuntimeException(e);
+        }
     }
 }
