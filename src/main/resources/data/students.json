@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Rahul Sharma",
+    "username": "rahul",
+    "email": "rahul@gmail.com",
+    "course": "BTech",
+    "department": "CSE"
+  },
+  {
+    "id": 2,
+    "name": "Priya Reddy",
+    "username": "priya",
+    "email": "priya@gmail.com",
+    "course": "BTech",
+    "department": "ECE"
+  },
+  {
+    "id": 3,
+    "name": "Arjun Kumar",
+    "username": "arjun",
+    "email": "arjun@gmail.com",
+    "course": "MCA",
+    "department": "AI & DS"
+  },
+  {
+    "id": 4,
+    "name": "Sneha Patel",
+    "username": "sneha",
+    "email": "sneha@gmail.com",
+    "course": "BSc",
+    "department": "IT"
+  }
+]

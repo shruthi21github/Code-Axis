@@ -27,6 +27,7 @@ public class SecurityConfig {
     ) throws Exception {
 
         http
+
             .csrf(csrf -> csrf.disable())
 
             .sessionManagement(session ->
@@ -37,16 +38,31 @@ public class SecurityConfig {
 
             .authorizeHttpRequests(auth -> auth
 
+                    // Public APIs
                     .requestMatchers(
                             "/api/auth/**"
                     ).permitAll()
 
+                    // Swagger APIs
                     .requestMatchers(
-                 "/api/employees/**"
-                     ).hasRole("ADMIN")
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/swagger-ui.html"
+                    ).permitAll()
 
-                     .anyRequest()
-                     .authenticated()
+                    // Employee APIs → ADMIN only
+                    .requestMatchers(
+                            "/api/employees/**"
+                    ).hasRole("ADMIN")
+
+                    // Project APIs → ADMIN or EMPLOYEE
+                    .requestMatchers(
+                            "/api/projects/**"
+                    ).hasAnyRole("ADMIN", "EMPLOYEE")
+
+                    // All other APIs require authentication
+                    .anyRequest()
+                    .authenticated()
             )
 
             .addFilterBefore(

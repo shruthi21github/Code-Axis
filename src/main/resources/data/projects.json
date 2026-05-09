@@ -1,0 +1,6 @@
+[ {
+  "id" : 1,
+  "name" : null,
+  "description" : "Spring Boot Backend",
+  "assignedStudents" : [ 1, 2 ]
+} ]
