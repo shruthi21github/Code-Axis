@@ -54,4 +54,16 @@ public class StudentServiceImpl
                         student.getId()
                                 .equals(studentId));
     }
+    @Override
+public Student getStudentById(Long id) {
+
+    List<Student> students = getAllStudents();
+
+    return students.stream()
+            .filter(student ->
+                    student.getId().equals(id)
+            )
+            .findFirst()
+            .orElse(null);
+}
 }
