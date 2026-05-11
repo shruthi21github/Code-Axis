@@ -4,12 +4,12 @@ import lombok.Data;
 import jakarta.validation.constraints.NotBlank;
 
 @Data
-public class ProjectRequest {
-    
+public class TaskRequest {
     @NotBlank
-    private String name;
+
+    private String title;
     private String description;
     private String status;
-    private String startDate;
-    private String deadLine;
+    private String deadline;
+    private Long projectId;  
 }

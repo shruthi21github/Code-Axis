@@ -1,6 +1,8 @@
 package com.codeaxis.dto;
 
 import lombok.Data;
+import jakarta.validation.constraints.NotBlank;
+
 
 @Data
 public class RefreshTokenRequest {
