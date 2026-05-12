@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS user_sessions
 
     fk_user_id                  BINARY(16)                 NOT NULL,
 
-    jwt_token_hash              VARCHAR(255)               NOT NULL,
+    refresh_token_hash          VARCHAR(255)               NOT NULL,
 
-    expires_at                  TIMESTAMP                  NOT NULL,
+    refresh_token_expires_at    TIMESTAMP                  NOT NULL,
     revoked_at                  TIMESTAMP                  NULL,
 
     is_active                   BOOLEAN                    NOT NULL DEFAULT TRUE,
@@ -41,3 +41,15 @@ CREATE TABLE IF NOT EXISTS user_sessions
 -- ============================================================================
 
 DESCRIBE user_sessions;
+
+-- ============================================================================
+-- Alter
+-- ============================================================================
+
+-- rename only if required
+
+-- ALTER TABLE user_sessions
+-- RENAME COLUMN expires_at TO refresh_token_expires_at;
+
+-- ALTER TABLE user_sessions
+-- RENAME COLUMN jwt_token_hash TO refresh_token_hash;

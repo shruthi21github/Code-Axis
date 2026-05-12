@@ -23,6 +23,9 @@ CREATE TABLE IF NOT EXISTS users
     phone_number             VARCHAR(20)                   NULL,
 
     password_hash            VARCHAR(255)                  NOT NULL,
+    
+	is_email_verified        BOOLEAN                       NOT NULL DEFAULT FALSE,
+	email_verified_at        TIMESTAMP                     NULL,
 
     is_locked                BOOLEAN                       NOT NULL DEFAULT FALSE,
     locked_at                TIMESTAMP                     NULL,
@@ -60,3 +63,22 @@ CREATE TABLE IF NOT EXISTS users
 -- ============================================================================
 
 DESCRIBE users;
+
+-- ============================================================================
+-- Show table DDL
+-- ============================================================================
+
+SHOW CREATE TABLE users;
+
+-- ============================================================================
+-- Alter
+-- ============================================================================
+
+-- only add if not present
+
+-- ALTER TABLE users
+-- ADD COLUMN is_email_verified BOOLEAN NOT NULL DEFAULT FALSE,
+-- ADD COLUMN email_verified_at TIMESTAMP NULL;
+
+
+

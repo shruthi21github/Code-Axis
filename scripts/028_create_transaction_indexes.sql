@@ -125,14 +125,48 @@ ON attachments(is_deleted);
 CREATE INDEX idx_user_sessions_user_id
 ON user_sessions(fk_user_id);
 
-CREATE INDEX idx_user_sessions_expires_at
-ON user_sessions(expires_at);
+CREATE INDEX idx_user_sessions_refresh_token_expires_at
+ON user_sessions(refresh_token_expires_at);
 
-CREATE INDEX idx_user_sessions_is_active
-ON user_sessions(is_active);
+-- CREATE INDEX idx_user_sessions_is_active
+-- ON user_sessions(is_active);
 
-CREATE INDEX idx_user_sessions_token_hash
-ON user_sessions(jwt_token_hash);
+-- CREATE INDEX idx_user_sessions_refresh_token_hash
+-- ON user_sessions(refresh_token_hash);
+
+CREATE INDEX idx_user_sessions_refresh_lookup
+ON user_sessions
+(
+    refresh_token_hash,
+    is_active,
+    revoked_at,
+    refresh_token_expires_at
+);
+
+CREATE INDEX idx_user_sessions_user_active
+ON user_sessions
+(
+    fk_user_id,
+    is_active
+);
+
+SHOW INDEXES FROM user_sessions;
+
+-- ============================================================================
+-- alter
+-- ============================================================================
+
+-- DROP INDEX idx_user_sessions_expires_at
+-- ON user_sessions;
+
+-- DROP INDEX idx_user_sessions_token_hash
+-- ON user_sessions;
+
+-- DROP INDEX idx_user_sessions_refresh_token_hash
+-- ON user_sessions;
+
+-- DROP INDEX idx_user_sessions_is_active
+-- ON user_sessions;
 
 -- ============================================================================
 -- password_reset_tokens
@@ -146,3 +180,16 @@ ON password_reset_tokens(expires_at);
 
 CREATE INDEX idx_password_reset_tokens_is_active
 ON password_reset_tokens(is_active);
+
+-- ============================================================================
+-- email_verification_tokens
+-- ============================================================================
+
+CREATE INDEX idx_email_verification_tokens_user_id
+ON email_verification_tokens(fk_user_id);
+
+CREATE INDEX idx_email_verification_tokens_expires_at
+ON email_verification_tokens(expires_at);
+
+CREATE INDEX idx_email_verification_tokens_is_active
+ON email_verification_tokens(is_active);
