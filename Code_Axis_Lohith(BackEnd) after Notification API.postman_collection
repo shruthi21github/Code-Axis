@@ -1,0 +1,369 @@
+{
+  "info": {
+    "_postman_id": "02115a59-026d-4bce-9281-6db4a85588cb",
+    "name": "Code_Axis_Lohith(BackEnd)",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54348770",
+    "_collection_link": "https://go.postman.co/collection/54348770-02115a59-026d-4bce-9281-6db4a85588cb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "JWT Auth",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/auth/login?",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ],
+          "query": [
+            {
+              "key": "",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Protected",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrcmlzaG5hIiwicm9sZSI6IkVNUExPWUVFIiwiaWF0IjoxNzc4MzE4NzExLCJleHAiOjE3NzgzMjIzMTF9.blMVbVXxCJOF21fw3bOR8CeGdjJ_yQGfhM7HmAxfhRY",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8081/api/test",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "test"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Employee Creation API test",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3ODMxODU3OCwiZXhwIjoxNzc4MzIyMTc4fQ.SZCLU1dX89PV36UIPOBj9HiMGPpJ6Xr0jyumIhRiTr4",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"fullname\": \"Raju\",\r\n  \"username\": \"raju\",\r\n  \"password\": \"raju123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Employee list/with id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3ODMxOTEyMSwiZXhwIjoxNzc4MzIyNzIxfQ.qK-Dw91GFOSamzre_8ifQNadT2SDglyp9cMdBTCH02A",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Project creation API",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWp1Iiwicm9sZSI6IkVNUExPWUVFIiwiaWF0IjoxNzc4MzIzMDU3LCJleHAiOjE3NzgzMjY2NTd9.LUcR_PUGkXEZD7r0XAfJsiKg5kf6oOsfZ_zpylfl-Uw",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWp1Iiwicm9sZSI6IkVNUExPWUVFIiwiaWF0IjoxNzc4MzIzMDU3LCJleHAiOjE3NzgzMjY2NTd9.LUcR_PUGkXEZD7r0XAfJsiKg5kf6oOsfZ_zpylfl-Uw",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"AI Portal\",\r\n  \"description\": \"Spring Boot Backend\"\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/projects",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "projects"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Assign Student to Team",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWp1Iiwicm9sZSI6IkVNUExPWUVFIiwiaWF0IjoxNzc4MzIzMDU3LCJleHAiOjE3NzgzMjY2NTd9.LUcR_PUGkXEZD7r0XAfJsiKg5kf6oOsfZ_zpylfl-Uw",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWp1Iiwicm9sZSI6IkVNUExPWUVFIiwiaWF0IjoxNzc4MzIzMDU3LCJleHAiOjE3NzgzMjY2NTd9.LUcR_PUGkXEZD7r0XAfJsiKg5kf6oOsfZ_zpylfl-Uw",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"projectId\": 1,\r\n  \"studentIds\": [1,2]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/projects/assign-students",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "projects",
+            "assign-students"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Attendance Check in API",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"studentId\":2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/attendance/check-in",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "attendance",
+            "check-in"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Notification API",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Task Assigned\",\r\n  \"message\": \"You have been assigned Dashboard UI task\",\r\n  \"type\": \"TASK\",\r\n  \"username\": \"employee1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/notifications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "notifications"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Notifications",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/notifications",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "notifications"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Notifications",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/notifications/employee1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "notifications",
+            "employee1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
