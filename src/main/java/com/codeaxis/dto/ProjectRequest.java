@@ -11,5 +11,5 @@ public class ProjectRequest {
     private String description;
     private String status;
     private String startDate;
-    private String deadLine;
+    private String deadline;
 }

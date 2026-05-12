@@ -1,6 +1,16 @@
 package com.codeaxis.service;
 
-// service/RefreshTokenService.java
+import com.codeaxis.entity.RefreshToken;
+import com.codeaxis.entity.User;
+import com.codeaxis.exception.TokenRefreshException;
+import com.codeaxis.repository.RefreshTokenRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.time.Instant;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class RefreshTokenService {
@@ -9,7 +19,6 @@ public class RefreshTokenService {
     private Long refreshTokenDurationMs;
 
     private final RefreshTokenRepository refreshTokenRepository;
-    private final JwtUtils jwtUtils;
 
     public RefreshToken createRefreshToken(User user) {
         // Delete old token if exists
@@ -20,23 +29,36 @@ public class RefreshTokenService {
         token.setUser(user);
         token.setToken(UUID.randomUUID().toString());
         token.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
+        token.setRevoked(false);
 
         return refreshTokenRepository.save(token);
     }
 
     public String refreshAccessToken(String requestToken) {
         RefreshToken token = refreshTokenRepository.findByToken(requestToken)
-                .orElseThrow(() -> new TokenRefreshException("Refresh token not found"));
+                .orElseThrow(() -> new TokenRefreshException(
+                        "Refresh token not found"));
 
         if (token.isRevoked()) {
-            throw new TokenRefreshException("Refresh token has been revoked");
+            throw new TokenRefreshException(
+                    "Refresh token has been revoked. Please login again");
         }
 
         if (token.getExpiryDate().isBefore(Instant.now())) {
             refreshTokenRepository.delete(token);
-            throw new TokenRefreshException("Refresh token has expired. Please login again");
+            throw new TokenRefreshException(
+                    "Refresh token has expired. Please login again");
         }
 
-        return jwtUtils.generateAccessToken(token.getUser().getEmail());
+        return token.getUser().getEmail();
+    }
+
+    public void revokeToken(String requestToken) {
+        RefreshToken token = refreshTokenRepository.findByToken(requestToken)
+                .orElseThrow(() -> new TokenRefreshException(
+                        "Refresh token not found"));
+
+        token.setRevoked(true);
+        refreshTokenRepository.save(token);
     }
 }

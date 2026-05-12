@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codeaxis.dto.RefreshTokenResponse;
-import com.codeaxis.dto.request.RefreshTokenRequest;
+import com.codeaxis.dto.RefreshTokenRequest;
+import com.codeaxis.dto.ApiResponse;
 import com.codeaxis.service.RefreshTokenService;
-
 import lombok.RequiredArgsConstructor;
+import jakarta.validation.Valid;;
 
 @RestController
 @RequestMapping("/api/auth")
