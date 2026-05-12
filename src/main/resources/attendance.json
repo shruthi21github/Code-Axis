@@ -1,1 +1,15 @@
-[]
+[ {
+  "attendanceId" : 1,
+  "studentId" : 1,
+  "studentName" : "Rahul Sharma",
+  "date" : [ 2026, 5, 12 ],
+  "checkInTime" : [ 14, 48, 46, 10364000 ],
+  "status" : "ABSENT"
+}, {
+  "attendanceId" : 2,
+  "studentId" : 2,
+  "studentName" : "Priya Reddy",
+  "date" : [ 2026, 5, 12 ],
+  "checkInTime" : [ 14, 49, 19, 579734300 ],
+  "status" : "ABSENT"
+} ]

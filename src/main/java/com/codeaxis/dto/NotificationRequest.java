@@ -6,14 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponse<T> {
+@Builder
+public class NotificationRequest {
 
-    private boolean status;
+    private String title;
 
     private String message;
 
-    private T data;
+    private String type;
+
+    private String username;
 }
