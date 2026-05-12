@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import com.codeaxis.dto.StatsResponse;
 import com.codeaxis.service.DashboardService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/dashboard")

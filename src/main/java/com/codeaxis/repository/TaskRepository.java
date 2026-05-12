@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     //deadline find task by deadline
-    List<Task> findByDeadLineBefore(LocalDate date);
+    List<Task> findByDeadlineBefore(LocalDate date);
 
     // find task by status
     List<Task> findByStatus(String status);
