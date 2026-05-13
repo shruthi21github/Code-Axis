@@ -19,12 +19,12 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-    "/api/auth/**",
-    "/api/projects/**",
-    "/api/tasks/**",
-    "/api/dashboard/**",
-    "/h2-console/**"
-).permitAll()
+                    "/api/auth/**",
+                    "/api/projects/**",
+                    "/api/tasks/**",
+                    "/api/dashboard/**",
+                    "/h2-console/**"
+                ).permitAll()
                 .anyRequest().authenticated()
             )
             .build();
