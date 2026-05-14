@@ -1,22 +1,37 @@
 /*
 ===============================================================================
 Service      : RegisterService
+
 Description  :
-    Handles complete user registration workflow including:
+    Orchestrates complete user registration workflow including:
 
     - Input normalization
-    - Username uniqueness validation
-    - Email uniqueness validation
-    - Role validation
-    - Password hashing
-    - User creation
+    - Registration data validation
+    - User entity creation
+    - User persistence
     - Email verification token creation
+    - Email verification token persistence
     - Registration response generation
+
+Flow :
+    1. Normalize request input
+    2. Validate registration data
+    3. Create user entity
+    4. Persist user
+    5. Create verification token
+    6. Persist verification token
+    7. Build response DTO
 
 Tables Used  :
     - users
     - roles
     - email_verification_tokens
+
+Components Used :
+    - RegisterValidationService
+    - UserFactory
+    - EmailVerificationTokenFactory
+    - RegisterResponseMapper
 
 Security     :
     - Password stored using BCrypt hashing
@@ -29,380 +44,248 @@ Transaction  :
 
 package codeaxis.api.service.auth;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.f4b6a3.uuid.UuidCreator;
-
 import codeaxis.api.dto.auth.RegisterRequestDto;
 import codeaxis.api.dto.auth.RegisterResponseDto;
-import codeaxis.api.entity.EmailVerificationToken;
 import codeaxis.api.entity.Role;
 import codeaxis.api.entity.User;
-import codeaxis.api.exception.ApiException;
 import codeaxis.api.repository.EmailVerificationTokenRepository;
-import codeaxis.api.repository.RoleRepository;
 import codeaxis.api.repository.UserRepository;
-import codeaxis.api.utils.Sha256Util;
+import codeaxis.api.service.auth.factory.EmailVerificationTokenFactory;
+import codeaxis.api.service.auth.factory.UserFactory;
+import codeaxis.api.service.auth.mapper.RegisterResponseMapper;
+import codeaxis.api.service.auth.validation.RegisterValidationService;
 
 @Service
-public class RegisterService {
-        private final UserRepository userRepository;
+public class RegisterService
+{
+    /*
+    ===========================================================================
+    DEPENDENCIES
+    ===========================================================================
 
-        private final RoleRepository roleRepository;
+    UserRepository :
+        Handles users table persistence operations.
 
-        private final EmailVerificationTokenRepository emailVerificationTokenRepository;
+    EmailVerificationTokenRepository :
+        Handles email_verification_tokens table persistence operations.
 
-        private final BCryptPasswordEncoder passwordEncoder;
+    RegisterValidationService :
+        Handles registration business validations.
 
-        public RegisterService(
-                        UserRepository userRepository,
+    UserFactory :
+        Creates fully initialized User entity.
 
-                        RoleRepository roleRepository,
+    EmailVerificationTokenFactory :
+        Creates fully initialized EmailVerificationToken entity.
 
-                        EmailVerificationTokenRepository emailVerificationTokenRepository,
+    RegisterResponseMapper :
+        Maps User entity into RegisterResponseDto.
+    */
 
-                        BCryptPasswordEncoder passwordEncoder) {
-                this.userRepository = userRepository;
+    private final UserRepository userRepository;
 
-                this.roleRepository = roleRepository;
+    private final EmailVerificationTokenRepository
+            emailVerificationTokenRepository;
 
-                this.emailVerificationTokenRepository = emailVerificationTokenRepository;
+    private final RegisterValidationService
+            registerValidationService;
 
-                this.passwordEncoder = passwordEncoder;
-        }
+    private final UserFactory userFactory;
+
+    private final EmailVerificationTokenFactory
+            emailVerificationTokenFactory;
+
+    private final RegisterResponseMapper
+            registerResponseMapper;
+
+    public RegisterService(
+            UserRepository userRepository,
+
+            EmailVerificationTokenRepository
+                    emailVerificationTokenRepository,
+
+            RegisterValidationService
+                    registerValidationService,
+
+            UserFactory userFactory,
+
+            EmailVerificationTokenFactory
+                    emailVerificationTokenFactory,
+
+            RegisterResponseMapper registerResponseMapper)
+    {
+        this.userRepository = userRepository;
+
+        this.emailVerificationTokenRepository =
+                emailVerificationTokenRepository;
+
+        this.registerValidationService =
+                registerValidationService;
+
+        this.userFactory = userFactory;
+
+        this.emailVerificationTokenFactory =
+                emailVerificationTokenFactory;
+
+        this.registerResponseMapper =
+                registerResponseMapper;
+    }
+
+    /*
+    ===========================================================================
+    REGISTER USER
+    ===========================================================================
+
+    Purpose :
+        Registers new user account and creates associated
+        email verification token.
+
+    Workflow :
+        1. Normalize request data
+        2. Validate registration inputs
+        3. Create user entity
+        4. Persist user entity
+        5. Create email verification token entity
+        6. Persist email verification token
+        7. Build registration response
+
+    Transaction :
+        Entire operation rolls back if any step fails.
+    */
+
+    @Transactional
+    public RegisterResponseDto register(
+            RegisterRequestDto request)
+    {
+        /*
+        =======================================================================
+        NORMALIZE INPUT
+        =======================================================================
+
+        Purpose :
+            Ensures consistent storage and comparison behavior.
+
+        Rules :
+            - username -> lowercase
+            - email -> lowercase
+            - role name -> uppercase
+        */
+
+        String username = request.getUsername()
+                .trim()
+                .toLowerCase();
+
+        String email = request.getEmail()
+                .trim()
+                .toLowerCase();
+
+        String roleName = request.getRoleName()
+                .trim()
+                .toUpperCase();
 
         /*
-         * ===========================================================================
-         * REGISTER USER
-         * ===========================================================================
-         * 
-         * Flow :
-         * 1. Normalize request input
-         * 2. Validate username uniqueness
-         * 3. Validate email uniqueness
-         * 4. Validate role
-         * 5. Create user record
-         * 6. Create email verification token
-         * 7. Build response DTO
-         * 
-         * Transaction :
-         * Entire operation rolls back if any step fails.
-         */
+        =======================================================================
+        VALIDATE REGISTRATION DATA
+        =======================================================================
 
-        @Transactional
-        public RegisterResponseDto register(
-                        RegisterRequestDto request) {
-                /*
-                 * =======================================================================
-                 * NORMALIZE INPUT
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Ensures consistent storage and comparison behavior.
-                 * 
-                 * Rules :
-                 * - username -> lowercase
-                 * - email -> lowercase
-                 * - role name -> uppercase
-                 */
+        Validations :
+            - Username uniqueness
+            - Email uniqueness
+            - Role existence
+            - Role active status
+            - Role deleted status
 
-                String username = request.getUsername()
-                                .trim()
-                                .toLowerCase();
+        Tables Used :
+            - users
+            - roles
+        */
 
-                String email = request.getEmail()
-                                .trim()
-                                .toLowerCase();
+        registerValidationService
+                .validateUsername(username);
 
-                String roleName = request.getRoleName()
-                                .trim()
-                                .toUpperCase();
+        registerValidationService
+                .validateEmail(email);
 
-                /*
-                 * =======================================================================
-                 * VALIDATE USERNAME UNIQUENESS
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * users
-                 * 
-                 * Purpose :
-                 * Prevents duplicate usernames.
-                 */
+        Role role = registerValidationService
+                .validateAndGetRole(roleName);
 
-                if (userRepository.existsByUsernameIgnoreCase(username)) {
-                        throw new ApiException(
-                                        HttpStatus.CONFLICT,
-                                        "Username already exists");
-                }
+        /*
+        =======================================================================
+        CREATE USER ENTITY
+        =======================================================================
 
-                /*
-                 * =======================================================================
-                 * VALIDATE EMAIL UNIQUENESS
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * users
-                 * 
-                 * Purpose :
-                 * Prevents duplicate email addresses.
-                 */
+        Purpose :
+            Creates fully initialized User entity including:
+                - UUID generation
+                - BCrypt password hashing
+                - Default account flags
+                - Audit timestamps
+        */
 
-                if (userRepository.existsByEmailIgnoreCase(email)) {
-                        throw new ApiException(
-                                        HttpStatus.CONFLICT,
-                                        "Email address already exists");
-                }
+        User user = userFactory.createUser(
+                username,
+                email,
+                request.getPassword(),
+                role);
 
-                /*
-                 * =======================================================================
-                 * FETCH ROLE
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * roles
-                 * 
-                 * Purpose :
-                 * Fetches requested role for validation and user assignment.
-                 */
+        /*
+        =======================================================================
+        INSERT USER
+        =======================================================================
 
-                Role role = roleRepository
-                                .findByRoleNameIgnoreCase(roleName)
-                                .orElse(null);
+        Table :
+            users
 
-                /*
-                 * =======================================================================
-                 * VALIDATE ROLE EXISTS
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Ensures requested role exists.
-                 */
+        Purpose :
+            Persists newly registered user into database.
+        */
 
-                if (role == null) {
-                        throw new ApiException(
-                                        HttpStatus.NOT_FOUND,
-                                        "User role not found");
-                }
+        userRepository.save(user);
 
-                /*
-                 * =======================================================================
-                 * VALIDATE ROLE ACTIVE
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Prevents registration using inactive role.
-                 */
+        /*
+        =======================================================================
+        CREATE EMAIL VERIFICATION TOKEN
+        =======================================================================
 
-                if (Boolean.FALSE.equals(role.getIsActive())) {
-                        throw new ApiException(
-                                        HttpStatus.BAD_REQUEST,
-                                        "User role inactive");
-                }
+        Purpose :
+            Creates verification token associated with user.
 
-                /*
-                 * =======================================================================
-                 * VALIDATE ROLE DELETED
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Prevents registration using deleted role.
-                 */
+        Security :
+            - Raw token generated internally
+            - SHA-256 hash stored in database
+            - Token expiration managed centrally
+        */
 
-                if (Boolean.TRUE.equals(role.getIsDeleted())) {
-                        throw new ApiException(
-                                        HttpStatus.BAD_REQUEST,
-                                        "User role deleted");
-                }
+        /*
+        =======================================================================
+        INSERT EMAIL VERIFICATION TOKEN
+        =======================================================================
 
-                /*
-                 * =======================================================================
-                 * GENERATE USER ID
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Generates time ordered UUID for optimized database indexing.
-                 */
+        Table :
+            email_verification_tokens
 
-                UUID userId = UuidCreator.getTimeOrderedEpoch();
+        Purpose :
+            Persists generated verification token into database.
+        */
 
-                /*
-                 * =======================================================================
-                 * HASH PASSWORD
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Converts plain password into secure BCrypt hash.
-                 * 
-                 * Security :
-                 * Raw password is never stored in database.
-                 */
+        emailVerificationTokenRepository.save(
+                emailVerificationTokenFactory
+                        .createToken(user));
 
-                String passwordHash = passwordEncoder.encode(
-                                request.getPassword());
+        /*
+        =======================================================================
+        BUILD RESPONSE DTO
+        =======================================================================
 
-                /*
-                 * =======================================================================
-                 * CREATE USER ENTITY
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * users
-                 * 
-                 * Purpose :
-                 * Builds new user entity before persistence.
-                 */
+        Purpose :
+            Maps registered user entity into response object
+            returned to controller/client.
+        */
 
-                User user = new User();
-
-                user.setUserId(userId);
-
-                user.setRole(role);
-
-                user.setUsername(username);
-
-                user.setEmail(email);
-
-                user.setPasswordHash(passwordHash);
-
-                user.setIsEmailVerified(false);
-
-                user.setIsLocked(false);
-
-                user.setIsActive(true);
-
-                user.setIsDeleted(false);
-
-                user.setCreatedAt(LocalDateTime.now());
-
-                user.setUpdatedAt(LocalDateTime.now());
-
-                /*
-                 * =======================================================================
-                 * INSERT USER
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * users
-                 * 
-                 * Purpose :
-                 * Persists newly registered user into database.
-                 */
-
-                userRepository.save(user);
-
-                /*
-                 * =======================================================================
-                 * GENERATE EMAIL VERIFICATION TOKEN
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Creates verification token for email verification workflow.
-                 * 
-                 * Security :
-                 * Raw token is hashed before storing in database.
-                 */
-
-                String rawVerificationToken = UuidCreator
-                                .getTimeOrderedEpoch()
-                                .toString();
-
-                String verificationTokenHash = Sha256Util.hash(
-                                rawVerificationToken);
-
-                /*
-                 * =======================================================================
-                 * CREATE EMAIL VERIFICATION TOKEN ENTITY
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * email_verification_tokens
-                 * 
-                 * Purpose :
-                 * Stores email verification token linked to registered user.
-                 */
-
-                EmailVerificationToken token = new EmailVerificationToken();
-
-                token.setEmailVerificationTokenId(
-                                UuidCreator.getTimeOrderedEpoch());
-
-                token.setUser(user);
-
-                token.setVerificationTokenHash(
-                                verificationTokenHash);
-
-                token.setExpiresAt(
-                                LocalDateTime.now().plusHours(24));
-
-                token.setIsActive(true);
-
-                token.setCreatedAt(LocalDateTime.now());
-
-                /*
-                 * =======================================================================
-                 * INSERT EMAIL VERIFICATION TOKEN
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * email_verification_tokens
-                 * 
-                 * Purpose :
-                 * Persists verification token into database.
-                 */
-
-                emailVerificationTokenRepository.save(token);
-
-                /*
-                 * =======================================================================
-                 * BUILD REGISTER RESPONSE
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Creates final response DTO returned to controller/client.
-                 */
-
-                RegisterResponseDto response = new RegisterResponseDto();
-
-                response.setUserId(
-                                user.getUserId().toString());
-
-                response.setRoleId(
-                                role.getRoleId().toString());
-
-                response.setUsername(
-                                user.getUsername());
-
-                response.setEmail(
-                                user.getEmail());
-
-                response.setRoleName(
-                                role.getRoleName());
-
-                response.setIsEmailVerified(
-                                user.getIsEmailVerified());
-
-                response.setIsActive(
-                                user.getIsActive());
-
-                response.setCreatedAt(
-                                user.getCreatedAt());
-
-                /*
-                 * =======================================================================
-                 * RETURN RESPONSE
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Returns enriched registration result back to caller.
-                 */
-
-                return response;
-        }
+        return registerResponseMapper
+                .mapToResponse(user);
+    }
 }
