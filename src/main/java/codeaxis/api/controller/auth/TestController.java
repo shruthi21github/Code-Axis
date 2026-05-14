@@ -1,4 +1,4 @@
-package codeaxis.api.controller.v1.auth;
+package codeaxis.api.controller.auth;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
