@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Task        : B-17 Index Optimization
+Task        : Index Optimization
 File        : 026_create_user_employee_indexes.sql
 Description :
     Index optimization for users and employees tables.
@@ -61,3 +61,61 @@ ON employees(fk_department_id, is_active);
 
 CREATE INDEX idx_employees_manager_active
 ON employees(fk_manager_employee_id, is_active);
+
+/*
+===============================================================================
+Students Table Indexes
+===============================================================================
+*/
+
+USE code_axis_db;
+
+-- ============================================================================
+-- students
+-- ============================================================================
+
+CREATE INDEX idx_students_department_id
+ON students(fk_department_id);
+
+CREATE INDEX idx_students_course_id
+ON students(fk_course_id);
+
+CREATE INDEX idx_students_student_status_id
+ON students(fk_student_status_id);
+
+CREATE INDEX idx_students_employee_id
+ON students(fk_employee_id);
+
+CREATE INDEX idx_students_is_active
+ON students(is_active);
+
+CREATE INDEX idx_students_is_deleted
+ON students(is_deleted);
+
+CREATE INDEX idx_students_joining_date
+ON students(joining_date);
+
+CREATE INDEX idx_students_department_id_is_active
+ON students(fk_department_id, is_active);
+
+CREATE INDEX idx_students_course_id_is_active
+ON students(fk_course_id, is_active);
+
+CREATE INDEX idx_students_employee_id_is_active
+ON students(fk_employee_id, is_active);
+
+-- ============================================================================
+-- student_status_history
+-- ============================================================================
+
+CREATE INDEX idx_student_status_history_student_id
+ON student_status_history(fk_student_id);
+
+CREATE INDEX idx_student_status_history_status_id
+ON student_status_history(fk_student_status_id);
+
+CREATE INDEX idx_student_status_history_changed_at
+ON student_status_history(changed_at);
+
+CREATE INDEX idx_student_status_history_student_id_changed_at
+ON student_status_history(fk_student_id, changed_at);

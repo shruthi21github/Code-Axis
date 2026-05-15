@@ -34,7 +34,11 @@ Exceptions  :
 ===============================================================================
 */
 
-DROP PROCEDURE IF EXISTS 001_sp_auth_register_user;
+-- DROP PROCEDURE IF EXISTS 001_sp_auth_register_user;
+
+-- SHOW CREATE PROCEDURE `001_sp_auth_register_user`;
+
+-- SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 DELIMITER $$
 
@@ -798,8 +802,8 @@ BEGIN
 		created_at
 	)
 	SELECT
-		BIN_TO_UUID(pk_user_id, TRUE),
-		BIN_TO_UUID(fk_role_id, TRUE),
+		user_id,
+		role_id,
 
 		username,
 		email,
@@ -811,6 +815,7 @@ BEGIN
 
 		created_at
 	FROM tmp_enriched_user;
+    
 	/*
 	===========================================================================
 	RETURN RESULT

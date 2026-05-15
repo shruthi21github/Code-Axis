@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Task        : B-17 Index Optimization
+Task        : Index Optimization
 File        : 028_create_transaction_indexes.sql
 Description :
     Index optimization for transactional and activity tables.
@@ -16,21 +16,21 @@ USE code_axis_db;
 CREATE INDEX idx_project_members_project_id
 ON project_members(fk_project_id);
 
-CREATE INDEX idx_project_members_employee_id
-ON project_members(fk_employee_id);
+CREATE INDEX idx_project_members_user_id
+ON project_members(fk_user_id);
 
 CREATE INDEX idx_project_members_role_id
 ON project_members(fk_project_member_role_id);
 
-CREATE INDEX idx_project_members_project_employee
-ON project_members(fk_project_id, fk_employee_id);
+CREATE INDEX idx_project_members_project_id_user_id
+ON project_members(fk_project_id, fk_user_id);
 
 -- ============================================================================
 -- attendance_events
 -- ============================================================================
 
-CREATE INDEX idx_attendance_events_employee_id
-ON attendance_events(fk_employee_id);
+CREATE INDEX idx_attendance_events_user_id
+ON attendance_events(fk_user_id);
 
 CREATE INDEX idx_attendance_events_event_type_id
 ON attendance_events(fk_attendance_event_type_id);
@@ -38,8 +38,8 @@ ON attendance_events(fk_attendance_event_type_id);
 CREATE INDEX idx_attendance_events_event_at
 ON attendance_events(event_at);
 
-CREATE INDEX idx_attendance_events_employee_event_at
-ON attendance_events(fk_employee_id, event_at);
+CREATE INDEX idx_attendance_events_user_id_event_at
+ON attendance_events(fk_user_id, event_at);
 
 -- ============================================================================
 -- task_status_history
@@ -54,7 +54,7 @@ ON task_status_history(fk_task_status_id);
 CREATE INDEX idx_task_status_history_changed_at
 ON task_status_history(changed_at);
 
-CREATE INDEX idx_task_status_history_task_changed
+CREATE INDEX idx_task_status_history_task_id_changed_at
 ON task_status_history(fk_task_id, changed_at);
 
 -- ============================================================================
@@ -83,7 +83,7 @@ ON notifications(fk_notification_type_id);
 CREATE INDEX idx_notifications_is_read
 ON notifications(is_read);
 
-CREATE INDEX idx_notifications_user_read
+CREATE INDEX idx_notifications_user_id_is_read
 ON notifications(fk_user_id, is_read);
 
 -- ============================================================================
@@ -143,7 +143,7 @@ ON user_sessions
     refresh_token_expires_at
 );
 
-CREATE INDEX idx_user_sessions_user_active
+CREATE INDEX idx_user_sessions_user_id_is_active
 ON user_sessions
 (
     fk_user_id,

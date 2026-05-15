@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS roles
     pk_role_id            BINARY(16)                    NOT NULL,
     role_name             VARCHAR(100)                  NOT NULL,
     role_description      VARCHAR(255)                  NULL,
-
+    role_level            INT                           NOT NULL,
+    
     is_active             BOOLEAN                       NOT NULL DEFAULT TRUE,
 
     is_deleted            BOOLEAN                       NOT NULL DEFAULT FALSE,
@@ -47,3 +48,9 @@ CREATE TABLE IF NOT EXISTS roles
 -- ============================================================================
 
 DESCRIBE roles;
+
+-- ============================================================================
+-- SHOW CREATE TABLE
+-- ============================================================================
+
+SHOW CREATE TABLE roles;

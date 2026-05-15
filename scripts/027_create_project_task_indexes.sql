@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Task        : B-17 Index Optimization
+Task        : Index Optimization
 File        : 027_create_project_task_indexes.sql
 Description :
     Index optimization for projects and tasks tables.
@@ -25,10 +25,10 @@ ON projects(is_deleted);
 CREATE INDEX idx_projects_deadline_at
 ON projects(deadline_at);
 
-CREATE INDEX idx_projects_status_active
+CREATE INDEX idx_projects_project_status_id_is_active
 ON projects(fk_project_status_id, is_active);
 
-CREATE INDEX idx_projects_start_deadline
+CREATE INDEX idx_projects_start_at_deadline_at
 ON projects(start_at, deadline_at);
 
 -- ============================================================================
@@ -38,8 +38,8 @@ ON projects(start_at, deadline_at);
 CREATE INDEX idx_tasks_project_id
 ON tasks(fk_project_id);
 
-CREATE INDEX idx_tasks_employee_id
-ON tasks(fk_employee_id);
+CREATE INDEX idx_tasks_user_id
+ON tasks(fk_user_id);
 
 CREATE INDEX idx_tasks_task_status_id
 ON tasks(fk_task_status_id);
@@ -62,11 +62,11 @@ ON tasks(is_deleted);
 CREATE INDEX idx_tasks_project_status
 ON tasks(fk_project_id, fk_task_status_id);
 
-CREATE INDEX idx_tasks_employee_status
-ON tasks(fk_employee_id, fk_task_status_id);
+CREATE INDEX idx_tasks_user_id_status_id
+ON tasks(fk_user_id, fk_task_status_id);
 
-CREATE INDEX idx_tasks_employee_deadline
-ON tasks(fk_employee_id, deadline_at);
+CREATE INDEX idx_tasks_user_id_deadline
+ON tasks(fk_user_id, deadline_at);
 
 CREATE INDEX idx_tasks_project_priority
 ON tasks(fk_project_id, fk_task_priority_id);

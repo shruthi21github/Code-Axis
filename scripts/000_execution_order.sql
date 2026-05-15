@@ -7,13 +7,13 @@ Description :
 */
 
 -- ============================================================================
--- B-15 Schema Design
+-- Schema Design
 -- ============================================================================
 
 001_create_database.sql
 
 -- ============================================================================
--- B-16 Table Creation
+-- Table Creation
 -- ============================================================================
 
 002_create_roles.sql
@@ -42,8 +42,19 @@ Description :
 023_create_user_sessions.sql
 024_create_password_reset_tokens.sql
 
+030_create_email_verification_tokens.sql
+
+031_create_duration_units.sql
+032_create_courses.sql
+033_create_student_statuses.sql
+034_create_students.sql
+035_create_student_status_history.sql
+
+036_create_permissions.sql
+037_create_role_permissions.sql
+
 -- ============================================================================
--- B-17 Index Optimization
+-- Index Optimization
 -- ============================================================================
 
 025_create_lookup_indexes.sql

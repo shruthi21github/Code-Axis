@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Task        : B-17 Index Optimization
+Task        : Index Optimization
 File        : 029_verify_indexes.sql
 Description :
     Verification queries for database indexes.
@@ -35,6 +35,9 @@ SHOW INDEXES FROM user_sessions;
 SHOW INDEXES FROM password_reset_tokens;
 SHOW INDEXES FROM email_verification_tokens;
 
+SHOW INDEXES FROM permissions;
+SHOW INDEXES FROM role_permissions;
+
 -- ============================================================================
 -- Custom show indexes
 -- ============================================================================
@@ -55,12 +58,12 @@ WHERE email = 'admin@codeaxis.com';
 EXPLAIN
 SELECT *
 FROM tasks
-WHERE fk_employee_id = UNHEX(REPLACE(UUID(), '-', ''));
+WHERE fk_user_id = UNHEX(REPLACE(UUID(), '-', ''));
 
 EXPLAIN
 SELECT *
 FROM attendance_events
-WHERE fk_employee_id = UNHEX(REPLACE(UUID(), '-', ''))
+WHERE fk_user_id = UNHEX(REPLACE(UUID(), '-', ''))
 ORDER BY event_at DESC;
 
 EXPLAIN

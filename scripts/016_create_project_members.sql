@@ -2,7 +2,8 @@
 ===============================================================================
 Table       : project_members
 Description :
-    Bridge table for employee-project assignments.
+    Stores project membership for both employees and students
+    through users table.
 ===============================================================================
 */
 
@@ -14,32 +15,30 @@ USE code_axis_db;
 
 CREATE TABLE IF NOT EXISTS project_members
 (
-    pk_project_member_id           BINARY(16)              NOT NULL,
+    pk_project_member_id          BINARY(16)                    NOT NULL,
 
-    fk_project_id                  BINARY(16)              NOT NULL,
-    fk_employee_id                 BINARY(16)              NOT NULL,
-    fk_project_member_role_id      BINARY(16)              NOT NULL,
+    fk_project_id                 BINARY(16)                    NOT NULL,
+    fk_user_id                    BINARY(16)                    NOT NULL,
 
-    assigned_at                    TIMESTAMP               NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fk_project_member_role_id     BINARY(16)                    NOT NULL,
 
-    is_active                      BOOLEAN                 NOT NULL DEFAULT TRUE,
+    assigned_at                   TIMESTAMP                     NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    created_at                     TIMESTAMP               NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    created_by                     BINARY(16)              NULL,
+    is_active                     BOOLEAN                       NOT NULL DEFAULT TRUE,
+
+    created_at                    TIMESTAMP                     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by                    BINARY(16)                    NULL,
 
     CONSTRAINT pk_project_members
         PRIMARY KEY (pk_project_member_id),
-
-    CONSTRAINT uq_project_members_project_employee
-        UNIQUE (fk_project_id, fk_employee_id),
 
     CONSTRAINT fk_project_members_project_id
         FOREIGN KEY (fk_project_id)
         REFERENCES projects(pk_project_id),
 
-    CONSTRAINT fk_project_members_employee_id
-        FOREIGN KEY (fk_employee_id)
-        REFERENCES employees(pk_employee_id),
+    CONSTRAINT fk_project_members_user_id
+        FOREIGN KEY (fk_user_id)
+        REFERENCES users(pk_user_id),
 
     CONSTRAINT fk_project_members_project_member_role_id
         FOREIGN KEY (fk_project_member_role_id)
@@ -51,3 +50,9 @@ CREATE TABLE IF NOT EXISTS project_members
 -- ============================================================================
 
 DESCRIBE project_members;
+
+-- ============================================================================
+-- Show table DDL
+-- ============================================================================
+
+SHOW CREATE TABLE project_members;
