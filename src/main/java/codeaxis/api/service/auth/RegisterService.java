@@ -3,41 +3,24 @@
 Service      : RegisterService
 
 Description  :
-    Orchestrates complete user registration workflow including:
+    Orchestrates complete user registration workflow.
 
-    - Input normalization
-    - Registration data validation
-    - User entity creation
-    - User persistence
-    - Email verification token creation
-    - Email verification token persistence
-    - Registration response generation
-
-Flow :
-    1. Normalize request input
-    2. Validate registration data
-    3. Create user entity
-    4. Persist user
-    5. Create verification token
-    6. Persist verification token
-    7. Build response DTO
+Responsibilities :
+    - Normalize request input
+    - Validate registration data
+    - Create user entity
+    - Persist user
+    - Create email verification token
+    - Persist verification token
+    - Send verification email
+    - Build registration response DTO
 
 Tables Used  :
     - users
     - roles
     - email_verification_tokens
 
-Components Used :
-    - RegisterValidationService
-    - UserFactory
-    - EmailVerificationTokenFactory
-    - RegisterResponseMapper
-
-Security     :
-    - Password stored using BCrypt hashing
-    - Verification token stored as SHA-256 hash
-
-Transaction  :
+Transaction :
     Entire registration flow executes inside single database transaction.
 ===============================================================================
 */
@@ -46,6 +29,7 @@ package codeaxis.api.service.auth;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Value;
 
 import codeaxis.api.dto.auth.RegisterRequestDto;
 import codeaxis.api.dto.auth.RegisterResponseDto;
@@ -53,126 +37,100 @@ import codeaxis.api.entity.Role;
 import codeaxis.api.entity.User;
 import codeaxis.api.repository.EmailVerificationTokenRepository;
 import codeaxis.api.repository.UserRepository;
+import codeaxis.api.service.auth.dto.EmailVerificationTokenResult;
 import codeaxis.api.service.auth.factory.EmailVerificationTokenFactory;
 import codeaxis.api.service.auth.factory.UserFactory;
 import codeaxis.api.service.auth.mapper.RegisterResponseMapper;
 import codeaxis.api.service.auth.validation.RegisterValidationService;
+import codeaxis.api.service.mail.EmailService;
+import codeaxis.api.service.mail.dto.SendEmailRequestDto;
 
 @Service
-public class RegisterService
-{
-    /*
-    ===========================================================================
-    DEPENDENCIES
-    ===========================================================================
-
-    UserRepository :
-        Handles users table persistence operations.
-
-    EmailVerificationTokenRepository :
-        Handles email_verification_tokens table persistence operations.
-
-    RegisterValidationService :
-        Handles registration business validations.
-
-    UserFactory :
-        Creates fully initialized User entity.
-
-    EmailVerificationTokenFactory :
-        Creates fully initialized EmailVerificationToken entity.
-
-    RegisterResponseMapper :
-        Maps User entity into RegisterResponseDto.
-    */
+public class RegisterService {
 
     private final UserRepository userRepository;
 
-    private final EmailVerificationTokenRepository
-            emailVerificationTokenRepository;
+    private final EmailVerificationTokenRepository emailVerificationTokenRepository;
 
-    private final RegisterValidationService
-            registerValidationService;
+    private final RegisterValidationService registerValidationService;
 
     private final UserFactory userFactory;
 
-    private final EmailVerificationTokenFactory
-            emailVerificationTokenFactory;
+    private final EmailVerificationTokenFactory emailVerificationTokenFactory;
 
-    private final RegisterResponseMapper
-            registerResponseMapper;
+    private final RegisterResponseMapper registerResponseMapper;
+
+    private final EmailService emailService;
 
     public RegisterService(
             UserRepository userRepository,
 
-            EmailVerificationTokenRepository
-                    emailVerificationTokenRepository,
+            EmailVerificationTokenRepository emailVerificationTokenRepository,
 
-            RegisterValidationService
-                    registerValidationService,
+            RegisterValidationService registerValidationService,
 
             UserFactory userFactory,
 
-            EmailVerificationTokenFactory
-                    emailVerificationTokenFactory,
+            EmailVerificationTokenFactory emailVerificationTokenFactory,
 
-            RegisterResponseMapper registerResponseMapper)
-    {
+            RegisterResponseMapper registerResponseMapper,
+
+            EmailService emailService) {
+
         this.userRepository = userRepository;
 
-        this.emailVerificationTokenRepository =
-                emailVerificationTokenRepository;
+        this.emailVerificationTokenRepository = emailVerificationTokenRepository;
 
-        this.registerValidationService =
-                registerValidationService;
+        this.registerValidationService = registerValidationService;
 
         this.userFactory = userFactory;
 
-        this.emailVerificationTokenFactory =
-                emailVerificationTokenFactory;
+        this.emailVerificationTokenFactory = emailVerificationTokenFactory;
 
-        this.registerResponseMapper =
-                registerResponseMapper;
+        this.registerResponseMapper = registerResponseMapper;
+
+        this.emailService = emailService;
     }
 
     /*
-    ===========================================================================
-    REGISTER USER
-    ===========================================================================
+     * =============================================================================
+     * ==
+     * FRONTEND APPLICATION URL CONFIGURATION
+     * =============================================================================
+     * ==
+     * 
+     * Purpose :
+     * Used to dynamically generate frontend email verification links.
+     * 
+     * Example Generated URL :
+     * http://localhost:3000/verify-email?token=abc123
+     * =============================================================================
+     * ==
+     */
 
-    Purpose :
-        Registers new user account and creates associated
-        email verification token.
+    @Value("${app.frontend.base-url}")
+    private String frontendBaseUrl;
 
-    Workflow :
-        1. Normalize request data
-        2. Validate registration inputs
-        3. Create user entity
-        4. Persist user entity
-        5. Create email verification token entity
-        6. Persist email verification token
-        7. Build registration response
+    @Value("${app.frontend.verify-email-path}")
+    private String verifyEmailPath;
 
-    Transaction :
-        Entire operation rolls back if any step fails.
-    */
+    /*
+     * =============================================================================
+     * ==
+     * REGISTER USER
+     * =============================================================================
+     * ==
+     */
 
     @Transactional
     public RegisterResponseDto register(
-            RegisterRequestDto request)
-    {
+            RegisterRequestDto request) {
+
         /*
-        =======================================================================
-        NORMALIZE INPUT
-        =======================================================================
-
-        Purpose :
-            Ensures consistent storage and comparison behavior.
-
-        Rules :
-            - username -> lowercase
-            - email -> lowercase
-            - role name -> uppercase
-        */
+         * ===========================================================================
+         * NORMALIZE INPUT
+         * ===========================================================================
+         */
 
         String username = request.getUsername()
                 .trim()
@@ -187,43 +145,28 @@ public class RegisterService
                 .toUpperCase();
 
         /*
-        =======================================================================
-        VALIDATE REGISTRATION DATA
-        =======================================================================
-
-        Validations :
-            - Username uniqueness
-            - Email uniqueness
-            - Role existence
-            - Role active status
-            - Role deleted status
-
-        Tables Used :
-            - users
-            - roles
-        */
+         * ===========================================================================
+         * VALIDATE REGISTRATION DATA
+         * ===========================================================================
+         */
 
         registerValidationService
-                .validateUsername(username);
+                .validateUsername(
+                        username);
 
         registerValidationService
-                .validateEmail(email);
+                .validateEmail(
+                        email);
 
         Role role = registerValidationService
-                .validateAndGetRole(roleName);
+                .validateAndGetRole(
+                        roleName);
 
         /*
-        =======================================================================
-        CREATE USER ENTITY
-        =======================================================================
-
-        Purpose :
-            Creates fully initialized User entity including:
-                - UUID generation
-                - BCrypt password hashing
-                - Default account flags
-                - Audit timestamps
-        */
+         * ===========================================================================
+         * CREATE USER ENTITY
+         * ===========================================================================
+         */
 
         User user = userFactory.createUser(
                 username,
@@ -232,58 +175,91 @@ public class RegisterService
                 role);
 
         /*
-        =======================================================================
-        INSERT USER
-        =======================================================================
-
-        Table :
-            users
-
-        Purpose :
-            Persists newly registered user into database.
-        */
+         * ===========================================================================
+         * INSERT USER
+         * ===========================================================================
+         */
 
         userRepository.save(user);
 
         /*
-        =======================================================================
-        CREATE EMAIL VERIFICATION TOKEN
-        =======================================================================
+         * ===========================================================================
+         * CREATE EMAIL VERIFICATION TOKEN
+         * ===========================================================================
+         */
 
-        Purpose :
-            Creates verification token associated with user.
-
-        Security :
-            - Raw token generated internally
-            - SHA-256 hash stored in database
-            - Token expiration managed centrally
-        */
+        EmailVerificationTokenResult tokenResult = emailVerificationTokenFactory
+                .createToken(user);
 
         /*
-        =======================================================================
-        INSERT EMAIL VERIFICATION TOKEN
-        =======================================================================
+         * ===========================================================================
+         * INSERT EMAIL VERIFICATION TOKEN
+         * ===========================================================================
+         */
 
-        Table :
-            email_verification_tokens
-
-        Purpose :
-            Persists generated verification token into database.
-        */
-
-        emailVerificationTokenRepository.save(
-                emailVerificationTokenFactory
-                        .createToken(user));
+        emailVerificationTokenRepository
+                .save(
+                        tokenResult
+                                .getEmailVerificationToken());
 
         /*
-        =======================================================================
-        BUILD RESPONSE DTO
-        =======================================================================
+         * ===========================================================================
+         * SEND EMAIL VERIFICATION MAIL
+         * ===========================================================================
+         */
 
-        Purpose :
-            Maps registered user entity into response object
-            returned to controller/client.
-        */
+        SendEmailRequestDto sendEmailRequest = new SendEmailRequestDto();
+
+        sendEmailRequest.setToEmail(
+                user.getEmail());
+
+        sendEmailRequest.setSubject(
+                "Verify your email");
+
+        /*
+         * =============================================================================
+         * ==
+         * GENERATE EMAIL VERIFICATION URL
+         * =============================================================================
+         * ==
+         */
+
+        String verificationUrl = frontendBaseUrl
+                + verifyEmailPath
+                + "?token="
+                + tokenResult
+                        .getRawToken();
+
+        /*
+         * =============================================================================
+         * ==
+         * BUILD EMAIL BODY
+         * =============================================================================
+         * ==
+         */
+
+        sendEmailRequest.setBody(
+                """
+                        Welcome to CodeAxis.
+
+                        Please verify your email by clicking below link:
+
+                        %s
+
+                        If you did not create this account,
+                        please ignore this email.
+                        """
+                        .formatted(
+                                verificationUrl));
+
+        emailService.sendEmail(
+                sendEmailRequest);
+
+        /*
+         * ===========================================================================
+         * BUILD RESPONSE DTO
+         * ===========================================================================
+         */
 
         return registerResponseMapper
                 .mapToResponse(user);

@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import codeaxis.api.entity.Role;
 
 public interface RoleRepository
-        extends JpaRepository<Role, java.util.UUID> {
+                extends JpaRepository<Role, java.util.UUID> {
 
-    Optional<Role> findByRoleNameIgnoreCase(
-            String roleName);
+        Optional<Role> findByRoleNameIgnoreCase(
+                        String roleName);
 }

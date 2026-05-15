@@ -8,38 +8,45 @@ import com.github.f4b6a3.uuid.UuidCreator;
 
 import codeaxis.api.entity.EmailVerificationToken;
 import codeaxis.api.entity.User;
+import codeaxis.api.service.auth.dto.EmailVerificationTokenResult;
 import codeaxis.api.utils.Sha256Util;
 
 @Component
 public class EmailVerificationTokenFactory {
 
-        public EmailVerificationToken createToken(
+        public EmailVerificationTokenResult createToken(
                         User user) {
+
+                /*
+                 * ===========================================================================
+                 * GENERATE RAW VERIFICATION TOKEN
+                 * ===========================================================================
+                 */
 
                 String rawVerificationToken = UuidCreator
                                 .getTimeOrderedEpoch()
                                 .toString();
 
+                /*
+                 * ===========================================================================
+                 * HASH VERIFICATION TOKEN
+                 * ===========================================================================
+                 */
+
                 String verificationTokenHash = Sha256Util.hash(
                                 rawVerificationToken);
+
                 /*
-                 * =======================================================================
+                 * ===========================================================================
                  * CREATE EMAIL VERIFICATION TOKEN ENTITY
-                 * =======================================================================
-                 * 
-                 * Table :
-                 * email_verification_tokens
-                 * 
-                 * Purpose :
-                 * Stores email verification token linked to registered user.
+                 * ===========================================================================
                  */
 
                 EmailVerificationToken token = new EmailVerificationToken();
-
-                token.setEmailVerificationTokenId(
+                token.setPkEmailVerificationTokenId(
                                 UuidCreator.getTimeOrderedEpoch());
 
-                token.setUser(user);
+                token.setFkUserId(user);
 
                 token.setVerificationTokenHash(
                                 verificationTokenHash);
@@ -53,6 +60,14 @@ public class EmailVerificationTokenFactory {
                 token.setCreatedAt(
                                 LocalDateTime.now());
 
-                return token;
+                /*
+                 * ===========================================================================
+                 * RETURN RAW TOKEN + ENTITY
+                 * ===========================================================================
+                 */
+
+                return new EmailVerificationTokenResult(
+                                rawVerificationToken,
+                                token);
         }
 }

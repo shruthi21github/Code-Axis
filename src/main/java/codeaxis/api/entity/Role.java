@@ -1,30 +1,69 @@
 package codeaxis.api.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
 @Table(name = "roles")
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 public class Role {
+
+    /*
+     * ===========================================================================
+     * PRIMARY KEY
+     * ===========================================================================
+     */
 
     @Id
     @JdbcTypeCode(SqlTypes.BINARY)
-    @Column(name = "pk_role_id", columnDefinition = "BINARY(16)")
-    private UUID roleId;
+    @Column(name = "pk_role_id", columnDefinition = "BINARY(16)", nullable = false)
+    private UUID pkRoleId;
 
-    @Column(name = "role_name", nullable = false, unique = true)
+    /*
+     * ===========================================================================
+     * ROLE DETAILS
+     * ===========================================================================
+     */
+
+    @Column(name = "role_name", nullable = false, unique = true, length = 100)
     private String roleName;
 
-    @Column(name = "role_description")
+    @Column(name = "role_description", length = 255)
     private String roleDescription;
+
+    @Column(name = "role_level", nullable = false)
+    private Integer roleLevel;
+
+    /*
+     * ===========================================================================
+     * STATUS
+     * ===========================================================================
+     */
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
@@ -32,65 +71,36 @@ public class Role {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted;
 
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    /*
+     * ===========================================================================
+     * AUDIT
+     * ===========================================================================
+     */
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @JdbcTypeCode(SqlTypes.BINARY)
+    @Column(name = "created_by", columnDefinition = "BINARY(16)")
+    private UUID createdBy;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public UUID getRoleId() {
-        return roleId;
-    }
+    @JdbcTypeCode(SqlTypes.BINARY)
+    @Column(name = "updated_by", columnDefinition = "BINARY(16)")
+    private UUID updatedBy;
 
-    public void setRoleId(UUID roleId) {
-        this.roleId = roleId;
-    }
+    /*
+     * ===========================================================================
+     * REVERSE RELATIONSHIPS
+     * ===========================================================================
+     */
 
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public String getRoleDescription() {
-        return roleDescription;
-    }
-
-    public void setRoleDescription(String roleDescription) {
-        this.roleDescription = roleDescription;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "fkRoleId", fetch = FetchType.LAZY)
+    private List<User> users;
 }

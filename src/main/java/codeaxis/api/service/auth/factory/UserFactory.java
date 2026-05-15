@@ -41,11 +41,11 @@ public class UserFactory {
                  * Generates time ordered UUID for optimized database indexing.
                  */
 
-                user.setUserId(
+                user.setPkUserId(
                                 UuidCreator.getTimeOrderedEpoch());
 
-                user.setRole(role);
-
+                user.setFkRoleId(role);
+                
                 user.setUsername(username);
 
                 user.setEmail(email);
