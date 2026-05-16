@@ -8,22 +8,16 @@ import codeaxis.api.exception.ApiException;
 import codeaxis.api.repository.RoleRepository;
 import codeaxis.api.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
+
 public class RegisterValidationService {
 
         private final UserRepository userRepository;
 
         private final RoleRepository roleRepository;
-
-        public RegisterValidationService(
-                        UserRepository userRepository,
-
-                        RoleRepository roleRepository) {
-
-                this.userRepository = userRepository;
-
-                this.roleRepository = roleRepository;
-        }
 
         public void validateUsername(
                         String username) {
@@ -58,25 +52,17 @@ public class RegisterValidationService {
                  * =======================================================================
                  * FETCH ROLE
                  * =======================================================================
-                 * 
-                 * Table :
-                 * roles
-                 * 
-                 * Purpose :
-                 * Fetches requested role for validation and user assignment.
                  */
 
                 Role role = roleRepository
                                 .findByRoleNameIgnoreCase(
                                                 roleName)
                                 .orElse(null);
+
                 /*
                  * =======================================================================
                  * VALIDATE ROLE EXISTS
                  * =======================================================================
-                 * 
-                 * Purpose :
-                 * Ensures requested role exists.
                  */
 
                 if (role == null) {
@@ -85,14 +71,13 @@ public class RegisterValidationService {
                                         HttpStatus.NOT_FOUND,
                                         "User role not found");
                 }
+
                 /*
                  * =======================================================================
                  * VALIDATE ROLE ACTIVE
                  * =======================================================================
-                 * 
-                 * Purpose :
-                 * Prevents registration using inactive role.
                  */
+
                 if (Boolean.FALSE.equals(
                                 role.getIsActive())) {
 
@@ -100,14 +85,13 @@ public class RegisterValidationService {
                                         HttpStatus.BAD_REQUEST,
                                         "User role inactive");
                 }
+
                 /*
                  * =======================================================================
                  * VALIDATE ROLE DELETED
                  * =======================================================================
-                 * 
-                 * Purpose :
-                 * Prevents registration using deleted role.
                  */
+
                 if (Boolean.TRUE.equals(
                                 role.getIsDeleted())) {
 

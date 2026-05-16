@@ -49,7 +49,7 @@ public class EmailVerificationToken {
      */
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_user_id", nullable = false)
+    @JoinColumn(name = "fk_user_id", nullable = false, columnDefinition = "BINARY(16)")
     private User fkUserId;
 
     /*

@@ -10,16 +10,14 @@ import com.github.f4b6a3.uuid.UuidCreator;
 import codeaxis.api.entity.Role;
 import codeaxis.api.entity.User;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
+
 public class UserFactory {
 
         private final BCryptPasswordEncoder passwordEncoder;
-
-        public UserFactory(
-                        BCryptPasswordEncoder passwordEncoder) {
-
-                this.passwordEncoder = passwordEncoder;
-        }
 
         public User createUser(
                         String username,
@@ -30,56 +28,60 @@ public class UserFactory {
 
                         Role role) {
 
-                User user = new User();
-
                 /*
-                 * =======================================================================
-                 * GENERATE USER ID
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Generates time ordered UUID for optimized database indexing.
+                 * ===========================================================================
+                 * CREATE USER ENTITY
+                 * ===========================================================================
                  */
 
-                user.setPkUserId(
-                                UuidCreator.getTimeOrderedEpoch());
+                return User.builder()
 
-                user.setFkRoleId(role);
-                
-                user.setUsername(username);
+                                /*
+                                 * ===============================================================
+                                 * GENERATE USER ID
+                                 * ===============================================================
+                                 */
 
-                user.setEmail(email);
+                                .pkUserId(
+                                                UuidCreator.getTimeOrderedEpoch())
 
-                /*
-                 * =======================================================================
-                 * HASH PASSWORD
-                 * =======================================================================
-                 * 
-                 * Purpose :
-                 * Converts plain password into secure BCrypt hash.
-                 * 
-                 * Security :
-                 * Raw password is never stored in database.
-                 */
+                                .fkRoleId(
+                                                role)
 
-                user.setPasswordHash(
-                                passwordEncoder.encode(
-                                                rawPassword));
+                                .username(
+                                                username)
 
-                user.setIsEmailVerified(false);
+                                .email(
+                                                email)
 
-                user.setIsLocked(false);
+                                /*
+                                 * ===============================================================
+                                 * HASH PASSWORD
+                                 * ===============================================================
+                                 */
 
-                user.setIsActive(true);
+                                .passwordHash(
+                                                passwordEncoder.encode(
+                                                                rawPassword))
 
-                user.setIsDeleted(false);
+                                .isEmailVerified(
+                                                false)
 
-                user.setCreatedAt(
-                                LocalDateTime.now());
+                                .isLocked(
+                                                false)
 
-                user.setUpdatedAt(
-                                LocalDateTime.now());
+                                .isActive(
+                                                true)
 
-                return user;
+                                .isDeleted(
+                                                false)
+
+                                .createdAt(
+                                                LocalDateTime.now())
+
+                                .updatedAt(
+                                                LocalDateTime.now())
+
+                                .build();
         }
 }

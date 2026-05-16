@@ -2,33 +2,15 @@ package codeaxis.api.service.auth.dto;
 
 import codeaxis.api.entity.EmailVerificationToken;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+
 public class EmailVerificationTokenResult {
 
-    private final String rawToken;
+        private final String rawToken;
 
-    private final EmailVerificationToken
-            emailVerificationToken;
-
-    public EmailVerificationTokenResult(
-            String rawToken,
-
-            EmailVerificationToken
-                    emailVerificationToken) {
-
-        this.rawToken =
-                rawToken;
-
-        this.emailVerificationToken =
-                emailVerificationToken;
-    }
-
-    public String getRawToken() {
-        return rawToken;
-    }
-
-    public EmailVerificationToken
-            getEmailVerificationToken() {
-
-        return emailVerificationToken;
-    }
+        private final EmailVerificationToken emailVerificationToken;
 }

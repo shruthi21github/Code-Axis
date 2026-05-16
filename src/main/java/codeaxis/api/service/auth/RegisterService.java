@@ -1,35 +1,8 @@
-/*
-===============================================================================
-Service      : RegisterService
-
-Description  :
-    Orchestrates complete user registration workflow.
-
-Responsibilities :
-    - Normalize request input
-    - Validate registration data
-    - Create user entity
-    - Persist user
-    - Create email verification token
-    - Persist verification token
-    - Send verification email
-    - Build registration response DTO
-
-Tables Used  :
-    - users
-    - roles
-    - email_verification_tokens
-
-Transaction :
-    Entire registration flow executes inside single database transaction.
-===============================================================================
-*/
-
 package codeaxis.api.service.auth;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.beans.factory.annotation.Value;
 
 import codeaxis.api.dto.auth.RegisterRequestDto;
 import codeaxis.api.dto.auth.RegisterResponseDto;
@@ -45,7 +18,11 @@ import codeaxis.api.service.auth.validation.RegisterValidationService;
 import codeaxis.api.service.mail.EmailService;
 import codeaxis.api.service.mail.dto.SendEmailRequestDto;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
+
 public class RegisterService {
 
     private final UserRepository userRepository;
@@ -62,50 +39,10 @@ public class RegisterService {
 
     private final EmailService emailService;
 
-    public RegisterService(
-            UserRepository userRepository,
-
-            EmailVerificationTokenRepository emailVerificationTokenRepository,
-
-            RegisterValidationService registerValidationService,
-
-            UserFactory userFactory,
-
-            EmailVerificationTokenFactory emailVerificationTokenFactory,
-
-            RegisterResponseMapper registerResponseMapper,
-
-            EmailService emailService) {
-
-        this.userRepository = userRepository;
-
-        this.emailVerificationTokenRepository = emailVerificationTokenRepository;
-
-        this.registerValidationService = registerValidationService;
-
-        this.userFactory = userFactory;
-
-        this.emailVerificationTokenFactory = emailVerificationTokenFactory;
-
-        this.registerResponseMapper = registerResponseMapper;
-
-        this.emailService = emailService;
-    }
-
     /*
      * =============================================================================
-     * ==
      * FRONTEND APPLICATION URL CONFIGURATION
      * =============================================================================
-     * ==
-     * 
-     * Purpose :
-     * Used to dynamically generate frontend email verification links.
-     * 
-     * Example Generated URL :
-     * http://localhost:3000/verify-email?token=abc123
-     * =============================================================================
-     * ==
      */
 
     @Value("${app.frontend.base-url}")
@@ -116,10 +53,8 @@ public class RegisterService {
 
     /*
      * =============================================================================
-     * ==
      * REGISTER USER
      * =============================================================================
-     * ==
      */
 
     @Transactional
@@ -180,7 +115,8 @@ public class RegisterService {
          * ===========================================================================
          */
 
-        userRepository.save(user);
+        userRepository.save(
+                user);
 
         /*
          * ===========================================================================
@@ -189,7 +125,8 @@ public class RegisterService {
          */
 
         EmailVerificationTokenResult tokenResult = emailVerificationTokenFactory
-                .createToken(user);
+                .createToken(
+                        user);
 
         /*
          * ===========================================================================
@@ -204,53 +141,50 @@ public class RegisterService {
 
         /*
          * ===========================================================================
-         * SEND EMAIL VERIFICATION MAIL
-         * ===========================================================================
-         */
-
-        SendEmailRequestDto sendEmailRequest = new SendEmailRequestDto();
-
-        sendEmailRequest.setToEmail(
-                user.getEmail());
-
-        sendEmailRequest.setSubject(
-                "Verify your email");
-
-        /*
-         * =============================================================================
-         * ==
          * GENERATE EMAIL VERIFICATION URL
-         * =============================================================================
-         * ==
+         * ===========================================================================
          */
 
         String verificationUrl = frontendBaseUrl
                 + verifyEmailPath
                 + "?token="
-                + tokenResult
-                        .getRawToken();
+                + tokenResult.getRawToken();
 
         /*
-         * =============================================================================
-         * ==
-         * BUILD EMAIL BODY
-         * =============================================================================
-         * ==
+         * ===========================================================================
+         * BUILD EMAIL REQUEST
+         * ===========================================================================
          */
 
-        sendEmailRequest.setBody(
-                """
-                        Welcome to CodeAxis.
+        SendEmailRequestDto sendEmailRequest = SendEmailRequestDto.builder()
 
-                        Please verify your email by clicking below link:
+                .toEmail(
+                        user.getEmail())
 
-                        %s
+                .subject(
+                        "Verify your email")
 
-                        If you did not create this account,
-                        please ignore this email.
+                .body(
                         """
-                        .formatted(
-                                verificationUrl));
+                                Welcome to CodeAxis.
+
+                                Please verify your email by clicking below link:
+
+                                %s
+
+                                If you did not create this account,
+                                please ignore this email.
+                                """
+                                .formatted(
+                                        verificationUrl))
+
+                .build();
+
+        /*
+         * ===========================================================================
+         * SEND EMAIL
+         * ===========================================================================
+         */
 
         emailService.sendEmail(
                 sendEmailRequest);
@@ -262,6 +196,7 @@ public class RegisterService {
          */
 
         return registerResponseMapper
-                .mapToResponse(user);
+                .mapToResponse(
+                        user);
     }
 }

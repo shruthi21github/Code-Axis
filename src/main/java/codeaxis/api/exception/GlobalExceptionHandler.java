@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
                                 error);
 
                 return ResponseEntity
-                                .status(404)
+                                .status(org.springframework.http.HttpStatus.NOT_FOUND)
                                 .body(response);
         }
 

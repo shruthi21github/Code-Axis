@@ -13,101 +13,97 @@ import jakarta.mail.Transport;
 
 @Component
 public class MailStartupValidator
-        implements CommandLineRunner {
+                implements CommandLineRunner {
 
-    @Value("${spring.mail.host}")
-    private String host;
+        @Value("${spring.mail.host}")
+        private String host;
 
-    @Value("${spring.mail.port}")
-    private int port;
+        @Value("${spring.mail.port}")
+        private int port;
 
-    @Value("${spring.mail.username}")
-    private String username;
+        @Value("${spring.mail.username}")
+        private String username;
 
-    @Value("${spring.mail.password}")
-    private String password;
+        @Value("${spring.mail.password}")
+        private String password;
 
-    @Override
-    public void run(
-            String... args)
-            throws Exception {
+        @Override
+        public void run(
+                        String... args)
+                        throws Exception {
 
-        /*
-        ===========================================================================
-        CREATE SMTP SESSION
-        ===========================================================================
-        */
+                /*
+                 * ===========================================================================
+                 * CREATE SMTP SESSION
+                 * ===========================================================================
+                 */
 
-        Properties properties =
-                new Properties();
+                Properties properties = new Properties();
 
-        properties.put(
-                "mail.smtp.auth",
-                "true");
+                properties.put(
+                                "mail.smtp.auth",
+                                "true");
 
-        properties.put(
-                "mail.smtp.ssl.enable",
-                "true");
+                properties.put(
+                                "mail.smtp.ssl.enable",
+                                "true");
 
-        properties.put(
-                "mail.smtp.host",
-                host);
+                properties.put(
+                                "mail.smtp.host",
+                                host);
 
-        properties.put(
-                "mail.smtp.port",
-                String.valueOf(port));
+                properties.put(
+                                "mail.smtp.port",
+                                String.valueOf(port));
 
-        /*
-        ===========================================================================
-        AUTHENTICATE SMTP CONNECTION
-        ===========================================================================
-        */
+                /*
+                 * ===========================================================================
+                 * AUTHENTICATE SMTP CONNECTION
+                 * ===========================================================================
+                 */
 
-        Session session =
-                Session.getInstance(
-                        properties,
+                Session session = Session.getInstance(
+                                properties,
 
-                        new Authenticator() {
+                                new Authenticator() {
 
-                            @Override
-                            protected PasswordAuthentication
-                                    getPasswordAuthentication() {
+                                        @Override
+                                        protected PasswordAuthentication getPasswordAuthentication() {
 
-                                return new PasswordAuthentication(
-                                        username,
-                                        password);
-                            }
-                        });
+                                                return new PasswordAuthentication(
+                                                                username,
+                                                                password);
+                                        }
+                                });
 
-        Transport transport =
-                session.getTransport(
-                        "smtp");
+                Transport transport = session.getTransport(
+                                "smtp");
 
-        transport.connect();
+                transport.connect();
 
-        /*
-        ===========================================================================
-        SMTP AUTH SUCCESS
-        ===========================================================================
-        */
+                /*
+                 * ===========================================================================
+                 * SMTP AUTH SUCCESS
+                 * ===========================================================================
+                 */
 
-        System.out.println(
-                """
-                ===========================================================================
-                SMTP AUTHENTICATION SUCCESSFUL
+                System.out.println(
+                                """
+                                                ===========================================================================
+                                                SMTP AUTHENTICATION SUCCESSFUL
 
-                Host     : %s
-                Port     : %d
-                Username : %s
-                SSL      : ENABLED
+                                                Host     : %s
+                                                Port     : %d
+                                                Username : %s
+                                                SSL      : ENABLED
 
-                ===========================================================================
-                """
-                        .formatted(
-                                host,
-                                port,
-                                username));
+                                                ===========================================================================
+                                                """
+                                                .formatted(
+                                                                host,
+                                                                port,
+                                                                username));
 
-        transport.close();
-    }
+                transport.close();
+        }
 }

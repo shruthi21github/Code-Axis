@@ -23,8 +23,7 @@ public class EmailVerificationTokenFactory {
                  * ===========================================================================
                  */
 
-                String rawVerificationToken = UuidCreator
-                                .getTimeOrderedEpoch()
+                String rawVerificationToken = UuidCreator.getTimeOrderedEpoch()
                                 .toString();
 
                 /*
@@ -38,27 +37,32 @@ public class EmailVerificationTokenFactory {
 
                 /*
                  * ===========================================================================
-                 * CREATE EMAIL VERIFICATION TOKEN ENTITY
+                 * CREATE TOKEN ENTITY
                  * ===========================================================================
                  */
 
-                EmailVerificationToken token = new EmailVerificationToken();
-                token.setPkEmailVerificationTokenId(
-                                UuidCreator.getTimeOrderedEpoch());
+                EmailVerificationToken token = EmailVerificationToken.builder()
 
-                token.setFkUserId(user);
+                                .pkEmailVerificationTokenId(
+                                                UuidCreator.getTimeOrderedEpoch())
 
-                token.setVerificationTokenHash(
-                                verificationTokenHash);
+                                .fkUserId(
+                                                user)
 
-                token.setExpiresAt(
-                                LocalDateTime.now()
-                                                .plusHours(24));
+                                .verificationTokenHash(
+                                                verificationTokenHash)
 
-                token.setIsActive(true);
+                                .expiresAt(
+                                                LocalDateTime.now()
+                                                                .plusHours(24))
 
-                token.setCreatedAt(
-                                LocalDateTime.now());
+                                .isActive(
+                                                true)
+
+                                .createdAt(
+                                                LocalDateTime.now())
+
+                                .build();
 
                 /*
                  * ===========================================================================

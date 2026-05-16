@@ -1,5 +1,11 @@
 package codeaxis.api.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+
 public class ApiErrorResponseDto {
 
     private Boolean success;
@@ -7,30 +13,4 @@ public class ApiErrorResponseDto {
     private String message;
 
     private Object error;
-
-    public ApiErrorResponseDto(
-            Boolean success,
-
-            String message,
-
-            Object error) {
-
-        this.success = success;
-
-        this.message = message;
-
-        this.error = error;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public Object getError() {
-        return error;
-    }
 }

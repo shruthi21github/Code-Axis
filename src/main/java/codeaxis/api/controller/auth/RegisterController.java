@@ -14,29 +14,28 @@ import codeaxis.api.service.auth.RegisterService;
 
 import jakarta.validation.Valid;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
+
 public class RegisterController {
 
-    private final RegisterService registerService;
+        private final RegisterService registerService;
 
-    public RegisterController(
-            RegisterService registerService) {
+        @PostMapping("/register")
+        @ResponseStatus(HttpStatus.CREATED)
+        public ApiSuccessResponseDto<RegisterResponseDto> register(
 
-        this.registerService = registerService;
-    }
+                        @Valid @RequestBody RegisterRequestDto request) {
 
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ApiSuccessResponseDto<RegisterResponseDto> register(
+                RegisterResponseDto response = registerService.register(
+                                request);
 
-            @Valid @RequestBody RegisterRequestDto request) {
-
-        RegisterResponseDto response = registerService.register(request);
-
-        return new ApiSuccessResponseDto<>(
-                true,
-                "User registered successfully",
-                response);
-    }
+                return new ApiSuccessResponseDto<>(
+                                true,
+                                "User registered successfully",
+                                response);
+        }
 }

@@ -40,11 +40,6 @@ public class CustomErrorAttributes
                 if (error instanceof org.springframework.web.ErrorResponseException ex) {
 
                         status = ex.getStatusCode().value();
-                }
-
-                if (error instanceof org.springframework.web.ErrorResponseException ex) {
-
-                        status = ex.getStatusCode().value();
 
                         message = ex.getBody().getDetail();
                 }

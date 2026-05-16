@@ -39,7 +39,8 @@ public class User {
      */
 
     @Id
-    @Column(name = "pk_user_id", nullable = false)
+    @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.BINARY)
+    @Column(name = "pk_user_id", columnDefinition = "BINARY(16)", nullable = false)
     private UUID pkUserId;
 
     /*
@@ -49,7 +50,7 @@ public class User {
      */
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_role_id", nullable = false)
+    @JoinColumn(name = "fk_role_id", nullable = false, columnDefinition = "BINARY(16)")
     private Role fkRoleId;
 
     /*
