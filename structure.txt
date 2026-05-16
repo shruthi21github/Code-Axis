@@ -1,0 +1,85 @@
+pom.xml
+.gitignore
+mvnw
+mvnw.cmd
+
+Folder PATH listing
+Volume serial number is 7478-274D
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
++---main
+|   +---java
+|   |   \---codeaxis
+|   |       \---api
+|   |           |   ApiApplication.java
+|   |           |   
+|   |           +---controller
+|   |           |   \---auth
+|   |           |           LoginController.java
+|   |           |           
+|   |           +---dto
+|   |           |   |   ApiErrorResponseDto.java
+|   |           |   |   ApiSuccessResponseDto.java
+|   |           |   |   
+|   |           |   \---auth
+|   |           |           LoginRequestDto.java
+|   |           |           LoginResponseDto.java
+|   |           |           
+|   |           +---entity
+|   |           |       EmailVerificationToken.java
+|   |           |       Role.java
+|   |           |       User.java
+|   |           |       UserSession.java
+|   |           |       
+|   |           +---exception
+|   |           |       ApiException.java
+|   |           |       CustomErrorAttributes.java
+|   |           |       GlobalExceptionHandler.java
+|   |           |       
+|   |           +---repository
+|   |           |       EmailVerificationTokenRepository.java
+|   |           |       UserRepository.java
+|   |           |       UserSessionRepository.java
+|   |           |       
+|   |           +---security
+|   |           |       JwtProvider.java
+|   |           |       SecurityBeansConfig.java
+|   |           |       SecurityConfig.java
+|   |           |       
+|   |           +---service
+|   |           |   \---auth
+|   |           |       |   LoginService.java
+|   |           |       |   
+|   |           |       +---factory
+|   |           |       |       LoginResponseFactory.java
+|   |           |       |       UserSessionFactory.java
+|   |           |       |       
+|   |           |       \---validation
+|   |           |               LoginPasswordValidationService.java
+|   |           |               LoginRequestValidationService.java
+|   |           |               LoginUserValidationService.java
+|   |           |               
+|   |           \---utils
+|   |                   Sha256Util.java
+|   |                   UuidUtil.java
+|   |                   
+|   \---resources
+|       |   application.properties
+|       |   
+|       +---META-INF
+|       |       additional-spring-configuration-metadata.json
+|       |       
+|       +---static
+|       \---templates
+\---test
+    \---java
+        \---codeaxis
+            \---api
+                    ApiApplicationTests.java
+                    
+
+Folder PATH listing
+Volume serial number is 7478-274D
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\.MVN
+\---wrapper
+        maven-wrapper.properties
+        
