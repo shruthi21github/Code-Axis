@@ -18,4 +18,15 @@ public interface UserRepository
 
         Optional<User> findByEmailIgnoreCase(
                         String email);
+
+        Optional<User> findByEmailIgnoreCaseOrUsernameIgnoreCase(
+                        String email,
+                        String username);
+
+        Optional<User> findByUsernameIgnoreCase(
+                        String username);
+
+        Optional<User> findByEmailIgnoreCaseAndUsernameIgnoreCase(
+                        String email,
+                        String username);
 }

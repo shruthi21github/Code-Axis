@@ -5,7 +5,7 @@ mvnw.cmd
 
 Folder PATH listing
 Volume serial number is 7478-274D
-C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 +---main
 |   +---java
 |   |   \---codeaxis
@@ -14,6 +14,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |   
 |   |           +---controller
 |   |           |   \---auth
+|   |           |           LoginController.java
 |   |           |           RegisterController.java
 |   |           |           VerifyEmailController.java
 |   |           |           
@@ -22,6 +23,8 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |   |   ApiSuccessResponseDto.java
 |   |           |   |   
 |   |           |   \---auth
+|   |           |           LoginRequestDto.java
+|   |           |           LoginResponseDto.java
 |   |           |           RegisterRequestDto.java
 |   |           |           RegisterResponseDto.java
 |   |           |           VerifyEmailRequestDto.java
@@ -31,6 +34,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |       EmailVerificationToken.java
 |   |           |       Role.java
 |   |           |       User.java
+|   |           |       UserSession.java
 |   |           |       
 |   |           +---exception
 |   |           |       ApiException.java
@@ -41,13 +45,16 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |       EmailVerificationTokenRepository.java
 |   |           |       RoleRepository.java
 |   |           |       UserRepository.java
+|   |           |       UserSessionRepository.java
 |   |           |       
 |   |           +---security
+|   |           |       JwtProvider.java
 |   |           |       SecurityBeansConfig.java
 |   |           |       SecurityConfig.java
 |   |           |       
 |   |           +---service
 |   |           |   +---auth
+|   |           |   |   |   LoginService.java
 |   |           |   |   |   RegisterService.java
 |   |           |   |   |   VerifyEmailService.java
 |   |           |   |   |   
@@ -56,13 +63,18 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |   |   |       
 |   |           |   |   +---factory
 |   |           |   |   |       EmailVerificationTokenFactory.java
+|   |           |   |   |       LoginResponseFactory.java
 |   |           |   |   |       UserFactory.java
+|   |           |   |   |       UserSessionFactory.java
 |   |           |   |   |       
 |   |           |   |   +---mapper
 |   |           |   |   |       RegisterResponseMapper.java
 |   |           |   |   |       VerifyEmailResponseMapper.java
 |   |           |   |   |       
 |   |           |   |   \---validation
+|   |           |   |           LoginPasswordValidationService.java
+|   |           |   |           LoginRequestValidationService.java
+|   |           |   |           LoginUserValidationService.java
 |   |           |   |           RegisterValidationService.java
 |   |           |   |           VerifyEmailValidationService.java
 |   |           |   |           
@@ -94,7 +106,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 
 Folder PATH listing
 Volume serial number is 7478-274D
-C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\.MVN
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\.MVN
 \---wrapper
         maven-wrapper.properties
         
