@@ -15,6 +15,8 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   |           +---controller
 |   |           |   \---auth
 |   |           |           LoginController.java
+|   |           |           RegisterController.java
+|   |           |           VerifyEmailController.java
 |   |           |           
 |   |           +---dto
 |   |           |   |   ApiErrorResponseDto.java
@@ -23,6 +25,10 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   |           |   \---auth
 |   |           |           LoginRequestDto.java
 |   |           |           LoginResponseDto.java
+|   |           |           RegisterRequestDto.java
+|   |           |           RegisterResponseDto.java
+|   |           |           VerifyEmailRequestDto.java
+|   |           |           VerifyEmailResponseDto.java
 |   |           |           
 |   |           +---entity
 |   |           |       EmailVerificationToken.java
@@ -37,6 +43,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   |           |       
 |   |           +---repository
 |   |           |       EmailVerificationTokenRepository.java
+|   |           |       RoleRepository.java
 |   |           |       UserRepository.java
 |   |           |       UserSessionRepository.java
 |   |           |       
@@ -46,17 +53,37 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   |           |       SecurityConfig.java
 |   |           |       
 |   |           +---service
-|   |           |   \---auth
-|   |           |       |   LoginService.java
+|   |           |   +---auth
+|   |           |   |   |   LoginService.java
+|   |           |   |   |   RegisterService.java
+|   |           |   |   |   VerifyEmailService.java
+|   |           |   |   |   
+|   |           |   |   +---dto
+|   |           |   |   |       EmailVerificationTokenResult.java
+|   |           |   |   |       
+|   |           |   |   +---factory
+|   |           |   |   |       EmailVerificationTokenFactory.java
+|   |           |   |   |       LoginResponseFactory.java
+|   |           |   |   |       UserFactory.java
+|   |           |   |   |       UserSessionFactory.java
+|   |           |   |   |       
+|   |           |   |   +---mapper
+|   |           |   |   |       RegisterResponseMapper.java
+|   |           |   |   |       VerifyEmailResponseMapper.java
+|   |           |   |   |       
+|   |           |   |   \---validation
+|   |           |   |           LoginPasswordValidationService.java
+|   |           |   |           LoginRequestValidationService.java
+|   |           |   |           LoginUserValidationService.java
+|   |           |   |           RegisterValidationService.java
+|   |           |   |           VerifyEmailValidationService.java
+|   |           |   |           
+|   |           |   \---mail
+|   |           |       |   EmailService.java
+|   |           |       |   MailStartupValidator.java
 |   |           |       |   
-|   |           |       +---factory
-|   |           |       |       LoginResponseFactory.java
-|   |           |       |       UserSessionFactory.java
-|   |           |       |       
-|   |           |       \---validation
-|   |           |               LoginPasswordValidationService.java
-|   |           |               LoginRequestValidationService.java
-|   |           |               LoginUserValidationService.java
+|   |           |       \---dto
+|   |           |               SendEmailRequestDto.java
 |   |           |               
 |   |           \---utils
 |   |                   Sha256Util.java

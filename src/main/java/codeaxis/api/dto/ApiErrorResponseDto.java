@@ -7,6 +7,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
+
 public class ApiErrorResponseDto {
 
     private Boolean success;
