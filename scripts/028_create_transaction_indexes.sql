@@ -193,3 +193,8 @@ ON email_verification_tokens(expires_at);
 
 CREATE INDEX idx_email_verification_tokens_is_active
 ON email_verification_tokens(is_active);
+
+CREATE INDEX idx_email_verification_tokens_ver_tok_has_act_exp_at
+ON email_verification_tokens (verification_token_hash, is_active, expires_at);
+
+
