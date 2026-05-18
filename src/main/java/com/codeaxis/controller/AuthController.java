@@ -29,7 +29,7 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.builder() 
                 .status(true) 
                 .message("Token refreshed successfully") 
-                .data(new RefreshTokenResponse(newAccessToken, "Bearer")) 
+                .data(new RefreshTokenResponse(newAccessToken)) 
                 .build()); 
     } 
 } 
