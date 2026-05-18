@@ -9,11 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import codeaxis.api.entity.EmailVerificationToken;
 
 public interface EmailVerificationTokenRepository
-        extends JpaRepository<EmailVerificationToken, UUID> {
+                extends JpaRepository<EmailVerificationToken, UUID> {
 
-    Optional<EmailVerificationToken>
-            findByVerificationTokenHashAndIsActiveTrueAndExpiresAtAfter(
-                    String verificationTokenHash,
-                    LocalDateTime currentTime);
+        Optional<EmailVerificationToken> findByVerificationTokenHashAndIsActiveTrueAndExpiresAtAfter(
+                        String verificationTokenHash,
+                        LocalDateTime currentTime);
 }
-

@@ -14,6 +14,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |   
 |   |           +---controller
 |   |           |   \---auth
+|   |           |           RegisterController.java
 |   |           |           VerifyEmailController.java
 |   |           |           
 |   |           +---dto
@@ -21,6 +22,8 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |   |   ApiSuccessResponseDto.java
 |   |           |   |   
 |   |           |   \---auth
+|   |           |           RegisterRequestDto.java
+|   |           |           RegisterResponseDto.java
 |   |           |           VerifyEmailRequestDto.java
 |   |           |           VerifyEmailResponseDto.java
 |   |           |           
@@ -36,20 +39,39 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 |   |           |       
 |   |           +---repository
 |   |           |       EmailVerificationTokenRepository.java
+|   |           |       RoleRepository.java
+|   |           |       UserRepository.java
 |   |           |       
 |   |           +---security
 |   |           |       SecurityBeansConfig.java
 |   |           |       SecurityConfig.java
 |   |           |       
 |   |           +---service
-|   |           |   \---auth
-|   |           |       |   VerifyEmailService.java
+|   |           |   +---auth
+|   |           |   |   |   RegisterService.java
+|   |           |   |   |   VerifyEmailService.java
+|   |           |   |   |   
+|   |           |   |   +---dto
+|   |           |   |   |       EmailVerificationTokenResult.java
+|   |           |   |   |       
+|   |           |   |   +---factory
+|   |           |   |   |       EmailVerificationTokenFactory.java
+|   |           |   |   |       UserFactory.java
+|   |           |   |   |       
+|   |           |   |   +---mapper
+|   |           |   |   |       RegisterResponseMapper.java
+|   |           |   |   |       VerifyEmailResponseMapper.java
+|   |           |   |   |       
+|   |           |   |   \---validation
+|   |           |   |           RegisterValidationService.java
+|   |           |   |           VerifyEmailValidationService.java
+|   |           |   |           
+|   |           |   \---mail
+|   |           |       |   EmailService.java
+|   |           |       |   MailStartupValidator.java
 |   |           |       |   
-|   |           |       +---mapper
-|   |           |       |       VerifyEmailResponseMapper.java
-|   |           |       |       
-|   |           |       \---validation
-|   |           |               VerifyEmailValidationService.java
+|   |           |       \---dto
+|   |           |               SendEmailRequestDto.java
 |   |           |               
 |   |           \---utils
 |   |                   Sha256Util.java

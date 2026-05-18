@@ -59,7 +59,7 @@ public class SecurityConfig {
                                                  * =======================================================
                                                  */
 
-                                               .requestMatchers(
+                                                .requestMatchers(
                                                                 "/api/auth/register",
                                                                 "/api/auth/login",
                                                                 "/api/auth/verify-email",
