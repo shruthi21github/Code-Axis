@@ -1,15 +1,21 @@
-package com.codeaxis.repository;
+package com.codeaxis.repository; 
+ 
+import com.codeaxis.entity.Task; 
+import org.springframework.data.jpa.repository.JpaRepository; 
+import java.util.Optional; 
+import java.util.UUID; 
+ 
+public interface TaskRepository extends JpaRepository<Task, UUID> { 
+ 
+    Optional<Task> findByPkTaskIdAndIsDeletedFalse(UUID pkTaskId); 
+ 
+    long countByFkTaskStatusStatusName(String statusName); 
 
-import com.codeaxis.entity.Task;
-import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
-import java.time.LocalDate;
+    // Count tasks by status name 
+long countByFkTaskStatus_StatusNameIgnoreCaseAndIsDeletedFalse( 
+        String statusName); 
+ 
+// Count all non-deleted tasks 
+long countByIsDeletedFalse();
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
-
-    //deadline find task by deadline
-    List<Task> findByDeadlineBefore(LocalDate date);
-
-    // find task by status
-    List<Task> findByStatus(String status);
-}
+} 

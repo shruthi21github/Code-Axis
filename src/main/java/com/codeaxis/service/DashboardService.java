@@ -1,60 +1,73 @@
-package com.codeaxis.service;
+package com.codeaxis.service; 
 
-import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
-
-import com.codeaxis.dto.StatsResponse;
-import com.codeaxis.repository.ProjectRepository;
-import com.codeaxis.repository.TaskRepository;
-import java.util.HashMap;
-import java.util.Map;
-
-@Service
+import com.codeaxis.dto.DashboardStatsResponse; 
+import com.codeaxis.entity.ProjectStatus; 
+import com.codeaxis.repository.*; 
+import lombok.RequiredArgsConstructor; 
+import org.springframework.stereotype.Service; 
+import org.springframework.transaction.annotation.Transactional; 
+ 
+@Service 
 @RequiredArgsConstructor
-public class DashboardService {
-    private final ProjectRepository projectRepo;
-    private final TaskRepository taskRepo;
-
-    //GET/api/dashboard/stats
-    public StatsResponse getStats(){
-        Map<String, Object> stats = new HashMap<>();
-
-    //total count
-    stats.put("totalprojects", projectRepo.count());
-    stats.put("totaltask", taskRepo.count());
-
-    //task status count
-    stats.put("todoTasks", 
-            taskRepo.findByStatus("TODO").size());
-        stats.put("inProgressTasks", 
-            taskRepo.findByStatus("IN_PROGRESS").size());
-        stats.put("completedTasks", 
-            taskRepo.findByStatus("COMPLETED").size());
-
-        return new StatsResponse(
-            true, "Dashboard stats", stats);
-    }
-
-    // GET/api/dashboard/performance
-    public StatsResponse getPerformance() {
-        Map<String, Object> performance = new HashMap<>();
-
-        long total = taskRepo.count();
-        long completed = taskRepo
-            .findByStatus("COMPLETED").size();
-
-        // completion percentage
-        double percentage = total == 0 ? 0 :
-            ((double) completed / total) * 100;
-
-        performance.put("totalTasks", total);
-        performance.put("completedTasks", completed);
-        performance.put("completionPercentage",
-            Math.round(percentage) + "%");
-        performance.put("pendingTasks",
-            total - completed);
-
-        return new StatsResponse(
-            true, "Performance stats", performance);
-    }
-}
+public class DashboardService { 
+ 
+    private final UserRepository        userRepository; 
+    private final EmployeeRepository    employeeRepository; 
+    private final ProjectRepository     projectRepository; 
+    private final ProjectStatusRepository projectStatusRepository; 
+    private final TaskRepository        taskRepository; 
+ 
+    @Transactional(readOnly = true) 
+    public DashboardStatsResponse getStats() { 
+ 
+        // ── Users ────────────────────────────────────────── 
+        long totalUsers = userRepository.count(); 
+ 
+        // ── Employees ────────────────────────────────────── 
+        long totalEmployees = employeeRepository.countByIsDeletedFalse(); 
+        long activeEmployees = employeeRepository.countByIsActiveTrue(); 
+ 
+        // ── Projects ─────────────────────────────────────── 
+        long totalProjects = projectRepository.countByIsDeletedFalse(); 
+ 
+        ProjectStatus activeStatus = projectStatusRepository 
+                .findByStatusNameIgnoreCase("ACTIVE").orElse(null); 
+        long activeProjects = activeStatus != null 
+                ? projectRepository 
+                    .countByFkProjectStatusAndIsDeletedFalse(activeStatus) 
+                : 0; 
+ 
+        ProjectStatus completedStatus = projectStatusRepository 
+                .findByStatusNameIgnoreCase("COMPLETED").orElse(null); 
+        long completedProjects = completedStatus != null 
+                ? projectRepository 
+                    .countByFkProjectStatusAndIsDeletedFalse(completedStatus) 
+                : 0; 
+ 
+        // ── Tasks ────────────────────────────────────────── 
+        long totalTasks = taskRepository.countByIsDeletedFalse(); 
+ 
+        long todoTasks = taskRepository 
+                .countByFkTaskStatus_StatusNameIgnoreCaseAndIsDeletedFalse("TODO"); 
+        long inProgressTasks = taskRepository 
+                .countByFkTaskStatus_StatusNameIgnoreCaseAndIsDeletedFalse("IN_PROGRESS"); 
+        long doneTasks = taskRepository 
+                .countByFkTaskStatus_StatusNameIgnoreCaseAndIsDeletedFalse("DONE"); 
+        long blockedTasks = taskRepository 
+                .countByFkTaskStatus_StatusNameIgnoreCaseAndIsDeletedFalse("BLOCKED"); 
+ 
+        return DashboardStatsResponse.builder() 
+                .totalUsers(totalUsers) 
+                .totalEmployees(totalEmployees) 
+                .activeEmployees(activeEmployees) 
+                .totalProjects(totalProjects) 
+                .activeProjects(activeProjects) 
+                .completedProjects(completedProjects) 
+                .totalTasks(totalTasks) 
+                .todoTasks(todoTasks) 
+                .inProgressTasks(inProgressTasks) 
+                .doneTasks(doneTasks) 
+                .blockedTasks(blockedTasks) 
+                .build(); 
+    } 
+} 

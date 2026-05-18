@@ -1,40 +1,33 @@
-package com.codeaxis.controller;
-
-import com.codeaxis.dto.*;
-import com.codeaxis.service.TaskService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
-
-@RestController
-@RequestMapping("/api/tasks")
-@RequiredArgsConstructor
-public class TaskController {
-
-    private final TaskService taskService;
-
-    // POST /api/tasks
-    @PostMapping
-    public ResponseEntity<TaskResponse> create(
-        @Valid @RequestBody TaskRequest request) {
-        return ResponseEntity.ok(
-            taskService.create(request));
-    }
-
-    // GET /api/tasks
-    @GetMapping
-    public ResponseEntity<TaskResponse> getAll() {
-        return ResponseEntity.ok(
-            taskService.getAll());
-    }
-
-    // PUT /api/tasks/{id} — status update + deadline
-    @PutMapping("/{id}")
-    public ResponseEntity<TaskResponse> updateStatus(
-        @PathVariable Long id,
-        @RequestBody TaskRequest request) {
-        return ResponseEntity.ok(
-            taskService.updateStatus(id, request));
-    }
-}
+package com.codeaxis.controller; 
+ 
+import com.codeaxis.dto.TaskStatusUpdateRequest; 
+import com.codeaxis.dto.ApiResponse; 
+import com.codeaxis.dto.TaskResponse; 
+import com.codeaxis.service.TaskService; 
+import jakarta.validation.Valid; 
+import lombok.RequiredArgsConstructor; 
+import org.springframework.http.ResponseEntity; 
+import org.springframework.web.bind.annotation.*; 
+import java.util.UUID; 
+ 
+@RestController 
+@RequestMapping("/api/tasks") 
+@RequiredArgsConstructor 
+public class TaskController { 
+ 
+    private final TaskService taskService; 
+ 
+    @PutMapping("/{id}/status") 
+    public ResponseEntity<?> updateTaskStatus( 
+            @PathVariable UUID id, 
+            @Valid @RequestBody TaskStatusUpdateRequest request) { 
+ 
+        TaskResponse response = taskService.updateTaskStatus(id, request); 
+ 
+        return ResponseEntity.ok(ApiResponse.builder() 
+                .status(true) 
+                .message("Task status updated successfully") 
+                .data(response) 
+                .build()); 
+    } 
+} 

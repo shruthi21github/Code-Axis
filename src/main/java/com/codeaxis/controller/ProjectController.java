@@ -1,37 +1,33 @@
-package com.codeaxis.controller;
-
-import com.codeaxis.dto.*;
-import com.codeaxis.service.ProjectService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
-
-@RestController
-@RequestMapping("/api/projects")
-@RequiredArgsConstructor
-public class ProjectController {
-
-    private final ProjectService projectService;
-
-    @PostMapping
-    public ResponseEntity<ProjectResponse> create(
-        @Valid @RequestBody ProjectRequest request) {
-        return ResponseEntity.ok(
-            projectService.create(request));
-    }
-
-    @GetMapping
-    public ResponseEntity<ProjectResponse> getAll() {
-        return ResponseEntity.ok(
-            projectService.getAll());
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<ProjectResponse> update(
-        @PathVariable Long id,
-        @Valid @RequestBody ProjectRequest request) {
-        return ResponseEntity.ok(
-            projectService.update(id, request));
-    }
-}
+package com.codeaxis.controller; 
+ 
+import com.codeaxis.dto.ProjectRequest; 
+import com.codeaxis.dto.ApiResponse; 
+import com.codeaxis.dto.ProjectResponse; 
+import com.codeaxis.service.ProjectService; 
+import jakarta.validation.Valid; 
+import lombok.RequiredArgsConstructor; 
+import org.springframework.http.HttpStatus; 
+import org.springframework.http.ResponseEntity; 
+import org.springframework.web.bind.annotation.*; 
+ 
+@RestController 
+@RequestMapping("/api/projects") 
+@RequiredArgsConstructor 
+public class ProjectController { 
+ 
+    private final ProjectService projectService; 
+ 
+    @PostMapping 
+    public ResponseEntity<?> createProject( 
+            @Valid @RequestBody ProjectRequest request) { 
+ 
+        ProjectResponse response = projectService.createProject(request); 
+ 
+        return ResponseEntity.status(HttpStatus.CREATED) 
+                .body(ApiResponse.builder() 
+                        .status(true) 
+                        .message("Project created successfully") 
+                        .data(response) 
+                        .build()); 
+    } 
+} 

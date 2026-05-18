@@ -3,74 +3,73 @@ package com.codeaxis.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "employees")
 @Data
-public class Task {
+public class Employee {
 
     @Id
-    @Column(name = "pk_task_id",
+    @Column(name = "pk_employee_id",
             columnDefinition = "binary(16)",
             updatable = false,
             nullable = false)
-    private UUID pkTaskId;
+    private UUID pkEmployeeId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_project_id",
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_user_id",
                columnDefinition = "binary(16)",
                nullable = false)
-    private Project fkProject;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_employee_id",
-               columnDefinition = "binary(16)",
-               nullable = false)
-    private Employee fkEmployee;
+    private User fkUser;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_task_status_id",
+    @JoinColumn(name = "fk_department_id",
                columnDefinition = "binary(16)",
                nullable = false)
-    private TaskStatus fkTaskStatus;
+    private Department fkDepartment;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_task_priority_id",
+    @JoinColumn(name = "fk_designation_id",
                columnDefinition = "binary(16)",
                nullable = false)
-    private TaskPriority fkTaskPriority;
+    private Designation fkDesignation;
 
-    @Column(name = "task_title", nullable = false)
-    private String taskTitle;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_manager_employee_id",
+               columnDefinition = "binary(16)")
+    private Employee fkManagerEmployee;
 
-    @Column(name = "task_description",
-            columnDefinition = "TEXT")
-    private String taskDescription;
+    @Column(name = "employee_code",
+            nullable = false, unique = true)
+    private String employeeCode;
 
-    @Column(name = "estimated_hours",
-            precision = 10, scale = 2)
-    private BigDecimal estimatedHours;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @Column(name = "actual_hours",
-            precision = 10, scale = 2)
-    private BigDecimal actualHours;
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-    @Column(name = "start_at")
-    private LocalDateTime startAt;
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
 
-    @Column(name = "deadline_at")
-    private LocalDateTime deadlineAt;
+    @Column(name = "joining_date", nullable = false)
+    private LocalDate joiningDate;
 
-    @Column(name = "completed_at")
-    private LocalDateTime completedAt;
+    @Column(name = "salary",
+            precision = 15, scale = 2)
+    private BigDecimal salary;
 
     @Column(name = "is_active", nullable = false)
     private boolean isActive = true;
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -88,8 +87,8 @@ public class Task {
 
     @PrePersist
     protected void onCreate() {
-        if (this.pkTaskId == null)
-            this.pkTaskId = UUID.randomUUID();
+        if (this.pkEmployeeId == null)
+            this.pkEmployeeId = UUID.randomUUID();
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }

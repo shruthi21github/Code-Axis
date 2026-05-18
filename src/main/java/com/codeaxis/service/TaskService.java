@@ -1,63 +1,75 @@
-package com.codeaxis.service;
-
-import com.codeaxis.dto.TaskRequest;
-import com.codeaxis.dto.TaskResponse;
-import com.codeaxis.entity.Task;
-import com.codeaxis.repository.TaskRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import java.time.LocalDate;
-import java.util.List;
-
-@Service
-@RequiredArgsConstructor
-public class TaskService {
-
-    private final TaskRepository taskRepo;
-
-    // CREATE — POST /api/tasks
-    public TaskResponse create(TaskRequest req) {
-        Task task = new Task();
-        task.setTitle(req.getTitle());
-        task.setDescription(req.getDescription());
-        task.setStatus(req.getStatus());
-        task.setDeadline(LocalDate.parse(req.getDeadline()));
-        task.setProjectId(req.getProjectId());
-        taskRepo.save(task);
-        return new TaskResponse(true, "Task created", task);
-    }
-
-    // GET ALL — GET /api/tasks
-    public TaskResponse getAll() {
-        List<Task> tasks = taskRepo.findAll();
-        return new TaskResponse(true, "Success", tasks);
-    }
-
-    // UPDATE STATUS — PUT /api/tasks/{id}
-    public TaskResponse updateStatus(Long id, TaskRequest req) {
-        Task task = taskRepo.findById(id)
-            .orElseThrow(() ->
-                new RuntimeException("Task not found"));
-
-        // status update
-        if (req.getStatus() != null) {
-            task.setStatus(req.getStatus());
-        }
-
-        // deadline tracking update
-        if (req.getDeadline() != null) {
-            task.setDeadline(LocalDate.parse(req.getDeadline()));
-        }
-
-        // update other fields if provided
-        if (req.getTitle() != null) {
-            task.setTitle(req.getTitle());
-        }
-        if (req.getDescription() != null) {
-            task.setDescription(req.getDescription());
-        }
-
-        taskRepo.save(task);
-        return new TaskResponse(true, "Task updated", task);
-    }
-}
+package com.codeaxis.service; 
+ 
+import com.codeaxis.dto.TaskStatusUpdateRequest; 
+import com.codeaxis.dto.TaskResponse; 
+import com.codeaxis.entity.Task; 
+import com.codeaxis.entity.TaskStatus; 
+import com.codeaxis.entity.TaskStatusHistory; 
+import com.codeaxis.repository.TaskRepository; 
+import com.codeaxis.repository.TaskStatusHistoryRepository; 
+import com.codeaxis.repository.TaskStatusRepository; 
+import lombok.RequiredArgsConstructor; 
+import org.springframework.stereotype.Service; 
+import org.springframework.transaction.annotation.Transactional; 
+import java.time.LocalDateTime; 
+import java.util.UUID; 
+ 
+@Service 
+@RequiredArgsConstructor 
+public class TaskService { 
+ 
+    private final TaskRepository taskRepository; 
+    private final TaskStatusRepository taskStatusRepository; 
+    private final TaskStatusHistoryRepository taskStatusHistoryRepository; 
+ 
+    @Transactional 
+    public TaskResponse updateTaskStatus( 
+            UUID taskId, TaskStatusUpdateRequest request) { 
+ 
+        // 1. Find task 
+        Task task = taskRepository 
+                .findByPkTaskIdAndIsDeletedFalse(taskId) 
+                .orElseThrow(() -> new RuntimeException( 
+                        "Task not found with id: " + taskId)); 
+ 
+        // 2. Find new status from task_statuses table 
+        TaskStatus newStatus = taskStatusRepository 
+                .findByStatusNameIgnoreCase(request.getStatusName()) 
+                .orElseThrow(() -> new RuntimeException( 
+                        "Task status not found: " + request.getStatusName())); 
+ 
+        // 3. Update task status 
+        task.setFkTaskStatus(newStatus); 
+ 
+        // 4. If status is DONE — set completedAt 
+        if ("DONE".equalsIgnoreCase(request.getStatusName())) { 
+            task.setCompletedAt(LocalDateTime.now()); 
+        } else { 
+            task.setCompletedAt(null); 
+        } 
+ 
+        Task updated = taskRepository.save(task); 
+ 
+        // 5. Insert into task_status_history 
+        TaskStatusHistory history = new TaskStatusHistory(); 
+        history.setFkTask(updated); 
+        history.setFkTaskStatus(newStatus); 
+        history.setChangedAt(LocalDateTime.now()); 
+        history.setRemarks(request.getRemarks()); 
+        taskStatusHistoryRepository.save(history); 
+ 
+        return mapToResponse(updated); 
+    } 
+ 
+    private TaskResponse mapToResponse(Task task) { 
+        TaskResponse res = new TaskResponse(); 
+        res.setTaskId(task.getPkTaskId()); 
+        res.setTaskTitle(task.getTaskTitle()); 
+        res.setStatusName(task.getFkTaskStatus().getStatusName()); 
+        res.setPriorityName(task.getFkTaskPriority().getPriorityName()); 
+        res.setDeadlineAt(task.getDeadlineAt()); 
+        res.setCompletedAt(task.getCompletedAt()); 
+        res.setUpdatedAt(task.getUpdatedAt()); 
+        return res; 
+    } 
+} 
