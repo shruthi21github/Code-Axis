@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Glass Dashboard</title>
+
+  <link rel="stylesheet" href="../css/adminlte.css">
+  <link rel="stylesheet" href="../css/custom.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body class="glass-ui">
+
+<div class="app-wrapper">
+
+  <!-- ================= SIDEBAR ================= -->
+  
+
+  <!-- ================= MAIN ================= -->
+  <div class="app-main">
+
+    <!-- TOPBAR -->
+     
+    <div class="glass topbar">
+      <h3>Glass Dashboard</h3>
+      <button class="btn btn-light btn-sm">Profile</button>
+    </div>
+
+    <!-- KPI CARDS -->
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="card glass">
+          <h3>120</h3>
+          <p>Employees</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card glass">
+          <h3>94%</h3>
+          <p>Attendance</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card glass">
+          <h3>18</h3>
+          <p>Projects</p>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card glass">
+          <h3>86%</h3>
+          <p>Tasks Completed</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= LINE CHART ================= -->
+    <div class="card glass mt-4">
+      <h4>Performance Trend</h4>
+      <div id="lineChart"></div>
+    </div>
+
+    <!-- ================= BAR + PIE ================= -->
+    <div class="row mt-4">
+
+      <div class="col-md-6">
+        <div class="card glass">
+          <h4>Project Stats</h4>
+          <div id="barChart"></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card glass">
+          <h4>Task Distribution</h4>
+          <div id="pieChart"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= ACTIVITY FEED ================= -->
+    <div class="card glass mt-4">
+      <h4>Recent Activity</h4>
+
+      <ul>
+        <li>✔ Employee John added</li>
+        <li>✔ Project Alpha completed</li>
+        <li>✔ Attendance updated</li>
+        <li>✔ New task assigned</li>
+        <li>✔ Weekly report generated</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= CHARTS SCRIPT ================= -->
+<script>
+/* LINE CHART */
+new ApexCharts(document.querySelector("#lineChart"), {
+  series: [
+    {
+      name: "Performance",
+      data: [28, 48, 40, 19, 86, 27, 90]
+    },
+    {
+      name: "Projects",
+      data: [65, 59, 80, 81, 56, 55, 40]
+    }
+  ],
+
+  chart: {
+    type: "area",
+    height: 300,
+    foreColor: "#ffffff",
+    toolbar: { show: false }
+  },
+
+  colors: ["#4F46E5", "#22C55E"],
+
+  stroke: {
+    curve: "smooth"
+  },
+
+  xaxis: {
+    categories: [
+      "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
+    ]
+  },
+
+  legend: {
+    labels: {
+      colors: "#ffffff"
+    }
+  },
+
+  dataLabels: {
+    enabled: false
+  }
+}).render();
+/* BAR CHART */
+new ApexCharts(document.querySelector("#barChart"), {
+  series: [{
+    name: 'Projects',
+    data: [10, 15, 12, 18, 20, 14]
+  }],
+  chart: {
+    type: 'bar',
+    height: 300,
+    foreColor: '#fff'
+  },
+  colors: ['#4F46E5'],
+  xaxis: {
+    categories: ["P1","P2","P3","P4","P5","P6"]
+  }
+}).render();
+
+
+/* PIE CHART */
+new ApexCharts(document.querySelector("#pieChart"), {
+  series: [40, 30, 20, 10],
+  chart: {
+    type: 'pie',
+    height: 300,
+    foreColor: '#fff'
+  },
+  labels: ["Completed","Pending","In Progress","Hold"],
+  colors: ["#22C55E","#F59E0B","#3B82F6","#EF4444"]
+}).render();
+</script>
+
+</body>
+</html>

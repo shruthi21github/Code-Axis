@@ -1,0 +1,420 @@
+body{
+    font-family:'Inter',poppins;
+    background:linear-gradient(135deg,#EEF2FF,#F8FAFC);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+    overflow-x:hidden;
+}
+
+/* WRAPPER */
+
+.split-wrapper{
+    width:100%;
+}
+
+/* MAIN CARD */
+
+.split-card{
+    background:#fff;
+    border-radius:30px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.08);
+    min-height:720px;
+}
+
+/* LEFT IMAGE PANEL */
+
+.image-panel{
+    position:relative;
+    min-height:720px;
+    background:
+    linear-gradient(rgba(79,70,229,0.65),rgba(15,23,42,0.7)),
+    url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:flex-end;
+    padding:60px;
+}
+
+.overlay-content{
+    color:#fff;
+    max-width:450px;
+}
+
+.overlay-content h1{
+    font-size:52px;
+    font-weight:700;
+    margin-bottom:20px;
+    line-height:1.2;
+}
+
+.overlay-content p{
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:35px;
+    opacity:0.9;
+}
+
+/* FEATURE LIST */
+
+.feature-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.feature-list div{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:16px;
+    font-weight:500;
+}
+
+.feature-list i{
+    color:#fff;
+    font-size:18px;
+}
+
+/* RIGHT FORM PANEL */
+
+.form-panel{
+    background:#fff;
+    padding:70px 60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.form-container{
+    width:100%;
+    max-width:430px;
+}
+
+/* BRAND LOGO */
+
+.brand-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+    color:#4F46E5;
+}
+
+.brand-logo i{
+    font-size:32px;
+}
+
+.brand-logo span{
+    font-size:26px;
+    font-weight:700;
+}
+
+/* TITLES */
+
+.form-panel h2{
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:12px;
+    color:#111827;
+}
+
+.subtitle{
+    color:#6B7280;
+    margin-bottom:35px;
+    font-size:16px;
+}
+
+/* FORM LABELS */
+
+.form-label{
+    font-weight:600;
+    margin-bottom:10px;
+    color:#374151;
+}
+
+/* INPUTS */
+
+.split-input{
+    height:58px;
+    border-radius:16px;
+    border:1px solid #E5E7EB;
+    padding-left:18px;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.split-input:focus{
+    border-color:#4F46E5;
+    box-shadow:0 0 0 5px rgba(79,70,229,0.15);
+}
+
+/* PASSWORD BOX */
+
+.password-box{
+    position:relative;
+}
+
+.toggle-password{
+    position:absolute;
+    top:50%;
+    right:18px;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#6B7280;
+}
+
+/* REMEMBER ME */
+
+.form-check-label{
+    color:#6B7280;
+    font-size:14px;
+}
+
+.forgot-link{
+    text-decoration:none;
+    color:#4F46E5;
+    font-size:14px;
+    font-weight:600;
+}
+
+.forgot-link:hover{
+    color:#4338CA;
+}
+
+/* BUTTON */
+
+.split-btn{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:16px;
+    background:#4F46E5;
+    color:#fff;
+    font-weight:600;
+    font-size:16px;
+    transition:0.3s;
+    margin-top:10px;
+}
+
+.split-btn:hover{
+    background:#4338CA;
+    transform:translateY(-2px);
+}
+
+/* DIVIDER */
+
+.divider{
+    text-align:center;
+    margin:35px 0 25px;
+    color:#9CA3AF;
+    font-size:13px;
+    font-weight:600;
+    position:relative;
+}
+
+.divider::before,
+.divider::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:35%;
+    height:1px;
+    background:#E5E7EB;
+}
+
+.divider::before{
+    left:0;
+}
+
+.divider::after{
+    right:0;
+}
+
+/* SOCIAL ICONS */
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:30px;
+}
+
+.social-icons a{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#F3F4F6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#374151;
+    text-decoration:none;
+    font-size:20px;
+    transition:0.3s;
+}
+
+.social-icons a:hover{
+    background:#4F46E5;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+/* SIGNUP */
+
+.signup-text{
+    text-align:center;
+    color:#6B7280;
+    font-size:15px;
+}
+
+.signup-text a{
+    color:#4F46E5;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.signup-text a:hover{
+    color:#4338CA;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:991px){
+
+    .image-panel{
+        min-height:400px;
+        padding:40px;
+    }
+
+    .overlay-content h1{
+        font-size:38px;
+    }
+
+    .form-panel{
+        padding:50px 35px;
+    }
+
+    .form-panel h2{
+        font-size:34px;
+    }
+}
+
+@media(max-width:576px){
+
+    body{
+        padding:15px;
+    }
+
+    .split-card{
+        border-radius:20px;
+    }
+
+    .image-panel{
+        min-height:300px;
+        padding:25px;
+    }
+
+    .overlay-content h1{
+        font-size:30px;
+    }
+
+    .overlay-content p{
+        font-size:14px;
+    }
+
+    .form-panel{
+        padding:35px 22px;
+    }
+
+    .form-panel h2{
+        font-size:28px;
+    }
+
+    .brand-logo span{
+        font-size:22px;
+    }
+
+    .social-icons{
+        gap:12px;
+    }
+
+    .social-icons a{
+        width:46px;
+        height:46px;
+    }
+}
+@media(max-width:768px){
+
+    .section-heading h1{
+        font-size:40px;
+    }
+
+    .selection-card{
+        margin-bottom:20px;
+    }
+
+    .register-card{
+        padding:35px;
+    }
+
+    .nav-links{
+        gap:15px;
+        font-size:14px;
+    }
+}
+
+@media(max-width:576px){
+
+    .register-card{
+        padding:30px 22px;
+    }
+
+    .button-group{
+        flex-direction:column;
+    }
+
+    .line{
+        width:40px;
+    }
+
+    .section-heading h1{
+        font-size:32px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .navbar-brand{
+        font-size:24px;
+    }
+
+    .nav-links{
+        gap:12px;
+        font-size:13px;
+    }
+}
+@media(max-width:480px){
+
+  .card,
+  .auth-card{
+    width:100%;
+    max-width:100%;
+    padding:20px;
+  }
+
+  
+
+}
+
+
+  body{
+    padding:15px;
+  }
+
+}

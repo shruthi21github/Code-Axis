@@ -1,0 +1,113 @@
+<nav class="app-header navbar navbar-expand bg-body">
+  <div class="container-fluid">
+
+    <!-- START NAV -->
+    <ul class="navbar-nav">
+
+      <!-- Sidebar toggle -->
+      <li class="nav-item">
+        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+          <i class="bi bi-list"></i>
+        </a>
+      </li>
+
+      <!-- Search -->
+      <li class="nav-item d-none d-md-block">
+        <form class="d-flex ms-2" id="dashboardSearchForm">
+          <div class="input-group input-group-sm">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search menu..."
+              aria-label="Search"
+              id="dashboardSearch"
+            />
+            <button class="btn btn-primary" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </li>
+
+    </ul>
+
+    <!-- END NAV -->
+    <ul class="navbar-nav ms-auto">
+
+      <!-- Theme Toggle -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="themeToggle">
+          <i class="bi bi-moon-fill" id="themeIcon"></i>
+        </a>
+      </li>
+
+      <!-- Notifications -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-bs-toggle="dropdown" href="#">
+          <i class="bi bi-bell-fill"></i>
+          <span class="navbar-badge badge text-bg-warning">5</span>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+          <span class="dropdown-item dropdown-header">5 Notifications</span>
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item">
+            <i class="bi bi-envelope me-2"></i> 4 new projects
+            <span class="float-end text-secondary fs-7">3 mins</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item">
+            <i class="bi bi-people-fill me-2"></i> 8 pending tasks
+            <span class="float-end text-secondary fs-7">12 hours</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item">
+            <i class="bi bi-file-earmark-fill me-2"></i> 3 completed tasks
+            <span class="float-end text-secondary fs-7">2 days</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
+        </div>
+      </li>
+
+      <!-- Fullscreen -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" data-lte-toggle="fullscreen">
+          <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
+          <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display:none"></i>
+        </a>
+      </li>
+
+      <!-- User -->
+      <li class="nav-item dropdown user-menu">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+               class="user-image rounded-circle shadow"
+               style="background:#000;border-radius:50%;padding:5px;">
+          <span class="d-none d-md-inline">Admin User</span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+          <li class="user-header text-bg-primary">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                 class="user-image profile-avatar shadow">
+            <p>Admin User</p>
+          </li>
+
+          <li class="user-footer">
+            <a href="#" class="btn btn-outline-secondary">Profile</a>
+            <a href="#" class="btn btn-outline-danger float-end">Sign out</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>

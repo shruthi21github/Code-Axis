@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Code Axis Registration</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="registration.css">
+
+<style>
+html{
+    scroll-behavior:smooth;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg custom-navbar">
+
+<div class="container">
+
+<a class="navbar-brand" href="#">
+    <img src="logo.png" alt="Logo">
+    CODE AXIS
+</a>
+
+<div class="nav-links ms-auto">
+
+<a href="index.html">
+Login
+</a>
+
+<a href="registration.html" class="active-link">
+Register
+</a>
+
+<a href="forgot-password.html">
+Forgot Password
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- MAIN SECTION -->
+
+<section class="main-section">
+
+<div class="container">
+
+<!-- HEADING -->
+
+<div class="section-heading">
+
+<h1>
+Choose Your Registration Method
+</h1>
+
+<p>
+Select any registration style to create your account
+</p>
+
+</div>
+
+<!-- CARDS -->
+
+<div class="row g-4 justify-content-center">
+
+<!-- MULTI STEP -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="selection-card active-card">
+
+<div class="card-icon purple">
+<i class="bi bi-ui-checks-grid"></i>
+</div>
+
+<h3>
+Multi-step Registration
+</h3>
+
+<p>
+Step-by-step registration process
+</p>
+
+<ul>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Personal Information
+</li>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Account Setup
+</li>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Confirmation
+</li>
+
+</ul>
+
+<a href="#multiStepForm" class="card-btn purple-btn">
+Start Registration
+<i class="bi bi-arrow-right"></i>
+</a>
+
+</div>
+
+</div>
+
+<!-- MATERIAL FORM -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="selection-card">
+
+<div class="card-icon blue">
+<i class="bi bi-layers"></i>
+</div>
+
+<h3>
+Material UI Form
+</h3>
+
+<p>
+Clean & modern material design
+</p>
+
+<ul>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Material Design
+</li>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Smooth Animation
+</li>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Responsive Layout
+</li>
+
+</ul>
+
+<a href="material-form.html" class="card-btn blue-btn">
+Open Material Form
+<i class="bi bi-arrow-right"></i>
+</a>
+
+</div>
+
+</div>
+
+<!-- GLASS FORM -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="selection-card">
+
+<div class="card-icon blue">
+<i class="bi bi-gem"></i>
+</div>
+
+<h3>
+Glass UI Form
+</h3>
+
+<p>
+Modern glassmorphism interface
+</p>
+
+<ul>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Glass Effect
+</li>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Gradient UI
+</li>
+
+<li>
+<i class="bi bi-check-circle-fill"></i>
+Modern Design
+</li>
+
+</ul>
+
+<a href="glass-form.html" class="card-btn blue-btn">
+Open Glass Form
+<i class="bi bi-arrow-right"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MULTI STEP FORM -->
+
+<div class="register-wrapper" id="multiStepForm">
+
+<div class="register-card">
+
+<!-- STEPPER -->
+
+<div class="stepper">
+
+<div class="step active" id="indicator1">
+1
+</div>
+
+<div class="line"></div>
+
+<div class="step" id="indicator2">
+2
+</div>
+
+<div class="line"></div>
+
+<div class="step" id="indicator3">
+3
+</div>
+
+</div>
+
+<!-- STEP 1 -->
+
+<div class="form-step active" id="step1">
+
+<h2 class="title">
+Personal Information
+</h2>
+
+<p class="subtitle">
+Enter your basic information
+</p>
+
+<div class="mb-3">
+
+<label class="form-label">
+Full Name
+</label>
+
+<input
+type="text"
+class="form-control"
+id="fullName"
+placeholder="Enter full name"
+>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Email Address
+</label>
+
+<input
+type="email"
+class="form-control"
+id="email"
+placeholder="Enter email address"
+>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Phone Number
+</label>
+
+<input
+type="text"
+class="form-control"
+id="phone"
+placeholder="Enter phone number"
+>
+
+</div>
+
+<div class="error-message" id="step1Error"></div>
+
+<button class="action-btn" id="next1">
+Next
+</button>
+
+</div>
+
+<!-- STEP 2 -->
+
+<div class="form-step" id="step2">
+
+<h2 class="title">
+Account Setup
+</h2>
+
+<p class="subtitle">
+Create your account credentials
+</p>
+
+<div class="mb-3">
+
+<label class="form-label">
+Username
+</label>
+
+<input
+type="text"
+class="form-control"
+id="username"
+placeholder="Enter username"
+>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Password
+</label>
+
+<div class="password-box">
+
+<input
+type="password"
+class="form-control"
+id="password"
+placeholder="Enter password"
+>
+
+<span class="toggle-password" id="togglePassword">
+<i class="bi bi-eye-slash"></i>
+</span>
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+Confirm Password
+</label>
+
+<div class="password-box">
+
+<input
+type="password"
+class="form-control"
+id="confirmPassword"
+placeholder="Confirm password"
+>
+
+<span class="toggle-password" id="toggleConfirmPassword">
+<i class="bi bi-eye-slash"></i>
+</span>
+
+</div>
+
+</div>
+
+<div class="error-message" id="step2Error"></div>
+
+<div class="button-group d-flex gap-3">
+
+<button class="secondary-btn" id="prev1">
+Previous
+</button>
+
+<button class="action-btn" id="next2">
+Next
+</button>
+
+</div>
+
+</div>
+
+<!-- STEP 3 -->
+
+<div class="form-step" id="step3">
+
+<div class="success-icon">
+<i class="bi bi-check-circle-fill"></i>
+</div>
+
+<h2 class="title">
+Confirm Details
+</h2>
+
+<p class="subtitle">
+Review your details before creating account
+</p>
+
+<div class="summary-box">
+
+<p>
+<strong>Name:</strong>
+<span id="summaryName"></span>
+</p>
+
+<p>
+<strong>Email:</strong>
+<span id="summaryEmail"></span>
+</p>
+
+<p>
+<strong>Username:</strong>
+<span id="summaryUsername"></span>
+</p>
+
+</div>
+
+<div class="button-group d-flex gap-3">
+
+<button class="secondary-btn" id="prev2">
+Previous
+</button>
+
+<button class="action-btn" id="createAccount">
+
+<span id="createText">
+Create Account
+</span>
+
+<span
+class="spinner-border spinner-border-sm d-none"
+id="createLoader">
+</span>
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Custom JS -->
+<script src="registration.js"></script>
+
+</body>
+</html>
