@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-12 | Project Cards</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="adminlte.css" />
+    <link rel="stylesheet" href="custom.css"/>
+ <link rel="stylesheet" href="projectcard.css"/>
+</head>
+<body  class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+
+<div class="app-wrapper">
+
+  <!-- ================= NAVBAR (STATIC INCLUDE) ================= -->
+  <!-- ================= NAVBAR ================= -->
+<nav class="app-header navbar navbar-expand bg-body">
+
+  <div class="container-fluid">
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" data-lte-toggle="sidebar" href="#">
+          <i class="bi bi-list"></i>
+        </a>
+      </li>
+
+      <!-- SEARCH -->
+      <li class="nav-item d-none d-md-block">
+        <form class="d-flex ms-2">
+          <div class="input-group input-group-sm">
+            <input class="form-control" type="search" placeholder="Search menu..." />
+            <button class="btn btn-primary">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </li>
+
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+
+      <!-- THEME -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="themeToggle">
+          <i class="bi bi-moon-fill" id="themeIcon"></i>
+        </a>
+      </li>
+
+      <!-- NOTIFICATIONS -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-bs-toggle="dropdown">
+          <i class="bi bi-bell-fill"></i>
+          <span class="badge text-bg-warning">5</span>
+        </a>
+      </li>
+
+      <!-- FULLSCREEN -->
+      <li class="nav-item">
+        <a class="nav-link" data-lte-toggle="fullscreen">
+          <i class="bi bi-arrows-fullscreen"></i>
+        </a>
+      </li>
+
+      <!-- USER -->
+      <li class="nav-item dropdown user-menu">
+
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+               class="user-image rounded-circle shadow">
+          <span class="d-none d-md-inline">Admin User</span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="user-header text-bg-primary">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                 class="rounded-circle shadow">
+            <p>Admin User</p>
+          </li>
+
+          <li class="user-footer">
+            <a href="index.html" class="btn btn-outline-danger float-end">Logout</a>
+          </li>
+        </ul>
+
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+
+  <div class="sidebar-brand">
+    <a href="index.html" class="brand-link">
+      <img src="AdminLTELogo.png" class="brand-image opacity-75 shadow" />
+      <span class="brand-text fw-semibold">Code Axis</span>
+    </a>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <nav class="mt-2">
+
+      <ul class="nav sidebar-menu flex-column">
+  <!-- DASHBOARD -->
+  <li class="nav-item">
+    <a href="dashboard.html" class="nav-link active">
+      <i class="nav-icon bi bi-speedometer2"></i>
+      <p>Dashboard</p>
+    </a>
+  </li>
+
+  <!-- EMPLOYEE MANAGEMENT -->
+  <li class="nav-header">EMPLOYEE MANAGEMENT</li>
+
+  <li class="nav-item">
+    <a href="employetable.html" class="nav-link">
+      <i class="nav-icon bi bi-people"></i>
+      <p>Employees</p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="Attendance.html" class="nav-link">
+      <i class="nav-icon bi bi-calendar-check"></i>
+      <p>Attendance</p>
+    </a>
+  </li>
+
+  <!-- PROJECT MANAGEMENT -->
+  <li class="nav-header">PROJECT MANAGEMENT</li>
+
+  <li class="nav-item">
+    <a href="projectcards.html" class="nav-link">
+      <i class="nav-icon bi bi-kanban"></i>
+      <p>Projects</p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="task.html" class="nav-link">
+      <i class="nav-icon bi bi-list-task"></i>
+      <p>
+        Tasks
+      </p>
+    </a>
+  </li>
+
+  <!-- REPORTS -->
+  <li class="nav-header">ANALYTICS</li>
+
+  <li class="nav-item">
+    <a href="dashbaord-analytics.html" class="nav-link">
+      <i class="nav-icon bi bi-bar-chart"></i>
+      <p>Reports & Analytics</p>
+    </a>
+  </li>
+
+  <!-- NOTIFICATIONS -->
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon bi bi-bell"></i>
+      <p>
+        Notifications
+      </p>
+    </a>
+  </li>
+
+  <!-- USER -->
+  <li class="nav-header">ACCOUNT</li>
+<li class="nav-item">
+  <a href="index.html" class="nav-link">
+    <i class="nav-icon bi bi-box-arrow-in-right"></i>
+    <p>Login</p>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="registration.html" class="nav-link">
+    <i class="nav-icon bi bi-person-plus"></i>
+    <p>Register</p>
+  </a>
+</li>
+ 
+  <!-- LOGOUT -->
+  <li class="nav-item mt-3">
+    <a href="index.html" class="nav-link text-danger">
+      <i class="nav-icon bi bi-box-arrow-right"></i>
+      <p>Logout</p>
+    </a>
+  </li>
+</ul>
+            <!--end::Sidebar Menu-->
+          </nav>
+        </div>
+        <!--end::Sidebar Wrapper-->
+      </aside>
+<main class="app-main">
+  <div class="app-content">
+    <div class="container-fluid">
+<div class="page-header">
+  <h1 class="page-title">Project Cards</h1>
+  <p class="page-sub">Card Grid — Visual overview of all active projects</p>
+</div>
+
+  <div class="toolbar">
+  <div class="toolbar-left">
+    <button class="filter-chip active" onclick="filterCards('all',this)">All Projects</button>
+    <button class="filter-chip" onclick="filterCards('Active',this)">Active</button>
+    <button class="filter-chip" onclick="filterCards('In Progress',this)">In Progress</button>
+    <button class="filter-chip" onclick="filterCards('Review',this)">In Review</button>
+    <button class="filter-chip" onclick="filterCards('On Hold',this)">On Hold</button>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <div style="position:relative">
+      <i class="bi bi-search" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted-l);font-size:.8rem;pointer-events:none"></i>
+      <input type="text" id="projectSearch" placeholder="Search projects..." oninput="applyFilters()" style="padding:7px 12px 7px 30px;border:1.5px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:.8rem;color:var(--text);background:#fff;outline:none;width:190px;transition:border-color .15s" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+    </div>
+    <span id="cardCount" style="font-size:.75rem;color:var(--muted);font-family:'Poppins',sans-serif;font-weight:600;white-space:nowrap"></span>
+    <button class="btn-primary"><i class="bi bi-plus-lg"></i> New Project</button>
+  </div>
+</div>
+
+<div class="projects-grid" id="projectGrid"></div>
+    </div>
+  </div>
+</main>
+<script>
+const projects=[
+  {id:1,name:'Code Axis Dashboard',desc:'Internal analytics dashboard with real-time stats, employee management, and kanban board.',icon:'bi-bar-chart-fill',iconClass:'ic-indigo',accent:'acc-indigo',status:'Active',statusClass:'cs-active',progress:87,tasks:12,due:'Jun 30',team:['#4F46E5','#10B981','#F59E0B'],progColor:'linear-gradient(90deg,#4F46E5,#818CF8)'},
+  {id:2,name:'E-Commerce Portal',desc:'Full-featured shopping platform with cart, payments, and vendor management system.',icon:'bi-shop',iconClass:'ic-emerald',accent:'acc-emerald',status:'In Progress',statusClass:'cs-inprogress',progress:62,tasks:8,due:'Jul 15',team:['#10B981','#EC4899'],progColor:'linear-gradient(90deg,#10B981,#34D399)'},
+  {id:3,name:'Mobile App Redesign',desc:'Revamp the existing mobile app UI/UX with modern design patterns and improved flows.',icon:'bi-phone-fill',iconClass:'ic-violet',accent:'acc-violet',status:'Review',statusClass:'cs-review',progress:95,tasks:5,due:'May 28',team:['#8B5CF6','#4F46E5','#0EA5E9'],progColor:'linear-gradient(90deg,#8B5CF6,#A78BFA)'},
+  {id:4,name:'Marketing Website',desc:'Corporate landing page refresh with new branding, animations, and SEO optimizations.',icon:'bi-globe',iconClass:'ic-sky',accent:'acc-sky',status:'Active',statusClass:'cs-active',progress:74,tasks:9,due:'Jun 10',team:['#0EA5E9','#F59E0B'],progColor:'linear-gradient(90deg,#0EA5E9,#38BDF8)'},
+  {id:5,name:'CRM Integration',desc:'Connect Salesforce CRM with internal tools via REST API for unified customer data.',icon:'bi-diagram-3-fill',iconClass:'ic-amber',accent:'acc-amber',status:'On Hold',statusClass:'cs-hold',progress:35,tasks:14,due:'Aug 1',team:['#F59E0B','#EF4444'],progColor:'linear-gradient(90deg,#F59E0B,#FCD34D)'},
+  {id:6,name:'AI Chatbot Module',desc:'GPT-powered support chatbot for customer queries with context-aware response system.',icon:'bi-robot',iconClass:'ic-rose',accent:'acc-rose',status:'In Progress',statusClass:'cs-inprogress',progress:48,tasks:7,due:'Jul 20',team:['#EF4444','#8B5CF6','#10B981'],progColor:'linear-gradient(90deg,#EF4444,#FCA5A5)'},
+];
+
+function renderCards(data){
+  document.getElementById('projectGrid').innerHTML=data.length===0
+    ?`<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--muted-l)"><i class="bi bi-search" style="font-size:2rem;opacity:.2;display:block;margin-bottom:10px"></i><div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.88rem">No projects found</div></div>`
+    :data.map(p=>`
+    <div class="project-card ${p.accent}">
+      <div class="card-top">
+        <div class="card-icon ${p.iconClass}"><i class="bi ${p.icon}"></i></div>
+        <span class="card-status ${p.statusClass}">${p.status}</span>
+      </div>
+      <div class="card-name">${p.name}</div>
+      <div class="card-desc">${p.desc}</div>
+      <div class="prog-label"><span>Progress</span><span>${p.progress}%</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${p.progress}%;background:${p.progColor}"></div></div>
+      <div class="card-meta">
+        <div class="avatar-stack">${p.team.map(c=>`<div class="av" style="background:${c}">${String.fromCharCode(65+Math.floor(Math.random()*26))}</div>`).join('')}</div>
+        <div class="meta-item"><i class="bi bi-check2-square"></i> ${p.tasks} tasks</div>
+        <div class="meta-item"><i class="bi bi-calendar3"></i> ${p.due}</div>
+      </div>
+    </div>`).join('');
+  const countEl=document.getElementById('cardCount');
+  if(countEl)countEl.textContent=data.length+' project'+(data.length!==1?'s':'');
+}
+
+let activeStatus='all';
+function filterCards(status,btn){
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  activeStatus=status;
+  applyFilters();
+}
+function applyFilters(){
+  const q=(document.getElementById('projectSearch')?.value||'').toLowerCase();
+  let data=activeStatus==='all'?projects:projects.filter(p=>p.status===activeStatus);
+  if(q)data=data.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+  renderCards(data);
+}
+
+applyFilters();
+</script>
+ <script src="adminlte.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="adminlte.js"></script>
+</body>
+</html>

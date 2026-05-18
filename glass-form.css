@@ -1,0 +1,294 @@
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+
+  background:
+    linear-gradient(135deg,#1e3c72,#2a5298);
+
+  overflow:hidden;
+}
+
+/* OPTIONAL BACKGROUND CIRCLES */
+body::before,
+body::after{
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  z-index:0;
+}
+
+body::before{
+  width:220px;
+  height:220px;
+  background:#6ea8fe;
+  top:10%;
+  left:10%;
+}
+
+body::after{
+  width:260px;
+  height:260px;
+  background:#9b59b6;
+  bottom:10%;
+  right:10%;
+}
+
+/* GLASS CARD */
+.card{
+  position:relative;
+  z-index:1;
+
+  width:100%;
+  max-width:400px;
+  padding:32px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+
+  border:1px solid rgba(255,255,255,0.18);
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.25);
+
+  color:#fff;
+
+  transition:0.3s ease;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+}
+
+/* BRAND */
+.brand{
+  text-align:center;
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.sub{
+  text-align:center;
+  font-size:14px;
+  opacity:0.8;
+  margin-bottom:24px;
+}
+
+/* FORM */
+.form{
+  display:none;
+  animation:fadeIn 0.4s ease;
+}
+
+.form.active{
+  display:block;
+}
+
+/* INPUT */
+input{
+  width:100%;
+  height:48px;
+
+  margin:10px 0;
+  padding:12px 14px;
+
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.25);
+
+  background:rgba(255,255,255,0.08);
+
+  color:#fff;
+  font-size:14px;
+
+  outline:none;
+
+  transition:0.25s ease;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,0.65);
+}
+
+input:hover{
+  background:rgba(255,255,255,0.12);
+}
+
+input:focus{
+  border-color:rgba(255,255,255,0.45);
+
+  background:rgba(255,255,255,0.15);
+
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,0.08);
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  height:48px;
+
+  margin-top:12px;
+
+  border:none;
+  border-radius:12px;
+
+  background:rgba(255,255,255,0.18);
+
+  color:#fff;
+
+  font-size:15px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s ease;
+}
+
+button:hover{
+  background:rgba(255,255,255,0.28);
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.20);
+}
+
+button:active{
+  transform:scale(0.98);
+}
+
+/* LINK */
+.link{
+  text-align:center;
+  margin-top:16px;
+  font-size:13px;
+}
+
+.link a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.link a:hover{
+  text-decoration:underline;
+}
+
+/* MESSAGE */
+.msg{
+  min-height:18px;
+  text-align:center;
+  margin-top:10px;
+  font-size:13px;
+}
+
+.msg.success{
+  color:#00ffbf;
+}
+
+.msg.error{
+  color:#ff7b7b;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .section-heading h1{
+        font-size:40px;
+    }
+
+    .selection-card{
+        margin-bottom:20px;
+    }
+
+    .register-card{
+        padding:35px;
+    }
+
+    .nav-links{
+        gap:15px;
+        font-size:14px;
+    }
+}
+
+@media(max-width:576px){
+
+    .register-card{
+        padding:30px 22px;
+    }
+
+    .button-group{
+        flex-direction:column;
+    }
+
+    .line{
+        width:40px;
+    }
+
+    .section-heading h1{
+        font-size:32px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .navbar-brand{
+        font-size:24px;
+    }
+
+    .nav-links{
+        gap:12px;
+        font-size:13px;
+    }
+}
+@media(max-width:480px){
+
+  .card,
+  .auth-card{
+    width:100%;
+    max-width:100%;
+    padding:20px;
+  }
+
+  body{
+    padding:15px;
+  }
+
+}
+
+
+ 
+
+}

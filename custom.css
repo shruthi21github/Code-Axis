@@ -1,0 +1,253 @@
+:root {
+
+  /* COLORS */
+  --primary: #4F46E5;
+  --success: #22C55E;
+  --danger: #EF4444;
+  --warning: #F59E0B;
+
+  /* BACKGROUND */
+  --bg: #F9FAFB;
+
+  /* TYPOGRAPHY */
+  --font-family: 'Inter', sans-serif;
+
+  /* UI */
+  --card-radius: 12px;
+
+  /* SHADOW */
+  --shadow-sm:
+    0 2px 10px rgba(0,0,0,0.05);
+
+  --shadow-lg:
+    0 10px 25px rgba(0,0,0,0.15);
+
+  /* TRANSITION */
+  --transition: all 0.3s ease;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* DARK MODE */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+}
+body {
+  font-family: var(--font-family);
+  background: var(--bg);
+}
+
+/* =========================
+   GLOBAL TRANSITIONS
+========================= */
+.card,
+.small-box,
+.app-sidebar,
+.app-header,
+.nav-link {
+  transition: var(--transition);
+}
+
+/* =========================
+   KPI CARDS
+========================= */
+.kpi-link {
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.small-box {
+
+  border-radius: var(--card-radius);
+
+  cursor: pointer;
+
+  box-shadow: var(--shadow-sm);
+
+  transition: var(--transition);
+
+  overflow: hidden;
+}
+
+.small-box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.small-box .small-box-icon {
+  opacity: 0.3;
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+
+  border-radius: var(--card-radius);
+
+  border: none;
+
+  box-shadow: var(--shadow-sm);
+
+  transition: var(--transition);
+}
+/* =========================
+   CARD SPACING
+========================= */
+
+.card-header {
+
+  padding: 16px 20px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.card-body {
+
+  padding: 20px;
+}
+/* =========================
+   CHARTS
+========================= */
+#revenue-chart,
+#bar-chart,
+#pie-chart {
+  min-height: 300px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.app-sidebar {
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu .nav-link:hover {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+/* =========================
+   BUTTONS
+========================= */
+
+.btn-primary {
+
+  background: var(--primary);
+
+  border-color: var(--primary);
+
+  border-radius: 10px;
+
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+
+  opacity: 0.9;
+}
+/* =========================
+   TOPBAR SEARCH
+========================= */
+#dashboardSearch {
+  border-radius: 8px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+
+  .app-sidebar {
+    position: fixed;
+    z-index: 1050;
+  }
+
+  .sidebar-collapse .app-sidebar {
+    margin-left: -250px;
+  }
+
+  .small-box {
+    margin-bottom: 15px;
+  }
+}
+.sidebar-menu .nav-link.active {
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+}
+
+.minimal .small-box {
+  box-shadow: none;
+  border: 1px solid #eee;
+}
+body[data-theme="dark"] {
+  background: #121212;
+  color: white;
+}
+
+
+[data-theme="dark"] .card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.glass-ui {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+/* GLASS EFFECT */
+.glass {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 15px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+}
+
+/* SIDEBAR */
+.glass-sidebar {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+}
+
+/* MAIN SHIFT */
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.glass button {
+  color: white;
+}
+.profile-avatar {
+  background: #000;
+  border-radius: 50%;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+/* =========================
+   RESPONSIVE TABLES
+========================= */
+
+.table-responsive {
+  overflow-x: auto;
+}
+/* =========================
+   PAGE SPACING
+========================= */
+
+.app-main,
+.container-fluid {
+  padding-bottom: 20px;
+}

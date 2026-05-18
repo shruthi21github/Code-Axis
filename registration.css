@@ -1,0 +1,506 @@
+:root{
+    --primary:#4F46E5;
+    --primary-dark:#4338CA;
+    --success:#22C55E;
+    --danger:#EF4444;
+    --bg:#F5F7FF;
+    --text:#111827;
+    --muted:#6B7280;
+    --border:#E5E7EB;
+    --shadow:0 12px 35px rgba(0,0,0,0.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',poppins;
+    background:linear-gradient(135deg,#EEF2FF,#F9FAFB);
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--text);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.custom-navbar{
+    background:#fff;
+    padding:18px 0;
+    box-shadow:0 4px 20px rgba(0,0,0,0.05);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.navbar-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+}
+
+.navbar-brand img{
+    width:80px;
+    height:80px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:var(--text);
+    font-weight:500;
+    transition:0.3s;
+    position:relative;
+}
+
+.nav-links a:hover{
+    color:var(--primary);
+}
+
+.active-link{
+    color:var(--primary) !important;
+}
+
+.active-link::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:2px;
+    background:var(--primary);
+    left:0;
+    bottom:-5px;
+}
+
+/* =========================
+   MAIN SECTION
+========================= */
+
+.main-section{
+    padding:80px 0;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-heading h1{
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:15px;
+    color:var(--text);
+}
+
+.section-heading p{
+    color:var(--muted);
+    font-size:15px;
+}
+
+/* =========================
+   REGISTRATION CARDS
+========================= */
+
+.selection-card{
+    background:#fff;
+    border-radius:24px;
+    padding:40px 30px;
+    height:100%;
+    border:2px solid var(--primary);
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+    transition:all 0.4s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.selection-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(to right,#4F46E5,#7C3AED);
+}
+
+.selection-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(79,70,229,0.18);
+}
+
+.card-icon{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:25px;
+    font-size:34px;
+}
+
+.purple{
+    background:#ede9fe;
+    color:var(--primary);
+}
+
+.green{
+    background:#dcfce7;
+    color:#16A34A;
+}
+
+.blue{
+    background:#DBEAFE;
+    color:#2563EB;
+}
+
+.selection-card h3{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:15px;
+    color:var(--text);
+}
+
+.selection-card p{
+    color:var(--muted);
+    margin-bottom:25px;
+    line-height:1.6;
+}
+
+.selection-card ul{
+    list-style:none;
+    padding-left:0;
+    margin-bottom:30px;
+}
+
+.selection-card ul li{
+    margin-bottom:15px;
+    color:#374151;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.selection-card ul li i{
+    color:var(--primary);
+}
+
+/* =========================
+   CARD BUTTONS
+========================= */
+
+.card-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:15px;
+    border-radius:14px;
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.card-btn:hover{
+    transform:scale(1.03);
+    color:#fff;
+}
+
+.purple-btn{
+    background:linear-gradient(to right,#4F46E5,#6366F1);
+}
+
+.green-btn{
+    background:linear-gradient(to right,#16A34A,#22C55E);
+}
+
+.blue-btn{
+    background:linear-gradient(to right,#2563EB,#3B82F6);
+}
+
+/* =========================
+   REGISTER FORM
+========================= */
+
+.register-wrapper{
+    margin-top:90px;
+    display:flex;
+    justify-content:center;
+}
+
+.register-card{
+    width:100%;
+    max-width:760px;
+    background:#fff;
+    border-radius:28px;
+    padding:50px;
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   STEPPER
+========================= */
+
+.stepper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:45px;
+}
+
+.step{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#E5E7EB;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#6B7280;
+    transition:0.3s;
+}
+
+.step.active{
+    background:var(--primary);
+    color:#fff;
+}
+
+.line{
+    width:90px;
+    height:3px;
+    background:#E5E7EB;
+}
+
+/* =========================
+   FORM STEPS
+========================= */
+
+.form-step{
+    display:none;
+}
+
+.form-step.active{
+    display:block;
+}
+
+.title{
+    text-align:center;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.subtitle{
+    text-align:center;
+    color:var(--muted);
+    margin-bottom:35px;
+}
+
+/* =========================
+   FORM INPUTS
+========================= */
+
+.form-label{
+    font-weight:600;
+    margin-bottom:10px;
+}
+
+.form-control{
+    height:58px;
+    border-radius:14px;
+    padding-left:18px;
+    border:1px solid var(--border);
+    transition:0.3s;
+}
+
+.form-control:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 5px rgba(79,70,229,0.15);
+}
+
+.password-box{
+    position:relative;
+}
+
+.toggle-password{
+    position:absolute;
+    top:50%;
+    right:18px;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:var(--muted);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.action-btn{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:14px;
+    background:var(--primary);
+    color:#fff;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.action-btn:hover{
+    background:var(--primary-dark);
+    transform:translateY(-2px);
+}
+
+.secondary-btn{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:14px;
+    background:#E5E7EB;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.secondary-btn:hover{
+    background:#D1D5DB;
+}
+
+.button-group{
+    display:flex;
+    gap:15px;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error-message{
+    color:var(--danger);
+    font-size:14px;
+    margin-top:10px;
+    font-weight:500;
+}
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-icon{
+    width:95px;
+    height:95px;
+    border-radius:50%;
+    background:rgba(34,197,94,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:auto;
+    margin-bottom:25px;
+}
+
+.success-icon i{
+    font-size:46px;
+    color:var(--success);
+}
+
+.summary-box{
+    background:#F9FAFB;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+.summary-box p{
+    margin-bottom:12px;
+    color:#374151;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .section-heading h1{
+        font-size:40px;
+    }
+
+    .selection-card{
+        margin-bottom:20px;
+    }
+
+    .register-card{
+        padding:35px;
+    }
+
+    .nav-links{
+        gap:15px;
+        font-size:14px;
+    }
+}
+
+@media(max-width:576px){
+
+    .register-card{
+        padding:30px 22px;
+    }
+
+    .button-group{
+        flex-direction:column;
+    }
+
+    .line{
+        width:40px;
+    }
+
+    .section-heading h1{
+        font-size:32px;
+    }
+
+    .title{
+        font-size:30px;
+    }
+
+    .navbar-brand{
+        font-size:24px;
+    }
+
+    .nav-links{
+        gap:12px;
+        font-size:13px;
+    }
+}
+@media(max-width:480px){
+
+  .card,
+  .auth-card{
+    width:100%;
+    max-width:100%;
+    padding:20px;
+  }
+
+  
+
+}
+
+
+  body{
+    padding:15px;
+  }
+
+}

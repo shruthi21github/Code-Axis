@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-13 | Task Board</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="adminlte.css" />
+    <link rel="stylesheet" href="custom.css"/>
+     <link rel="stylesheet" href="task.css"/>
+</head>
+<body  class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+
+<div class="app-wrapper">
+
+  <!-- ================= NAVBAR (STATIC INCLUDE) ================= -->
+  <!-- ================= NAVBAR ================= -->
+<nav class="app-header navbar navbar-expand bg-body">
+
+  <div class="container-fluid">
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" data-lte-toggle="sidebar" href="#">
+          <i class="bi bi-list"></i>
+        </a>
+      </li>
+
+      <!-- SEARCH -->
+      <li class="nav-item d-none d-md-block">
+        <form class="d-flex ms-2">
+          <div class="input-group input-group-sm">
+            <input class="form-control" type="search" placeholder="Search menu..." />
+            <button class="btn btn-primary">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+      </li>
+
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+
+      <!-- THEME -->
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="themeToggle">
+          <i class="bi bi-moon-fill" id="themeIcon"></i>
+        </a>
+      </li>
+
+      <!-- NOTIFICATIONS -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-bs-toggle="dropdown">
+          <i class="bi bi-bell-fill"></i>
+          <span class="badge text-bg-warning">5</span>
+        </a>
+      </li>
+
+      <!-- FULLSCREEN -->
+      <li class="nav-item">
+        <a class="nav-link" data-lte-toggle="fullscreen">
+          <i class="bi bi-arrows-fullscreen"></i>
+        </a>
+      </li>
+
+      <!-- USER -->
+      <li class="nav-item dropdown user-menu">
+
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+               class="user-image rounded-circle shadow">
+          <span class="d-none d-md-inline">Admin User</span>
+        </a>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="user-header text-bg-primary">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                 class="rounded-circle shadow">
+            <p>Admin User</p>
+          </li>
+
+          <li class="user-footer">
+            <a href="index.html" class="btn btn-outline-danger float-end">Logout</a>
+          </li>
+        </ul>
+
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+
+  <div class="sidebar-brand">
+    <a href="index.html" class="brand-link">
+      <img src="AdminLTELogo.png" class="brand-image opacity-75 shadow" />
+      <span class="brand-text fw-semibold">Code Axis</span>
+    </a>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <nav class="mt-2">
+
+      <ul class="nav sidebar-menu flex-column">
+  <!-- DASHBOARD -->
+  <li class="nav-item">
+    <a href="dashboard.html" class="nav-link active">
+      <i class="nav-icon bi bi-speedometer2"></i>
+      <p>Dashboard</p>
+    </a>
+  </li>
+
+  <!-- EMPLOYEE MANAGEMENT -->
+  <li class="nav-header">EMPLOYEE MANAGEMENT</li>
+
+  <li class="nav-item">
+    <a href="employetable.html" class="nav-link">
+      <i class="nav-icon bi bi-people"></i>
+      <p>Employees</p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="Attendance.html" class="nav-link">
+      <i class="nav-icon bi bi-calendar-check"></i>
+      <p>Attendance</p>
+    </a>
+  </li>
+
+  <!-- PROJECT MANAGEMENT -->
+  <li class="nav-header">PROJECT MANAGEMENT</li>
+
+  <li class="nav-item">
+    <a href="projectcards.html" class="nav-link">
+      <i class="nav-icon bi bi-kanban"></i>
+      <p>Projects</p>
+    </a>
+  </li>
+
+  <li class="nav-item">
+    <a href="task.html" class="nav-link">
+      <i class="nav-icon bi bi-list-task"></i>
+      <p>
+        Tasks
+      </p>
+    </a>
+  </li>
+
+  <!-- REPORTS -->
+  <li class="nav-header">ANALYTICS</li>
+
+  <li class="nav-item">
+    <a href="dasboard-analytics.html" class="nav-link">
+      <i class="nav-icon bi bi-bar-chart"></i>
+      <p>Reports & Analytics</p>
+    </a>
+  </li>
+
+  <!-- NOTIFICATIONS -->
+  <li class="nav-item">
+    <a href="#" class="nav-link">
+      <i class="nav-icon bi bi-bell"></i>
+      <p>
+        Notifications
+      </p>
+    </a>
+  </li>
+
+  <!-- USER -->
+  <li class="nav-header">ACCOUNT</li>
+<li class="nav-item">
+  <a href="index.html" class="nav-link">
+    <i class="nav-icon bi bi-box-arrow-in-right"></i>
+    <p>Login</p>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a href="registration.html" class="nav-link">
+    <i class="nav-icon bi bi-person-plus"></i>
+    <p>Register</p>
+  </a>
+</li>
+ 
+  <!-- LOGOUT -->
+  <li class="nav-item mt-3">
+    <a href="index.html" class="nav-link text-danger">
+      <i class="nav-icon bi bi-box-arrow-right"></i>
+      <p>Logout</p>
+    </a>
+  </li>
+</ul>
+            <!--end::Sidebar Menu-->
+          </nav>
+        </div>
+        <!--end::Sidebar Wrapper-->
+      </aside>
+
+
+<main class="app-main">
+
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Task Board</h1>
+  </div>
+  <button class="btn-primary" onclick="addTaskPrompt()"><i class="bi bi-plus-lg"></i> Add Task</button>
+</div>
+
+<div class="board" id="board"></div>
+</main>
+<script>
+const COLS={
+  Todo:     {dot:'#94A3B8',color:'#64748B',bg:'#F1F3F9',countBg:'#E2E8F0',countColor:'#475569'},
+  Progress: {dot:'#4F46E5',color:'#4F46E5',bg:'#EEF2FF',countBg:'#C7D2FE',countColor:'#3730A3'},
+  Review:   {dot:'#F59E0B',color:'#92400E',bg:'#FEF3C7',countBg:'#FDE68A',countColor:'#78350F'},
+  Done:     {dot:'#10B981',color:'#065F46',bg:'#D1FAE5',countBg:'#A7F3D0',countColor:'#065F46'},
+};
+const TAGS={Feature:{bg:'#EEF2FF',color:'#4F46E5'},Bug:{bg:'#FEE2E2',color:'#B91C1C'},Design:{bg:'#EDE9FE',color:'#7C3AED'},Docs:{bg:'#E0F2FE',color:'#0369A1'}};
+const AVCOLORS=['#4F46E5','#10B981','#F59E0B','#EF4444','#8B5CF6','#0EA5E9'];
+const COL_LABELS={Todo:'To Do',Progress:'In Progress',Review:'In Review',Done:'Done'};
+
+let tasks=[
+  {id:1,title:'Setup project repo & CI pipeline',desc:'Initialize GitHub repo with branch protection rules and GitHub Actions workflow.',col:'Done',tag:'Feature',priority:'High',due:'2024-05-10',assignees:['RK','SA'],cl:[3,3]},
+  {id:2,title:'Design dashboard wireframes',desc:'Create Figma wireframes for main dashboard, employee table, and kanban.',col:'Done',tag:'Design',priority:'Medium',due:'2024-05-12',assignees:['PR'],cl:[5,5]},
+  {id:3,title:'Implement employee data table',desc:'Build sortable, filterable employee table with search and pagination.',col:'Done',tag:'Feature',priority:'High',due:'2024-05-14',assignees:['RK'],cl:[4,4]},
+  {id:4,title:'Build project card grid',desc:'Responsive card layout with progress bars, status badges, and team avatars.',col:'Progress',tag:'Feature',priority:'High',due:'2024-05-16',assignees:['RK','SA'],cl:[3,5]},
+  {id:5,title:'Notification dropdown UI',desc:'Bell icon dropdown with unread count, filters, and mark-all-read action.',col:'Progress',tag:'Feature',priority:'Medium',due:'2024-05-18',assignees:['PR','RK'],cl:[2,6]},
+  {id:6,title:'Write API documentation',desc:'Document all REST endpoints with request/response examples in Swagger.',col:'Review',tag:'Docs',priority:'Low',due:'2024-05-20',assignees:['SA'],cl:[1,4]},
+  {id:7,title:'Fix mobile layout bugs',desc:'Address CSS overflow issues on screens below 480px width.',col:'Review',tag:'Bug',priority:'High',due:'2024-05-15',assignees:['RK'],cl:[2,3]},
+  {id:8,title:'Add dark mode support',desc:'Implement CSS variable-based dark theme with toggle persistence.',col:'Todo',tag:'Feature',priority:'Medium',due:'2024-05-25',assignees:['SA','PR'],cl:[0,5]},
+  {id:9,title:'Performance audit & optimization',desc:'Run Lighthouse audits and fix CLS, LCP issues. Target 90+ score.',col:'Todo',tag:'Feature',priority:'Low',due:'2024-05-28',assignees:['RK'],cl:[0,3]},
+];
+
+function renderBoard(){
+  const board=document.getElementById('board');
+  const total=tasks.length;
+  board.innerHTML=Object.keys(COLS).map(col=>{
+    const colTasks=tasks.filter(t=>t.col===col);
+    const m=COLS[col];
+    const pct=total?Math.round((colTasks.length/total)*100):0;
+    return `
+    <div class="col" ondragover="event.preventDefault()" ondrop="dropTask(event,'${col}')">
+      <div class="col-head">
+        <div class="col-label">
+          <div class="col-dot" style="background:${m.dot}"></div>
+          <span style="color:${m.color}">${COL_LABELS[col]}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="col-count" style="background:${m.countBg};color:${m.countColor}">${colTasks.length}</span>
+          <button class="add-col-btn" onclick="addTaskPrompt('${col}')"><i class="bi bi-plus"></i></button>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--border);border-radius:999px;margin-bottom:10px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${m.dot};border-radius:999px;transition:width .4s ease"></div></div>
+      ${colTasks.length===0?`<div style="text-align:center;padding:28px 0;color:var(--muted-l);font-size:.75rem"><i class="bi bi-inbox" style="font-size:1.4rem;opacity:.2;display:block;margin-bottom:6px"></i>No tasks yet</div>`:''}
+      ${colTasks.map(t=>taskCard(t)).join('')}
+    </div>`;
+  }).join('');
+}
+
+function taskCard(t){
+  const tag=TAGS[t.tag]||{bg:'#F1F3F9',color:'#64748B'};
+  const [done,total]=t.cl;
+  const pct=total?Math.round((done/total)*100):0;
+  const dueDate=t.due?new Date(t.due):null;
+  const now=new Date();
+  let dueClass='';
+  if(dueDate){const diff=(dueDate-now)/(1000*60*60*24);dueClass=diff<0?'overdue':diff<3?'soon':'';}
+  return `
+  <div class="task-card" draggable="true" ondragstart="dragTask(event,${t.id})">
+    <div class="task-card-accent" style="background:${COLS[t.col].dot}"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span class="task-tag" style="background:${tag.bg};color:${tag.color}">${t.tag}</span>
+      <span class="pb pb-${t.priority.toLowerCase()}">${t.priority}</span>
+    </div>
+    <div class="task-title">${t.title}</div>
+    <div class="task-desc">${t.desc}</div>
+    ${total>0?`<div class="cl-prog"><i class="bi bi-check2-square" style="font-size:.72rem"></i> ${done}/${total}<div class="cl-bar"><div class="cl-fill" style="width:${pct}%"></div></div></div>`:''}
+    <div class="task-foot">
+      <div class="due-chip ${dueClass}"><i class="bi bi-calendar3"></i>${t.due||'No date'}</div>
+      <div style="display:flex;align-items:center;gap:5px">
+        <button onclick="event.stopPropagation();openEditTask(${t.id})" style="border:none;background:transparent;color:var(--muted-l);font-size:.78rem;cursor:pointer;padding:2px 4px;border-radius:5px;transition:color .14s" title="Edit task" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--muted-l)'"><i class="bi bi-pencil"></i></button>
+        <div class="avatar-stack">${t.assignees.map((a,i)=>`<div class="av" style="background:${AVCOLORS[i%AVCOLORS.length]}">${a}</div>`).join('')}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+let draggingId=null;
+function dragTask(e,id){draggingId=id}
+function dropTask(e,col){
+  if(draggingId===null)return;
+  const t=tasks.find(x=>x.id===draggingId);
+  if(t){t.col=col;renderBoard();}
+  draggingId=null;
+}
+function addTaskPrompt(col='Todo'){
+  const title=prompt('Task title:');
+  if(!title)return;
+  tasks.push({id:Date.now(),title,desc:'',col,tag:'Feature',priority:'Medium',due:'',assignees:['RK'],cl:[0,0]});
+  renderBoard();
+}
+
+renderBoard();
+
+let editingTaskId=null;
+function openEditTask(id){
+  const t=tasks.find(x=>x.id===id);if(!t)return;
+  editingTaskId=id;
+  document.getElementById('etTitle').value=t.title;
+  document.getElementById('etDesc').value=t.desc;
+  document.getElementById('etPriority').value=t.priority;
+  document.getElementById('etCol').value=t.col;
+  document.getElementById('etDue').value=t.due||'';
+  document.getElementById('editTaskModal').style.display='flex';
+}
+function closeEditModal(){document.getElementById('editTaskModal').style.display='none';editingTaskId=null;}
+function saveEditTask(){
+  const t=tasks.find(x=>x.id===editingTaskId);if(!t)return;
+  t.title=document.getElementById('etTitle').value.trim()||t.title;
+  t.desc=document.getElementById('etDesc').value.trim();
+  t.priority=document.getElementById('etPriority').value;
+  t.col=document.getElementById('etCol').value;
+  t.due=document.getElementById('etDue').value;
+  closeEditModal();renderBoard();
+}
+function deleteEditTask(){
+  if(!confirm('Delete this task?'))return;
+  tasks=tasks.filter(x=>x.id!==editingTaskId);
+  closeEditModal();renderBoard();
+}
+</script>
+<!-- Edit Task Modal -->
+    <div id="editTaskModal"
+     style="display:none;
+     position:fixed;
+     inset:0;
+     background:rgba(15,23,42,.45);
+     z-index:9999;
+     align-items:center;
+     justify-content:center"
+     onclick="if(event.target===this)closeEditModal()">
+ <div style="background:#fff;border-radius:16px;padding:24px;width:420px;max-width:95vw;box-shadow:0 16px 48px rgba(15,23,42,.18);border:1px solid var(--border)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem">Edit Task</div>
+      <button onclick="closeEditModal()" style="border:none;background:transparent;font-size:1.1rem;color:var(--muted);cursor:pointer;line-height:1">✕</button>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div><label style="font-size:.7rem;font-weight:600;font-family:'Poppins',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px">Title</label>
+        <input id="etTitle" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;color:var(--text)" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div><label style="font-size:.7rem;font-weight:600;font-family:'Poppins',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px">Description</label>
+        <textarea id="etDesc" rows="2" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;resize:none;color:var(--text)" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><label style="font-size:.7rem;font-weight:600;font-family:'Poppins',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px">Priority</label>
+          <select id="etPriority" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;color:var(--text)">
+            <option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option>
+          </select>
+        </div>
+        <div><label style="font-size:.7rem;font-weight:600;font-family:'Poppins',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px">Column</label>
+          <select id="etCol" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;color:var(--text)">
+            <option value="Todo">To Do</option><option value="Progress">In Progress</option><option value="Review">In Review</option><option value="Done">Done</option>
+          </select>
+        </div>
+      </div>
+      <div><label style="font-size:.7rem;font-weight:600;font-family:'Poppins',sans-serif;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px">Due Date</label>
+        <input type="date" id="etDue" style="width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-family:'Inter',sans-serif;font-size:.85rem;outline:none;color:var(--text)">
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:18px;gap:8px">
+      <button onclick="deleteEditTask()" style="padding:8px 16px;border-radius:9px;border:none;background:var(--danger-l);color:var(--danger);font-family:'Poppins',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer">🗑 Delete</button>
+      <div style="display:flex;gap:8px">
+        <button onclick="closeEditModal()" style="padding:8px 16px;border-radius:9px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Poppins',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer">Cancel</button>
+        <button onclick="saveEditTask()" style="padding:8px 16px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--primary),var(--primary-m));color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;box-shadow:0 2px 8px rgba(79,70,229,.2)">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Hide modal initially
+document.getElementById('editTaskModal').style.display='none';
+</script>
+    <script src="adminlte.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
