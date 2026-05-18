@@ -5,7 +5,7 @@ mvnw.cmd
 
 Folder PATH listing
 Volume serial number is 7478-274D
-C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\SRC
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\SRC
 +---main
 |   +---java
 |   |   \---codeaxis
@@ -15,6 +15,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\SRC
 |   |           +---controller
 |   |           |   \---auth
 |   |           |           RegisterController.java
+|   |           |           VerifyEmailController.java
 |   |           |           
 |   |           +---dto
 |   |           |   |   ApiErrorResponseDto.java
@@ -23,6 +24,8 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\SRC
 |   |           |   \---auth
 |   |           |           RegisterRequestDto.java
 |   |           |           RegisterResponseDto.java
+|   |           |           VerifyEmailRequestDto.java
+|   |           |           VerifyEmailResponseDto.java
 |   |           |           
 |   |           +---entity
 |   |           |       EmailVerificationToken.java
@@ -46,6 +49,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\SRC
 |   |           +---service
 |   |           |   +---auth
 |   |           |   |   |   RegisterService.java
+|   |           |   |   |   VerifyEmailService.java
 |   |           |   |   |   
 |   |           |   |   +---dto
 |   |           |   |   |       EmailVerificationTokenResult.java
@@ -56,9 +60,11 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\SRC
 |   |           |   |   |       
 |   |           |   |   +---mapper
 |   |           |   |   |       RegisterResponseMapper.java
+|   |           |   |   |       VerifyEmailResponseMapper.java
 |   |           |   |   |       
 |   |           |   |   \---validation
 |   |           |   |           RegisterValidationService.java
+|   |           |   |           VerifyEmailValidationService.java
 |   |           |   |           
 |   |           |   \---mail
 |   |           |       |   EmailService.java
@@ -88,7 +94,7 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\SRC
 
 Folder PATH listing
 Volume serial number is 7478-274D
-C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_APP\.MVN
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_VERIFY_EMAIL\.MVN
 \---wrapper
         maven-wrapper.properties
         
