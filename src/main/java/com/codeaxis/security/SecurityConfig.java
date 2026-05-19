@@ -4,60 +4,31 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.Customizer;
-
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-
 import org.springframework.security.config.http.SessionCreationPolicy;
-
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
 
+        private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
         @Bean
-        public SecurityFilterChain securityFilterChain(
-                        HttpSecurity http)
+        public SecurityFilterChain securityFilterChain(HttpSecurity http)
                         throws Exception {
 
                 http
 
-                                /*
-                                 * ===============================================================
-                                 * DISABLE CSRF
-                                 * ===============================================================
-                                 *
-                                 * Reason:
-                                 * Stateless REST API using token-based authentication.
-                                 */
-
                                 .csrf(csrf -> csrf.disable())
 
-                                /*
-                                 * ===============================================================
-                                 * DISABLE SERVER SESSION
-                                 * ===============================================================
-                                 *
-                                 * Reason:
-                                 * JWT/token auth does not require server-side sessions.
-                                 */
-
                                 .sessionManagement(session -> session
-                                                .sessionCreationPolicy(
-                                                                SessionCreationPolicy.STATELESS))
-
-                                /*
-                                 * ===============================================================
-                                 * ROUTE AUTHORIZATION
-                                 * ===============================================================
-                                 */
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
                                 .authorizeHttpRequests(auth -> auth
-
-                                                /*
-                                                 * =======================================================
-                                                 * PUBLIC AUTH ROUTES
-                                                 * =======================================================
-                                                 */
 
                                                 .requestMatchers(
                                                                 "/api/auth/register",
@@ -65,32 +36,20 @@ public class SecurityConfig {
                                                                 "/api/auth/verify-email",
                                                                 "/api/auth/forgot-password",
                                                                 "/api/auth/reset-password",
+                                                                "/api/auth/refresh-token",
 
                                                                 "/swagger-ui.html",
                                                                 "/swagger-ui/**",
                                                                 "/v3/api-docs/**")
                                                 .permitAll()
 
-                                                /*
-                                                 * =======================================================
-                                                 * ALL OTHER ROUTES REQUIRE AUTHENTICATION
-                                                 * =======================================================
-                                                 */
-
                                                 .anyRequest()
                                                 .authenticated())
 
-                                /*
-                                 * ===============================================================
-                                 * BASIC AUTH
-                                 * ===============================================================
-                                 *
-                                 * Temporary during development.
-                                 * Later replace with JWT authentication filter.
-                                 */
+                                .httpBasic(Customizer.withDefaults())
 
-                                .httpBasic(
-                                                Customizer.withDefaults());
+                                .addFilterBefore(jwtAuthenticationFilter,
+                                                UsernamePasswordAuthenticationFilter.class);
 
                 return http.build();
         }

@@ -1,10 +1,11 @@
 package com.codeaxis.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +13,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tasks")
 
 @Getter
 @Setter
@@ -30,7 +30,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 
-public class User {
+public class Task {
 
     /*
      * ===========================================================================
@@ -39,9 +39,9 @@ public class User {
      */
 
     @Id
-    @org.hibernate.annotations.JdbcTypeCode(org.hibernate.type.SqlTypes.BINARY)
-    @Column(name = "pk_user_id", columnDefinition = "BINARY(16)", nullable = false)
-    private UUID pkUserId;
+    @JdbcTypeCode(SqlTypes.BINARY)
+    @Column(name = "pk_task_id", columnDefinition = "BINARY(16)", nullable = false)
+    private UUID pkTaskId;
 
     /*
      * ===========================================================================
@@ -49,60 +49,60 @@ public class User {
      * ===========================================================================
      */
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fk_role_id", nullable = false, columnDefinition = "BINARY(16)")
-    private Role fkRoleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_project_id", nullable = false, columnDefinition = "BINARY(16)")
+    private Project fkProjectId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_user_id", nullable = false, columnDefinition = "BINARY(16)")
+    private User fkUserId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_task_status_id", nullable = false, columnDefinition = "BINARY(16)")
+    private TaskStatus fkTaskStatusId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_task_priority_id", nullable = false, columnDefinition = "BINARY(16)")
+    private TaskPriority fkTaskPriorityId;
 
     /*
      * ===========================================================================
-     * USER DETAILS
+     * TASK DETAILS
      * ===========================================================================
      */
 
-    @Column(name = "username", nullable = false, unique = true, length = 100)
-    private String username;
+    @Column(name = "task_title", nullable = false, length = 255)
+    private String taskTitle;
 
-    @Column(name = "email", nullable = false, unique = true, length = 255)
-    private String email;
-
-    @Column(name = "phone_number", length = 20)
-    private String phoneNumber;
+    @Column(name = "task_description", columnDefinition = "TEXT")
+    private String taskDescription;
 
     /*
      * ===========================================================================
-     * AUTH
+     * TIME TRACKING
      * ===========================================================================
      */
 
-    @Column(name = "password_hash", nullable = false, length = 255)
-    private String passwordHash;
+    @Column(name = "estimated_hours", precision = 10, scale = 2)
+    private BigDecimal estimatedHours;
 
-    @Column(name = "is_email_verified", nullable = false)
-    private Boolean isEmailVerified;
-
-    @Column(name = "email_verified_at")
-    private LocalDateTime emailVerifiedAt;
+    @Column(name = "actual_hours", precision = 10, scale = 2)
+    private BigDecimal actualHours;
 
     /*
      * ===========================================================================
-     * LOCKING
+     * TASK TIMELINE
      * ===========================================================================
      */
 
-    @Column(name = "is_locked", nullable = false)
-    private Boolean isLocked;
+    @Column(name = "start_at")
+    private LocalDateTime startAt;
 
-    @Column(name = "locked_at")
-    private LocalDateTime lockedAt;
+    @Column(name = "deadline_at")
+    private LocalDateTime deadlineAt;
 
-    /*
-     * ===========================================================================
-     * LOGIN
-     * ===========================================================================
-     */
-
-    @Column(name = "last_login_at")
-    private LocalDateTime lastLoginAt;
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
 
     /*
      * ===========================================================================
@@ -135,27 +135,13 @@ public class User {
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by")
+    @JoinColumn(name = "created_by", columnDefinition = "BINARY(16)")
     private User createdBy;
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "updated_by")
+    @JoinColumn(name = "updated_by", columnDefinition = "BINARY(16)")
     private User updatedBy;
-
-    /*
-     * ===========================================================================
-     * REVERSE RELATIONSHIPS
-     * ===========================================================================
-     */
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
-    private List<User> createdUsers;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "updatedBy", fetch = FetchType.LAZY)
-    private List<User> updatedUsers;
 }

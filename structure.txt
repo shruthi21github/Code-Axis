@@ -5,22 +5,35 @@ mvnw.cmd
 
 Folder PATH listing
 Volume serial number is 7478-274D
-C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_ROHAN_APIS\SRC
 +---main
 |   +---java
-|   |   \---codeaxis
-|   |       \---api
-|   |           |   ApiApplication.java
+|   |   \---com
+|   |       \---codeaxis
+|   |           |   CodeaxisApplication.java
 |   |           |   
 |   |           +---controller
+|   |           |   |   DashboardController.java
+|   |           |   |   ProjectController.java
+|   |           |   |   TaskController.java
+|   |           |   |   
 |   |           |   \---auth
 |   |           |           LoginController.java
+|   |           |           RefreshController.java
 |   |           |           RegisterController.java
 |   |           |           VerifyEmailController.java
 |   |           |           
 |   |           +---dto
 |   |           |   |   ApiErrorResponseDto.java
+|   |           |   |   ApiResponse.java
 |   |           |   |   ApiSuccessResponseDto.java
+|   |           |   |   DashboardStatsResponse.java
+|   |           |   |   ProjectRequest.java
+|   |           |   |   ProjectResponse.java
+|   |           |   |   RefreshTokenRequest.java
+|   |           |   |   RefreshTokenResponse.java
+|   |           |   |   TaskResponse.java
+|   |           |   |   TaskStatusUpdateRequest.java
 |   |           |   |   
 |   |           |   \---auth
 |   |           |           LoginRequestDto.java
@@ -31,8 +44,17 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   |           |           VerifyEmailResponseDto.java
 |   |           |           
 |   |           +---entity
+|   |           |       Department.java
+|   |           |       Designation.java
 |   |           |       EmailVerificationToken.java
+|   |           |       Employee.java
+|   |           |       Project.java
+|   |           |       ProjectStatus.java
 |   |           |       Role.java
+|   |           |       Task.java
+|   |           |       TaskPriority.java
+|   |           |       TaskStatus.java
+|   |           |       TaskStatusHistory.java
 |   |           |       User.java
 |   |           |       UserSession.java
 |   |           |       
@@ -43,18 +65,30 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   |           |       
 |   |           +---repository
 |   |           |       EmailVerificationTokenRepository.java
+|   |           |       EmployeeRepository.java
+|   |           |       ProjectRepository.java
+|   |           |       ProjectStatusRepository.java
 |   |           |       RoleRepository.java
+|   |           |       TaskRepository.java
+|   |           |       TaskStatusHistoryRepository.java
+|   |           |       TaskStatusRepository.java
 |   |           |       UserRepository.java
 |   |           |       UserSessionRepository.java
 |   |           |       
 |   |           +---security
+|   |           |       JwtAuthenticationFilter.java
 |   |           |       JwtProvider.java
 |   |           |       SecurityBeansConfig.java
 |   |           |       SecurityConfig.java
 |   |           |       
 |   |           +---service
+|   |           |   |   DashboardService.java
+|   |           |   |   ProjectService.java
+|   |           |   |   TaskService.java
+|   |           |   |   
 |   |           |   +---auth
 |   |           |   |   |   LoginService.java
+|   |           |   |   |   RefreshTokenService.java
 |   |           |   |   |   RegisterService.java
 |   |           |   |   |   VerifyEmailService.java
 |   |           |   |   |   
@@ -92,21 +126,23 @@ C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\SRC
 |   \---resources
 |       |   application.properties
 |       |   
-|       +---META-INF
-|       |       additional-spring-configuration-metadata.json
-|       |       
-|       +---static
-|       \---templates
+|       \---META-INF
+|               additional-spring-configuration-metadata.json
+|               
 \---test
     \---java
-        \---codeaxis
-            \---api
-                    ApiApplicationTests.java
+        +---codeaxis
+        |   \---api
+        |           ApiApplicationTests.java
+        |           
+        \---com
+            \---codeaxis
+                    CodeaxisApplicationTests.java
                     
 
 Folder PATH listing
 Volume serial number is 7478-274D
-C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\FEATURE_AUTH_LOGIN\.MVN
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_ROHAN_APIS\.MVN
 \---wrapper
         maven-wrapper.properties
         
