@@ -3,9 +3,6 @@ package com.codeaxis.entity;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,8 +17,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 @Entity
-@Table(name = "user_sessions")
+@Table(name = "email_verification_tokens")
 
 @Getter
 @Setter
@@ -29,7 +29,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 
-public class UserSession {
+public class EmailVerificationToken {
 
     /*
      * ===========================================================================
@@ -39,8 +39,8 @@ public class UserSession {
 
     @Id
     @JdbcTypeCode(SqlTypes.BINARY)
-    @Column(name = "pk_user_session_id", columnDefinition = "BINARY(16)", nullable = false)
-    private UUID pkUserSessionId;
+    @Column(name = "pk_email_verification_token_id", columnDefinition = "BINARY(16)", nullable = false)
+    private UUID pkEmailVerificationTokenId;
 
     /*
      * ===========================================================================
@@ -54,15 +54,12 @@ public class UserSession {
 
     /*
      * ===========================================================================
-     * REFRESH TOKEN
+     * TOKEN
      * ===========================================================================
      */
 
-    @Column(name = "refresh_token_hash", nullable = false, length = 255)
-    private String refreshTokenHash;
-
-    @Column(name = "refresh_token_expires_at", nullable = false)
-    private LocalDateTime refreshTokenExpiresAt;
+    @Column(name = "verification_token_hash", nullable = false, length = 255)
+    private String verificationTokenHash;
 
     /*
      * ===========================================================================
@@ -70,8 +67,11 @@ public class UserSession {
      * ===========================================================================
      */
 
-    @Column(name = "revoked_at")
-    private LocalDateTime revokedAt;
+    @Column(name = "expires_at", nullable = false)
+    private LocalDateTime expiresAt;
+
+    @Column(name = "verified_at")
+    private LocalDateTime verifiedAt;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
@@ -84,8 +84,4 @@ public class UserSession {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
-    @JdbcTypeCode(SqlTypes.BINARY)
-    @Column(name = "created_by", columnDefinition = "BINARY(16)")
-    private UUID createdBy;
 }

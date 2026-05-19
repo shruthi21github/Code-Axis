@@ -1,14 +1,32 @@
 package com.codeaxis.repository;
 
-import com.codeaxis.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.codeaxis.entity.User;
+
 public interface UserRepository
-        extends JpaRepository<User, UUID> {
+                extends JpaRepository<User, UUID> {
 
-    Optional<User> findByEmail(String email);
+        boolean existsByUsernameIgnoreCase(
+                        String username);
 
-    Optional<User> findByUsername(String username);
+        boolean existsByEmailIgnoreCase(
+                        String email);
+
+        Optional<User> findByEmailIgnoreCase(
+                        String email);
+
+        Optional<User> findByEmailIgnoreCaseOrUsernameIgnoreCase(
+                        String email,
+                        String username);
+
+        Optional<User> findByUsernameIgnoreCase(
+                        String username);
+
+        Optional<User> findByEmailIgnoreCaseAndUsernameIgnoreCase(
+                        String email,
+                        String username);
 }

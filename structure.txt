@@ -1,0 +1,148 @@
+pom.xml
+.gitignore
+mvnw
+mvnw.cmd
+
+Folder PATH listing
+Volume serial number is 7478-274D
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_ROHAN_APIS\SRC
++---main
+|   +---java
+|   |   \---com
+|   |       \---codeaxis
+|   |           |   CodeaxisApplication.java
+|   |           |   
+|   |           +---controller
+|   |           |   |   DashboardController.java
+|   |           |   |   ProjectController.java
+|   |           |   |   TaskController.java
+|   |           |   |   
+|   |           |   \---auth
+|   |           |           LoginController.java
+|   |           |           RefreshController.java
+|   |           |           RegisterController.java
+|   |           |           VerifyEmailController.java
+|   |           |           
+|   |           +---dto
+|   |           |   |   ApiErrorResponseDto.java
+|   |           |   |   ApiResponse.java
+|   |           |   |   ApiSuccessResponseDto.java
+|   |           |   |   DashboardStatsResponse.java
+|   |           |   |   ProjectRequest.java
+|   |           |   |   ProjectResponse.java
+|   |           |   |   RefreshTokenRequest.java
+|   |           |   |   RefreshTokenResponse.java
+|   |           |   |   TaskResponse.java
+|   |           |   |   TaskStatusUpdateRequest.java
+|   |           |   |   
+|   |           |   \---auth
+|   |           |           LoginRequestDto.java
+|   |           |           LoginResponseDto.java
+|   |           |           RegisterRequestDto.java
+|   |           |           RegisterResponseDto.java
+|   |           |           VerifyEmailRequestDto.java
+|   |           |           VerifyEmailResponseDto.java
+|   |           |           
+|   |           +---entity
+|   |           |       Department.java
+|   |           |       Designation.java
+|   |           |       EmailVerificationToken.java
+|   |           |       Employee.java
+|   |           |       Project.java
+|   |           |       ProjectStatus.java
+|   |           |       Role.java
+|   |           |       Task.java
+|   |           |       TaskPriority.java
+|   |           |       TaskStatus.java
+|   |           |       TaskStatusHistory.java
+|   |           |       User.java
+|   |           |       UserSession.java
+|   |           |       
+|   |           +---exception
+|   |           |       ApiException.java
+|   |           |       CustomErrorAttributes.java
+|   |           |       GlobalExceptionHandler.java
+|   |           |       
+|   |           +---repository
+|   |           |       EmailVerificationTokenRepository.java
+|   |           |       EmployeeRepository.java
+|   |           |       ProjectRepository.java
+|   |           |       ProjectStatusRepository.java
+|   |           |       RoleRepository.java
+|   |           |       TaskRepository.java
+|   |           |       TaskStatusHistoryRepository.java
+|   |           |       TaskStatusRepository.java
+|   |           |       UserRepository.java
+|   |           |       UserSessionRepository.java
+|   |           |       
+|   |           +---security
+|   |           |       JwtAuthenticationFilter.java
+|   |           |       JwtProvider.java
+|   |           |       SecurityBeansConfig.java
+|   |           |       SecurityConfig.java
+|   |           |       
+|   |           +---service
+|   |           |   |   DashboardService.java
+|   |           |   |   ProjectService.java
+|   |           |   |   TaskService.java
+|   |           |   |   
+|   |           |   +---auth
+|   |           |   |   |   LoginService.java
+|   |           |   |   |   RefreshTokenService.java
+|   |           |   |   |   RegisterService.java
+|   |           |   |   |   VerifyEmailService.java
+|   |           |   |   |   
+|   |           |   |   +---dto
+|   |           |   |   |       EmailVerificationTokenResult.java
+|   |           |   |   |       
+|   |           |   |   +---factory
+|   |           |   |   |       EmailVerificationTokenFactory.java
+|   |           |   |   |       LoginResponseFactory.java
+|   |           |   |   |       UserFactory.java
+|   |           |   |   |       UserSessionFactory.java
+|   |           |   |   |       
+|   |           |   |   +---mapper
+|   |           |   |   |       RegisterResponseMapper.java
+|   |           |   |   |       VerifyEmailResponseMapper.java
+|   |           |   |   |       
+|   |           |   |   \---validation
+|   |           |   |           LoginPasswordValidationService.java
+|   |           |   |           LoginRequestValidationService.java
+|   |           |   |           LoginUserValidationService.java
+|   |           |   |           RegisterValidationService.java
+|   |           |   |           VerifyEmailValidationService.java
+|   |           |   |           
+|   |           |   \---mail
+|   |           |       |   EmailService.java
+|   |           |       |   MailStartupValidator.java
+|   |           |       |   
+|   |           |       \---dto
+|   |           |               SendEmailRequestDto.java
+|   |           |               
+|   |           \---utils
+|   |                   Sha256Util.java
+|   |                   UuidUtil.java
+|   |                   
+|   \---resources
+|       |   application.properties
+|       |   
+|       \---META-INF
+|               additional-spring-configuration-metadata.json
+|               
+\---test
+    \---java
+        +---codeaxis
+        |   \---api
+        |           ApiApplicationTests.java
+        |           
+        \---com
+            \---codeaxis
+                    CodeaxisApplicationTests.java
+                    
+
+Folder PATH listing
+Volume serial number is 7478-274D
+C:\USERS\ADMIN\DOWNLOADS\VS-CODE\CODE-AXIS\CODE_AXIS_ROHAN_APIS\.MVN
+\---wrapper
+        maven-wrapper.properties
+        

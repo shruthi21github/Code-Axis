@@ -1,0 +1,39 @@
+{
+  "properties": [
+    {
+      "name": "app.database.name",
+      "type": "java.lang.String",
+      "description": "A description for 'app.database.name'"
+    },
+    {
+      "name": "app.frontend.base-url",
+      "type": "java.lang.String",
+      "description": "A description for 'app.frontend.base-url'"
+    },
+    {
+      "name": "app.frontend.verify-email-path",
+      "type": "java.lang.String",
+      "description": "A description for 'app.frontend.verify-email-path'"
+    },
+    {
+      "name": "app.jwt.access-token-secret",
+      "type": "java.lang.String",
+      "description": "A description for 'app.jwt.access-token-secret'"
+    },
+    {
+      "name": "app.jwt.access-token-expiration-ms",
+      "type": "java.lang.String",
+      "description": "A description for 'app.jwt.access-token-expiration-ms'"
+    },
+    {
+      "name": "app.jwt.secret-key",
+      "type": "java.lang.String",
+      "description": "A description for 'app.jwt.secret-key'"
+    },
+    {
+      "name": "app.jwt.refresh-token-expiration-ms",
+      "type": "java.lang.String",
+      "description": "A description for 'app.jwt.refresh-token-expiration-ms'"
+    }
+  ]
+}
