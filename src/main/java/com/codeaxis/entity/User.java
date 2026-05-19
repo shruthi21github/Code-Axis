@@ -49,7 +49,7 @@ public class User {
      * ===========================================================================
      */
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_role_id", nullable = false, columnDefinition = "BINARY(16)")
     private Role fkRoleId;
 

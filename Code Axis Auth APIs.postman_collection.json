@@ -468,6 +468,86 @@
           ],
           "cookie": [],
           "body": "{\n    \"success\": true,\n    \"message\": \"Token refreshed successfully\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllM2I3OS1lNjhmLTc0NDMtOTQxZC1kOWIzMzZlN2NhZTAiLCJlbWFpbCI6Im1pY3Jvc29mdEB5emNhbG8uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkxMTYwOTUsImV4cCI6MTc3OTExOTY5NX0.qEK5L9ch282S2fzooStivuQypAGyi1MuY-Qqw7acig6hrtO90lvLoNBnkPJUXyF0\"\n    }\n}"
+        },
+        {
+          "name": "401-Missing token",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"refreshToken\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/refresh-token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "refresh-token"
+              ]
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "66"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 May 2026 06:26:33 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Missing token\",\n    \"error\": \"Unauthorized\"\n}"
         }
       ]
     },
@@ -539,7 +619,7 @@
             },
             {
               "key": "Date",
-              "value": "Mon, 18 May 2026 15:12:34 GMT"
+              "value": "Tue, 19 May 2026 07:16:06 GMT"
             },
             {
               "key": "Keep-Alive",
@@ -552,6 +632,398 @@
           ],
           "cookie": [],
           "body": "{\n    \"status\": true,\n    \"message\": \"Dashboard stats fetched successfully\",\n    \"data\": {\n        \"activeEmployees\": 0,\n        \"activeProjects\": 0,\n        \"blockedTasks\": 0,\n        \"completedProjects\": 0,\n        \"doneTasks\": 0,\n        \"inProgressTasks\": 0,\n        \"todoTasks\": 0,\n        \"totalEmployees\": 0,\n        \"totalProjects\": 0,\n        \"totalTasks\": 0,\n        \"totalUsers\": 11\n    }\n}"
+        },
+        {
+          "name": "401-Invalid or expired token",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/dashboard/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "dashboard",
+                "stats"
+              ]
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "77"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 May 2026 06:26:04 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Invalid or expired token\",\n    \"error\": \"Unauthorized\"\n}"
+        },
+        {
+          "name": "401-Missing token",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/dashboard/stats",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "dashboard",
+                "stats"
+              ]
+            }
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Content-Length",
+              "value": "66"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 May 2026 07:14:26 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"success\": false,\n    \"message\": \"Missing token\",\n    \"error\": \"Unauthorized\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/projects",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllM2I3OS1lNjhmLTc0NDMtOTQxZC1kOWIzMzZlN2NhZTAiLCJlbWFpbCI6Im1pY3Jvc29mdEB5emNhbG8uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkxNzQ5NTAsImV4cCI6MTc3OTE3ODU1MH0.A8ufmMkkyzNla2MFtG_9h7PduSChrJjPYJUkoUNS55xZPt-HfmhrH6_8qka4Eq7e",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"projectCode\": \"PROJ-003\",\r\n    \"projectName\": \"Code Axis Backend v3\",\r\n    \"projectDescription\": \"Spring Boot backend development\",\r\n    \"statusName\": \"PLANNING\",\r\n    \"startAt\": \"2026-05-15T09:00:00\",\r\n    \"deadlineAt\": \"2026-08-31T18:00:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/projects",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "projects"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "201",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"projectCode\": \"PROJ-003\",\r\n    \"projectName\": \"Code Axis Backend v3\",\r\n    \"projectDescription\": \"Spring Boot backend development\",\r\n    \"statusName\": \"PLANNING\",\r\n    \"startAt\": \"2026-05-15T09:00:00\",\r\n    \"deadlineAt\": \"2026-08-31T18:00:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/projects",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "projects"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 May 2026 07:31:02 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": true,\n    \"message\": \"Project created successfully\",\n    \"data\": {\n        \"createdAt\": \"2026-05-19T13:01:01.5700671\",\n        \"deadlineAt\": \"2026-08-31T18:00:00\",\n        \"projectCode\": \"PROJ-003\",\n        \"projectDescription\": \"Spring Boot backend development\",\n        \"projectId\": \"9490ff1e-2497-4af8-8c7b-708c1546519a\",\n        \"projectName\": \"Code Axis Backend v3\",\n        \"startAt\": \"2026-05-15T09:00:00\",\n        \"statusName\": \"PLANNING\"\n    }\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/tasks/id/status",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllM2I3OS1lNjhmLTc0NDMtOTQxZC1kOWIzMzZlN2NhZTAiLCJlbWFpbCI6Im1pY3Jvc29mdEB5emNhbG8uY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkxNzQ5NTAsImV4cCI6MTc3OTE3ODU1MH0.A8ufmMkkyzNla2MFtG_9h7PduSChrJjPYJUkoUNS55xZPt-HfmhrH6_8qka4Eq7e",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"statusName\": \"IN_PROGRESS\",\r\n    \"remarks\": \"Started working on task\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tasks/b7ef25ff-5355-11f1-8d98-b05cda617960/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tasks",
+            "b7ef25ff-5355-11f1-8d98-b05cda617960",
+            "status"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"statusName\": \"IN_PROGRESS\",\r\n    \"remarks\": \"Started working on task\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tasks/b7ef25ff-5355-11f1-8d98-b05cda617960/status",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks",
+                "b7ef25ff-5355-11f1-8d98-b05cda617960",
+                "status"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 19 May 2026 07:41:04 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": true,\n    \"message\": \"Task status updated successfully\",\n    \"data\": {\n        \"completedAt\": null,\n        \"deadlineAt\": null,\n        \"priorityName\": \"HIGH\",\n        \"statusName\": \"IN_PROGRESS\",\n        \"taskId\": \"b7ef25ff-5355-11f1-8d98-b05cda617960\",\n        \"taskTitle\": \"Implement Login API\",\n        \"updatedAt\": \"2026-05-19T13:08:24\"\n    }\n}"
         }
       ]
     }

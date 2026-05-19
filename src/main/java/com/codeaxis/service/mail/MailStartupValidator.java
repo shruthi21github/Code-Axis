@@ -3,7 +3,8 @@ package com.codeaxis.service.mail;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import jakarta.mail.Authenticator;
@@ -12,98 +13,152 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 
 @Component
-public class MailStartupValidator
-                implements CommandLineRunner {
+public class MailStartupValidator implements ApplicationRunner {
 
-        @Value("${spring.mail.host}")
-        private String host;
+    /*
+     * =============================================================================
+     * SMTP ENABLE FLAG
+     * =============================================================================
+     */
 
-        @Value("${spring.mail.port}")
-        private int port;
+    @Value("${app.mail.smtp-enabled}")
+    private boolean smtpEnabled;
 
-        @Value("${spring.mail.username}")
-        private String username;
+    /*
+     * =============================================================================
+     * SMTP CONFIGURATION
+     * =============================================================================
+     */
 
-        @Value("${spring.mail.password}")
-        private String password;
+    @Value("${spring.mail.host}")
+    private String host;
 
-        @Override
-        public void run(
-                        String... args)
-                        throws Exception {
+    @Value("${spring.mail.port}")
+    private int port;
 
-                /*
-                 * ===========================================================================
-                 * CREATE SMTP SESSION
-                 * ===========================================================================
-                 */
+    @Value("${spring.mail.username}")
+    private String username;
 
-                Properties properties = new Properties();
+    @Value("${spring.mail.password}")
+    private String password;
 
-                properties.put(
-                                "mail.smtp.auth",
-                                "true");
+    @Value("${spring.mail.properties.mail.smtp.ssl.enable}")
+    private boolean sslEnabled;
 
-                properties.put(
-                                "mail.smtp.ssl.enable",
-                                "true");
+    /*
+     * =============================================================================
+     * VALIDATE SMTP CONNECTION ON APPLICATION STARTUP
+     * =============================================================================
+     */
 
-                properties.put(
-                                "mail.smtp.host",
-                                host);
+    @Override
+    public void run(
+            ApplicationArguments args)
+            throws Exception {
 
-                properties.put(
-                                "mail.smtp.port",
-                                String.valueOf(port));
+        /*
+         * =========================================================================
+         * SKIP SMTP AUTHENTICATION
+         * =========================================================================
+         */
 
-                /*
-                 * ===========================================================================
-                 * AUTHENTICATE SMTP CONNECTION
-                 * ===========================================================================
-                 */
+        if (!smtpEnabled) {
 
-                Session session = Session.getInstance(
-                                properties,
+            System.out.println("""
+                    
+                    ===========================================================================
+                    SMTP AUTHENTICATION SKIPPED
+                    
+                    Reason   : app.mail.smtp-enabled=false
+                    
+                    ===========================================================================
+                    """);
 
-                                new Authenticator() {
-
-                                        @Override
-                                        protected PasswordAuthentication getPasswordAuthentication() {
-
-                                                return new PasswordAuthentication(
-                                                                username,
-                                                                password);
-                                        }
-                                });
-
-                Transport transport = session.getTransport(
-                                "smtp");
-
-                transport.connect();
-
-                /*
-                 * ===========================================================================
-                 * SMTP AUTH SUCCESS
-                 * ===========================================================================
-                 */
-
-                System.out.println(
-                                """
-                                                ===========================================================================
-                                                SMTP AUTHENTICATION SUCCESSFUL
-
-                                                Host     : %s
-                                                Port     : %d
-                                                Username : %s
-                                                SSL      : ENABLED
-
-                                                ===========================================================================
-                                                """
-                                                .formatted(
-                                                                host,
-                                                                port,
-                                                                username));
-
-                transport.close();
+            return;
         }
+
+        /*
+         * =========================================================================
+         * BUILD MAIL PROPERTIES
+         * =========================================================================
+         */
+
+        Properties properties = new Properties();
+
+        properties.put(
+                "mail.smtp.auth",
+                "true");
+
+        properties.put(
+                "mail.smtp.host",
+                host);
+
+        properties.put(
+                "mail.smtp.port",
+                String.valueOf(
+                        port));
+
+        properties.put(
+                "mail.smtp.ssl.enable",
+                String.valueOf(
+                        sslEnabled));
+
+        /*
+         * =========================================================================
+         * CREATE MAIL SESSION
+         * =========================================================================
+         */
+
+        Session session = Session.getInstance(
+                properties,
+                new Authenticator() {
+
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+
+                        return new PasswordAuthentication(
+                                username,
+                                password);
+                    }
+                });
+
+        /*
+         * =========================================================================
+         * VALIDATE SMTP AUTHENTICATION
+         * =========================================================================
+         */
+
+        Transport transport = session.getTransport(
+                "smtp");
+
+        transport.connect();
+
+        transport.close();
+
+        /*
+         * =========================================================================
+         * SUCCESS LOG
+         * =========================================================================
+         */
+
+        System.out.println("""
+                
+                ===========================================================================
+                SMTP AUTHENTICATION SUCCESSFUL
+                
+                Host     : %s
+                Port     : %s
+                Username : %s
+                SSL      : %s
+                
+                ===========================================================================
+                """
+                .formatted(
+                        host,
+                        port,
+                        username,
+                        sslEnabled
+                                ? "ENABLED"
+                                : "DISABLED"));
+    }
 }

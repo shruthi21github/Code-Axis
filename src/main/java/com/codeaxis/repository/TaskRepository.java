@@ -1,21 +1,29 @@
-package com.codeaxis.repository; 
- 
-import com.codeaxis.entity.Task; 
-import org.springframework.data.jpa.repository.JpaRepository; 
-import java.util.Optional; 
-import java.util.UUID; 
- 
-public interface TaskRepository extends JpaRepository<Task, UUID> { 
- 
-    Optional<Task> findByPkTaskIdAndIsDeletedFalse(UUID pkTaskId); 
- 
-    long countByFkTaskStatusStatusName(String statusName); 
+package com.codeaxis.repository;
 
-    // Count tasks by status name 
-long countByFkTaskStatus_StatusNameIgnoreCaseAndIsDeletedFalse( 
-        String statusName); 
- 
-// Count all non-deleted tasks 
-long countByIsDeletedFalse();
+import java.util.Optional;
+import java.util.UUID;
 
-} 
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.codeaxis.entity.Task;
+
+public interface TaskRepository
+        extends JpaRepository<Task, UUID> {
+
+    Optional<Task> findByPkTaskIdAndIsDeletedFalse(
+            UUID pkTaskId);
+
+    /*
+     * ===========================================================================
+     * DASHBOARD COUNTS
+     * ===========================================================================
+     */
+
+    long countByFkTaskStatusIdStatusName(
+            String statusName);
+
+    long countByFkTaskStatusIdStatusNameIgnoreCaseAndIsDeletedFalse(
+            String statusName);
+
+    long countByIsDeletedFalse();
+}
