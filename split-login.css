@@ -97,21 +97,26 @@ body{
 
 /* BRAND LOGO */
 
-.brand-logo{
+.brand{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:14px;
     margin-bottom:40px;
-    color:#4F46E5;
 }
 
-.brand-logo i{
-    font-size:32px;
+.brand img{
+    width:90px;
+    height:90px;
+    border-radius:14px;
+    object-fit:cover;
+    background:#fff;
+    padding:4px;
 }
 
-.brand-logo span{
-    font-size:26px;
+.brand span{
+    font-size:42px;
     font-weight:700;
+    color:#376fe9;
 }
 
 /* TITLES */
