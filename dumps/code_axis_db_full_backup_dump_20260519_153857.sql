@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.4.9, for Win64 (x86_64)
 --
--- Host: localhost    Database: code_axis_db_dev
+-- Host: localhost    Database: code_axis_db
 -- ------------------------------------------------------
 -- Server version	8.4.9
 
@@ -16,12 +16,18 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `code_axis_db_dev`
+-- Drop if exists Current Database: `code_axis_db`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `code_axis_db_dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+DROP DATABASE IF EXISTS code_axis_db;
 
-USE `code_axis_db_dev`;
+--
+-- Current Database: `code_axis_db`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `code_axis_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `code_axis_db`;
 
 --
 -- Table structure for table `attachments`
@@ -1214,11 +1220,11 @@ INSERT INTO `users` VALUES (_binary 'û*úIOvrÉ≠p)6ç\…o',_binary 'ñ\‘\◊\0p\0Ä\0
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'code_axis_db_dev'
+-- Dumping events for database 'code_axis_db'
 --
 
 --
--- Dumping routines for database 'code_axis_db_dev'
+-- Dumping routines for database 'code_axis_db'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `001_sp_auth_register_user` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
