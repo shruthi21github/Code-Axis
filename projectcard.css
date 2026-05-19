@@ -90,5 +90,8 @@ h1,h2,h3,.poppins{font-family:'Poppins',sans-serif}
   .topbar-title{font-size:.88rem}
   .page{padding:12px}
 }
- 
+  @media (max-width: 1100px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+  }
 
