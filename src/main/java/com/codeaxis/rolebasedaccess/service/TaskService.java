@@ -1,52 +1,136 @@
 package com.codeaxis.rolebasedaccess.service;
 
 import com.codeaxis.rolebasedaccess.entity.Task;
+import com.codeaxis.rolebasedaccess.exception.ResourceNotFoundException;
 import com.codeaxis.rolebasedaccess.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TaskService {
 
-    @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
-    public ResponseEntity<?> createTask(Task task) {
-        taskRepository.save(task);
-        return ResponseEntity.ok(formatResponse(true, "Task created successfully", null));
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
     }
 
-    public ResponseEntity<?> getAllTasks() {
-        return ResponseEntity.ok(formatResponse(true, "Tasks fetched successfully", taskRepository.findAll()));
+    // CREATE TASK
+
+    public Task createTask(Task task) {
+
+        return taskRepository.save(task);
     }
 
-    public ResponseEntity<?> updateTask(Long id, Task taskDetails) {
-        return taskRepository.findById(id).map(task -> {
-            task.setTitle(taskDetails.getTitle());
-            task.setDescription(taskDetails.getDescription());
-            task.setStatus(taskDetails.getStatus());
-            task.setPriority(taskDetails.getPriority());
-            taskRepository.save(task);
-            return ResponseEntity.ok(formatResponse(true, "Task updated successfully", null));
-        }).orElse(ResponseEntity.status(404).body(formatResponse(false, "Task not found", null)));
+    // GET ALL TASKS
+
+    public List<Task> getAllTasks() {
+
+        return taskRepository.findAll();
     }
 
-    public ResponseEntity<?> deleteTask(Long id) {
-        if (taskRepository.existsById(id)) {
-            taskRepository.deleteById(id);
-            return ResponseEntity.ok(formatResponse(true, "Task deleted successfully", null));
+    // GET TASK BY ID
+
+    public Task getTaskById(UUID id) {
+
+        return taskRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Task not found"));
+    }
+
+    // UPDATE TASK
+
+    public Task updateTask(
+            UUID id,
+            Task taskDetails) {
+
+        Task task =
+                taskRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Task not found"));
+
+        if (taskDetails.getProjectId() != null) {
+            task.setProjectId(
+                    taskDetails.getProjectId());
         }
-        return ResponseEntity.status(404).body(formatResponse(false, "Task not found", null));
+
+        if (taskDetails.getUserId() != null) {
+            task.setUserId(
+                    taskDetails.getUserId());
+        }
+
+        if (taskDetails.getTaskStatusId() != null) {
+            task.setTaskStatusId(
+                    taskDetails.getTaskStatusId());
+        }
+
+        if (taskDetails.getTaskPriorityId() != null) {
+            task.setTaskPriorityId(
+                    taskDetails.getTaskPriorityId());
+        }
+
+        if (taskDetails.getTaskTitle() != null) {
+            task.setTaskTitle(
+                    taskDetails.getTaskTitle());
+        }
+
+        if (taskDetails.getTaskDescription() != null) {
+            task.setTaskDescription(
+                    taskDetails.getTaskDescription());
+        }
+
+        if (taskDetails.getEstimatedHours() != null) {
+            task.setEstimatedHours(
+                    taskDetails.getEstimatedHours());
+        }
+
+        if (taskDetails.getActualHours() != null) {
+            task.setActualHours(
+                    taskDetails.getActualHours());
+        }
+
+        if (taskDetails.getStartAt() != null) {
+            task.setStartAt(
+                    taskDetails.getStartAt());
+        }
+
+        if (taskDetails.getDeadlineAt() != null) {
+            task.setDeadlineAt(
+                    taskDetails.getDeadlineAt());
+        }
+
+        if (taskDetails.getCompletedAt() != null) {
+            task.setCompletedAt(
+                    taskDetails.getCompletedAt());
+        }
+
+        if (taskDetails.getIsActive() != null) {
+            task.setIsActive(
+                    taskDetails.getIsActive());
+        }
+
+        return taskRepository.save(task);
     }
 
-    private Map<String, Object> formatResponse(boolean status, String message, Object data) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", status);
-        response.put("message", message);
-        response.put("data", data);
-        return response;
+    // DELETE TASK
+
+    public String deleteTask(UUID id) {
+
+        Task task =
+                taskRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Task not found"));
+
+        task.setIsDeleted(true);
+
+        taskRepository.save(task);
+
+        return "Task deleted successfully";
     }
 }

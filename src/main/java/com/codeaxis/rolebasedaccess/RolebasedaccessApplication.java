@@ -6,8 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RolebasedaccessApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RolebasedaccessApplication.class, args);
-	}
+    public static void main(String[] args) {
 
+        SpringApplication.run(
+                RolebasedaccessApplication.class,
+                args
+        );
+    }
 }

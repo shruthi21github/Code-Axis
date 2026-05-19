@@ -1,55 +1,218 @@
 package com.codeaxis.rolebasedaccess.entity;
 
-import com.codeaxis.rolebasedaccess.dto.Data;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tasks")
-@Data
-public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String taskName;
-    private String description;
-    private String status;   // e.g., "Pending", "In-Progress", "Completed"
-    private String priority; // e.g., "High", "Low"
-    public Object getTitle() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTitle'");
+
+@AttributeOverride(
+        name = "id",
+        column = @Column(
+                name = "pk_task_id",
+                columnDefinition = "BINARY(16)"
+        )
+)
+public class Task extends BaseEntity {
+
+    @Column(name = "fk_project_id")
+    private UUID projectId;
+
+    @Column(name = "fk_user_id")
+    private UUID userId;
+
+    @Column(name = "fk_task_status_id")
+    private UUID taskStatusId;
+
+    @Column(name = "fk_task_priority_id")
+    private UUID taskPriorityId;
+
+    @Column(name = "task_title")
+    private String taskTitle;
+
+    @Column(name = "task_description")
+    private String taskDescription;
+
+    @Column(name = "estimated_hours")
+    private BigDecimal estimatedHours;
+
+    @Column(name = "actual_hours")
+    private BigDecimal actualHours;
+
+    @Column(name = "start_at")
+    private LocalDateTime startAt;
+
+    @Column(name = "deadline_at")
+    private LocalDateTime deadlineAt;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    // PROJECT ID
+
+    public UUID getProjectId() {
+        return projectId;
     }
-    public void setTitle(Object title) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTitle'");
+
+    public void setProjectId(UUID projectId) {
+        this.projectId = projectId;
     }
-    public Object getDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDescription'");
+
+    // USER ID
+
+    public UUID getUserId() {
+        return userId;
     }
-    public void setDescription(Object description2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDescription'");
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
-    public Object getStatus() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getStatus'");
+
+    // TASK STATUS ID
+
+    public UUID getTaskStatusId() {
+        return taskStatusId;
     }
-    public void setStatus(Object status2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setStatus'");
+
+    public void setTaskStatusId(UUID taskStatusId) {
+        this.taskStatusId = taskStatusId;
     }
-    public Object getPriority() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPriority'");
+
+    // TASK PRIORITY ID
+
+    public UUID getTaskPriorityId() {
+        return taskPriorityId;
     }
-    public void setPriority(Object priority2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPriority'");
+
+    public void setTaskPriorityId(UUID taskPriorityId) {
+        this.taskPriorityId = taskPriorityId;
+    }
+
+    // TASK TITLE
+
+    public String getTaskTitle() {
+        return taskTitle;
+    }
+
+    public void setTaskTitle(String taskTitle) {
+        this.taskTitle = taskTitle;
+    }
+
+    // TASK DESCRIPTION
+
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+    // ESTIMATED HOURS
+
+    public BigDecimal getEstimatedHours() {
+        return estimatedHours;
+    }
+
+    public void setEstimatedHours(
+            BigDecimal estimatedHours) {
+
+        this.estimatedHours = estimatedHours;
+    }
+
+    // ACTUAL HOURS
+
+    public BigDecimal getActualHours() {
+        return actualHours;
+    }
+
+    public void setActualHours(
+            BigDecimal actualHours) {
+
+        this.actualHours = actualHours;
+    }
+
+    // START AT
+
+    public LocalDateTime getStartAt() {
+        return startAt;
+    }
+
+    public void setStartAt(
+            LocalDateTime startAt) {
+
+        this.startAt = startAt;
+    }
+
+    // DEADLINE AT
+
+    public LocalDateTime getDeadlineAt() {
+        return deadlineAt;
+    }
+
+    public void setDeadlineAt(
+            LocalDateTime deadlineAt) {
+
+        this.deadlineAt = deadlineAt;
+    }
+
+    // COMPLETED AT
+
+    public LocalDateTime getCompletedAt() {
+        return completedAt;
+    }
+
+    public void setCompletedAt(
+            LocalDateTime completedAt) {
+
+        this.completedAt = completedAt;
+    }
+
+    // IS ACTIVE
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(
+            Boolean active) {
+
+        isActive = active;
+    }
+
+    // IS DELETED
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(
+            Boolean deleted) {
+
+        isDeleted = deleted;
+    }
+
+    // DELETED AT
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(
+            LocalDateTime deletedAt) {
+
+        this.deletedAt = deletedAt;
     }
 }

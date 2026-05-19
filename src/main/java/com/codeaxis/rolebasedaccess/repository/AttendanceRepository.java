@@ -1,6 +1,6 @@
 package com.codeaxis.rolebasedaccess.repository;
 
-import com.codeaxis.rolebasedaccess.entity.Task;
+import com.codeaxis.rolebasedaccess.entity.Attendance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface TaskRepository
-        extends JpaRepository<Task, UUID> {
+public interface AttendanceRepository
+        extends JpaRepository<Attendance, UUID> {
 }

@@ -1,83 +1,97 @@
 package com.codeaxis.rolebasedaccess.service;
 
 import com.codeaxis.rolebasedaccess.entity.Attendance;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.ResponseEntity;
+import com.codeaxis.rolebasedaccess.exception.ResourceNotFoundException;
+import com.codeaxis.rolebasedaccess.repository.AttendanceRepository;
+
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AttendanceService {
 
-    private final String FILE_PATH = "attendance.json";
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final AttendanceRepository attendanceRepository;
 
-    // Helper: Reads the JSON file
-    private List<Attendance> readFromFile() {
-        try {
-            File file = new File(FILE_PATH);
-            if (!file.exists()) return new ArrayList<>();
-            return objectMapper.readValue(file, new TypeReference<List<Attendance>>() {});
-        } catch (IOException e) {
-            return new ArrayList<>();
-        }
+    public AttendanceService(
+            AttendanceRepository attendanceRepository) {
+
+        this.attendanceRepository = attendanceRepository;
     }
 
-    // Helper: Saves data back to JSON file
-    private void writeToFile(List<Attendance> list) {
-        try {
-            objectMapper.writeValue(new File(FILE_PATH), list);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // CREATE ATTENDANCE
+
+    public Attendance createAttendance(
+            Attendance attendance) {
+
+        return attendanceRepository.save(attendance);
     }
 
-    // Task B-10: Check-in
-    public ResponseEntity<?> checkIn(Long employeeId) {
-        List<Attendance> list = readFromFile();
-        long newId = list.size() + 1;
-        
-        Attendance attendance = new Attendance(newId, employeeId, LocalDateTime.now().toString(), null, "Present");
-        list.add(attendance);
-        
-        writeToFile(list);
-        return ResponseEntity.ok(formatResponse(true, "Checked in successfully", null));
+    // GET ALL ATTENDANCE
+
+    public List<Attendance> getAllAttendance() {
+
+        return attendanceRepository.findAll();
     }
 
-    // Task B-11: Check-out (Your task for today)
-    public ResponseEntity<?> checkOut(Long employeeId) {
-        List<Attendance> list = readFromFile();
-        boolean updated = false;
+    // GET ATTENDANCE BY ID
 
-        for (Attendance attendance : list) {
-            // Find record for this employee where checkOutTime is still null
-            if (attendance.getEmployeeId().equals(employeeId) && attendance.getCheckOutTime() == null) {
-                attendance.setCheckOutTime(LocalDateTime.now().toString());
-                updated = true;
-                break;
-            }
-        }
+    public Attendance getAttendanceById(UUID id) {
 
-        if (updated) {
-            writeToFile(list);
-            return ResponseEntity.ok(formatResponse(true, "Checked out successfully", null));
-        }
-
-        return ResponseEntity.status(404)
-                .body(formatResponse(false, "No active check-in found for this employee", null));
+        return attendanceRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Attendance event not found"));
     }
 
-    // Standard Response Format
-    private Map<String, Object> formatResponse(boolean status, String message, Object data) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", status);
-        response.put("message", message);
-        response.put("data", data);
-        return response;
+    // UPDATE ATTENDANCE
+
+    public Attendance updateAttendance(
+            UUID id,
+            Attendance attendanceDetails) {
+
+        Attendance attendance =
+                attendanceRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Attendance event not found"));
+
+        if (attendanceDetails.getUserId() != null) {
+            attendance.setUserId(
+                    attendanceDetails.getUserId());
+        }
+
+        if (attendanceDetails.getAttendanceEventTypeId() != null) {
+            attendance.setAttendanceEventTypeId(
+                    attendanceDetails.getAttendanceEventTypeId());
+        }
+
+        if (attendanceDetails.getEventAt() != null) {
+            attendance.setEventAt(
+                    attendanceDetails.getEventAt());
+        }
+
+        if (attendanceDetails.getNotes() != null) {
+            attendance.setNotes(
+                    attendanceDetails.getNotes());
+        }
+
+        return attendanceRepository.save(attendance);
+    }
+
+    // DELETE ATTENDANCE
+
+    public String deleteAttendance(UUID id) {
+
+        Attendance attendance =
+                attendanceRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Attendance event not found"));
+
+        attendanceRepository.delete(attendance);
+
+        return "Attendance event deleted successfully";
     }
 }

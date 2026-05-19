@@ -1,37 +1,74 @@
 package com.codeaxis.rolebasedaccess.entity;
 
-public class Attendance {
-    private Long id;
-    private Long employeeId;
-    private String checkInTime;
-    private String checkOutTime;
-    private String status;
+import jakarta.persistence.*;
 
-    // No-Argument Constructor
-    public Attendance() {}
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-    // All-Argument Constructor
-    public Attendance(Long id, Long employeeId, String checkInTime, String checkOutTime, String status) {
-        this.id = id;
-        this.employeeId = employeeId;
-        this.checkInTime = checkInTime;
-        this.checkOutTime = checkOutTime;
-        this.status = status;
+@Entity
+@Table(name = "attendance_events")
+
+@AttributeOverride(
+        name = "id",
+        column = @Column(
+                name = "pk_attendance_event_id",
+                columnDefinition = "BINARY(16)"
+        )
+)
+public class Attendance extends BaseEntity {
+
+    @Column(name = "fk_user_id")
+    private UUID userId;
+
+    @Column(name = "fk_attendance_event_type_id")
+    private UUID attendanceEventTypeId;
+
+    @Column(name = "event_at")
+    private LocalDateTime eventAt;
+
+    @Column(name = "notes")
+    private String notes;
+
+    // USER ID
+
+    public UUID getUserId() {
+        return userId;
     }
 
-    // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 
-    public Long getEmployeeId() { return employeeId; }
-    public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
+    // ATTENDANCE EVENT TYPE ID
 
-    public String getCheckInTime() { return checkInTime; }
-    public void setCheckInTime(String checkInTime) { this.checkInTime = checkInTime; }
+    public UUID getAttendanceEventTypeId() {
+        return attendanceEventTypeId;
+    }
 
-    public String getCheckOutTime() { return checkOutTime; }
-    public void setCheckOutTime(String checkOutTime) { this.checkOutTime = checkOutTime; }
+    public void setAttendanceEventTypeId(
+            UUID attendanceEventTypeId) {
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+        this.attendanceEventTypeId =
+                attendanceEventTypeId;
+    }
+
+    // EVENT AT
+
+    public LocalDateTime getEventAt() {
+        return eventAt;
+    }
+
+    public void setEventAt(LocalDateTime eventAt) {
+        this.eventAt = eventAt;
+    }
+
+    // NOTES
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

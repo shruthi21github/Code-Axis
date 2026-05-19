@@ -2,39 +2,132 @@ package com.codeaxis.rolebasedaccess.controller;
 
 import com.codeaxis.rolebasedaccess.entity.Task;
 import com.codeaxis.rolebasedaccess.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    @Autowired
-    private TaskService taskService;
+    private final TaskService taskService;
+
+    public TaskController(
+            TaskService taskService) {
+
+        this.taskService = taskService;
+    }
+
+    // CREATE TASK
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> create(@RequestBody Task task) {
-        return taskService.createTask(task);
+
+    @PreAuthorize(
+            "hasAuthority('tasks.create')")
+
+    public ResponseEntity<?> createTask(
+            @RequestBody Task task) {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Task created successfully",
+
+                        "data",
+                        taskService.createTask(task)
+                ));
     }
+
+    // GET ALL TASKS
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
-    public ResponseEntity<?> getAll() {
-        return taskService.getAllTasks();
+
+    @PreAuthorize(
+            "hasAuthority('tasks.read')")
+
+    public ResponseEntity<?> getAllTasks() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Tasks fetched successfully",
+
+                        "data",
+                        taskService.getAllTasks()
+                ));
     }
+
+    // GET TASK BY ID
+
+    @GetMapping("/{id}")
+
+    @PreAuthorize(
+            "hasAuthority('tasks.read')")
+
+    public ResponseEntity<?> getTaskById(
+            @PathVariable UUID id) {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Task fetched successfully",
+
+                        "data",
+                        taskService.getTaskById(id)
+                ));
+    }
+
+    // UPDATE TASK
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Task task) {
-        return taskService.updateTask(id, task);
+
+    @PreAuthorize(
+            "hasAuthority('tasks.update')")
+
+    public ResponseEntity<?> updateTask(
+
+            @PathVariable UUID id,
+
+            @RequestBody Task taskDetails) {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Task updated successfully",
+
+                        "data",
+                        taskService.updateTask(
+                                id,
+                                taskDetails)
+                ));
     }
 
+    // DELETE TASK
+
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
-        return taskService.deleteTask(id);
+
+    @PreAuthorize(
+            "hasAuthority('tasks.delete')")
+
+    public ResponseEntity<?> deleteTask(
+            @PathVariable UUID id) {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+
+                        taskService.deleteTask(id)
+                ));
     }
 }

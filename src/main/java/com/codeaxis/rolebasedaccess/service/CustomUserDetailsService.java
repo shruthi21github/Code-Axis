@@ -1,34 +1,92 @@
 package com.codeaxis.rolebasedaccess.service;
 
+import com.codeaxis.rolebasedaccess.entity.Permission;
+import com.codeaxis.rolebasedaccess.entity.RolePermission;
 import com.codeaxis.rolebasedaccess.entity.User;
+import com.codeaxis.rolebasedaccess.repository.RolePermissionRepository;
 import com.codeaxis.rolebasedaccess.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.*;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService
+        implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // 1. Fetch YOUR custom User entity from the database
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+    @Autowired
+    private RolePermissionRepository rolePermissionRepository;
 
-        // 2. Return SPRING SECURITY'S User object (fully qualified to avoid import conflicts)
+    @Transactional
+    @Override
+    public UserDetails loadUserByUsername(
+            String username)
+            throws UsernameNotFoundException {
+
+        User user = userRepository
+                .findByUsername(username)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException(
+                                "User not found"));
+
+        List<RolePermission> rolePermissions =
+                rolePermissionRepository.findByRole(
+                        user.getRole());
+
+        List<GrantedAuthority> authorities =
+                new ArrayList<>();
+
+        authorities.add(
+                new SimpleGrantedAuthority(
+                        "ROLE_" +
+                                user.getRole()
+                                        .getRoleName()
+                )
+        );
+
+        for (RolePermission rolePermission
+                : rolePermissions) {
+
+            Permission permission =
+                    rolePermission.getPermission();
+
+            authorities.add(
+                    new SimpleGrantedAuthority(
+                            permission.getPermissionName()
+                    )
+            );
+        }
+
         return new org.springframework.security.core.userdetails.User(
+
                 user.getUsername(),
-                user.getPassword(),
-                user.getRoles().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
-                        .collect(Collectors.toList())
+
+                user.getPasswordHash(),
+
+                user.getIsActive(),
+
+                true,
+
+                true,
+
+                !user.getIsLocked(),
+
+                authorities
         );
     }
 }

@@ -1,37 +1,107 @@
 package com.codeaxis.rolebasedaccess.entity;
 
-public class PerformanceReport {
-    private Long employeeId;
-    private int totalTasks;
-    private int completedTasks;
-    private double performancePercentage;
-    private String rating;
+import jakarta.persistence.*;
 
-    // No-Argument Constructor (Required for JSON)
-    public PerformanceReport() {}
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-    // All-Argument Constructor
-    public PerformanceReport(Long employeeId, int totalTasks, int completedTasks, double performancePercentage, String rating) {
-        this.employeeId = employeeId;
-        this.totalTasks = totalTasks;
-        this.completedTasks = completedTasks;
-        this.performancePercentage = performancePercentage;
-        this.rating = rating;
+@Entity
+@Table(name = "reports")
+
+@AttributeOverride(
+        name = "id",
+        column = @Column(
+                name = "pk_report_id",
+                columnDefinition = "BINARY(16)"
+        )
+)
+public class PerformanceReport extends BaseEntity {
+
+    @Column(name = "fk_user_id")
+    private UUID userId;
+
+    @Column(name = "fk_report_type_id")
+    private UUID reportTypeId;
+
+    @Column(name = "report_name")
+    private String reportName;
+
+    @Column(name = "file_name")
+    private String fileName;
+
+    @Column(name = "file_path")
+    private String filePath;
+
+    @Column(name = "generated_at")
+    private LocalDateTime generatedAt;
+
+    // USER ID
+
+    public UUID getUserId() {
+        return userId;
     }
 
-    // Getters and Setters
-    public Long getEmployeeId() { return employeeId; }
-    public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 
-    public int getTotalTasks() { return totalTasks; }
-    public void setTotalTasks(int totalTasks) { this.totalTasks = totalTasks; }
+    // REPORT TYPE ID
 
-    public int getCompletedTasks() { return completedTasks; }
-    public void setCompletedTasks(int completedTasks) { this.completedTasks = completedTasks; }
+    public UUID getReportTypeId() {
+        return reportTypeId;
+    }
 
-    public double getPerformancePercentage() { return performancePercentage; }
-    public void setPerformancePercentage(double performancePercentage) { this.performancePercentage = performancePercentage; }
+    public void setReportTypeId(
+            UUID reportTypeId) {
 
-    public String getRating() { return rating; }
-    public void setRating(String rating) { this.rating = rating; }
+        this.reportTypeId = reportTypeId;
+    }
+
+    // REPORT NAME
+
+    public String getReportName() {
+        return reportName;
+    }
+
+    public void setReportName(
+            String reportName) {
+
+        this.reportName = reportName;
+    }
+
+    // FILE NAME
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(
+            String fileName) {
+
+        this.fileName = fileName;
+    }
+
+    // FILE PATH
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(
+            String filePath) {
+
+        this.filePath = filePath;
+    }
+
+    // GENERATED AT
+
+    public LocalDateTime getGeneratedAt() {
+        return generatedAt;
+    }
+
+    public void setGeneratedAt(
+            LocalDateTime generatedAt) {
+
+        this.generatedAt = generatedAt;
+    }
 }

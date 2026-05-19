@@ -1,42 +1,97 @@
 package com.codeaxis.rolebasedaccess.dto;
 
+import jakarta.validation.constraints.Size;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
+
 public class EmployeeUpdateDTO {
-    private String name;
-    private String designation;
-    private String department;
-    private String email;
 
-    // --- Generated Getters and Setters ---
+    private UUID departmentId;
+    private UUID designationId;
+    private UUID managerEmployeeId;
 
-    public String getName() {
-        return name;
+    @Size(max = 100)
+    private String firstName;
+
+    @Size(max = 100)
+    private String lastName;
+
+    private LocalDate dateOfBirth;
+    private LocalDate joiningDate;
+    private BigDecimal salary;
+    private Boolean isActive;
+
+    public UUID getDepartmentId() {
+        return departmentId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDepartmentId(UUID departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public String getDesignation() {
-        return designation;
+    public UUID getDesignationId() {
+        return designationId;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setDesignationId(UUID designationId) {
+        this.designationId = designationId;
     }
 
-    public String getDepartment() {
-        return department;
+    public UUID getManagerEmployeeId() {
+        return managerEmployeeId;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setManagerEmployeeId(UUID managerEmployeeId) {
+        this.managerEmployeeId = managerEmployeeId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public LocalDate getJoiningDate() {
+        return joiningDate;
+    }
+
+    public void setJoiningDate(LocalDate joiningDate) {
+        this.joiningDate = joiningDate;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean active) {
+        isActive = active;
     }
 }

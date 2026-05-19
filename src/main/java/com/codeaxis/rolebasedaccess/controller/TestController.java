@@ -1,29 +1,150 @@
 package com.codeaxis.rolebasedaccess.controller;
 
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
+@RequestMapping("/api/test")
 public class TestController {
 
-    @GetMapping("/public/home")
-    public String publicAccess() {
-        return "This is public content. Anyone can see this.";
+    // =========================================
+    // PUBLIC API
+    // =========================================
+
+    @GetMapping("/public")
+    public ResponseEntity<?> publicApi() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Public API Working Successfully"
+                ));
     }
 
-    @GetMapping("/admin/dashboard")
-    public String adminAccess() {
-        return "Admin Dashboard: Only users with the ADMIN role can see this.";
+    // =========================================
+    // RBAC AUTH TEST
+    // =========================================
+
+    @GetMapping("/rbac")
+
+    @PreAuthorize(
+            "hasAnyRole('ADMIN', 'EMPLOYEE')")
+
+    public ResponseEntity<?> rbacTest() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "RBAC Authentication Working",
+
+                        "access",
+                        "ADMIN and EMPLOYEE allowed"
+                ));
     }
 
-    @GetMapping("/employee/portal")
-    public String employeeAccess() {
-        return "Employee Portal: Accessible by EMPLOYEE and ADMIN.";
+    // =========================================
+    // EMPLOYEE MODULE TEST
+    // =========================================
+
+    @GetMapping("/employee")
+
+    @PreAuthorize(
+            "hasAuthority('employees.update')")
+
+    public ResponseEntity<?> employeeModuleTest() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Employee Update/Delete API Access Granted"
+                ));
     }
 
-    @GetMapping("/client/resources")
-    public String clientAccess() {
-        return "Client Resources: Accessible by CLIENT and ADMIN.";
+    // =========================================
+    // TASK MODULE TEST
+    // =========================================
+
+    @GetMapping("/tasks")
+
+    @PreAuthorize(
+            "hasAuthority('tasks.read')")
+
+    public ResponseEntity<?> taskModuleTest() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Task CRUD API Access Granted"
+                ));
+    }
+
+    // =========================================
+    // ATTENDANCE MODULE TEST
+    // =========================================
+
+    @GetMapping("/attendance")
+
+    @PreAuthorize(
+            "hasAnyRole('ADMIN', 'EMPLOYEE')")
+
+    public ResponseEntity<?> attendanceModuleTest() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Attendance Checkout API Access Granted"
+                ));
+    }
+
+    // =========================================
+    // REPORT MODULE TEST
+    // =========================================
+
+    @GetMapping("/reports")
+
+    @PreAuthorize(
+            "hasAuthority('reports.read')")
+
+    public ResponseEntity<?> reportModuleTest() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "Performance Report API Access Granted"
+                ));
+    }
+
+    // =========================================
+    // ADMIN ONLY TEST
+    // =========================================
+
+    @GetMapping("/admin")
+
+    @PreAuthorize(
+            "hasRole('ADMIN')")
+
+    public ResponseEntity<?> adminOnlyTest() {
+
+        return ResponseEntity.ok(
+                Map.of(
+
+                        "message",
+                        "ADMIN Access Granted"
+                ));
     }
 }

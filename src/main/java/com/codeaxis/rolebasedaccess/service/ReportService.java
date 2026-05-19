@@ -1,35 +1,107 @@
 package com.codeaxis.rolebasedaccess.service;
 
 import com.codeaxis.rolebasedaccess.entity.PerformanceReport;
-import org.springframework.http.ResponseEntity;
+import com.codeaxis.rolebasedaccess.exception.ResourceNotFoundException;
+import com.codeaxis.rolebasedaccess.repository.ReportRepository;
+
 import org.springframework.stereotype.Service;
-import java.util.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReportService {
 
-    public ResponseEntity<?> getPerformanceReport(Long employeeId) {
-        // Business Logic for Task B-14
-        int totalTasks = 10; 
-        int completedTasks = 9; 
-        double percentage = ((double) completedTasks / totalTasks) * 100;
+    private final ReportRepository reportRepository;
 
-        String rating;
-        if (percentage >= 90) rating = "Excellent";
-        else if (percentage >= 75) rating = "Good";
-        else if (percentage >= 50) rating = "Average";
-        else rating = "Needs Improvement";
+    public ReportService(
+            ReportRepository reportRepository) {
 
-        PerformanceReport report = new PerformanceReport(employeeId, totalTasks, completedTasks, percentage, rating);
-
-        return ResponseEntity.ok(formatResponse(true, "Performance report generated successfully", report));
+        this.reportRepository = reportRepository;
     }
 
-    private Map<String, Object> formatResponse(boolean status, String message, Object data) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", status);
-        response.put("message", message);
-        response.put("data", data);
-        return response;
+    // CREATE REPORT
+
+    public PerformanceReport createReport(
+            PerformanceReport report) {
+
+        return reportRepository.save(report);
+    }
+
+    // GET ALL REPORTS
+
+    public List<PerformanceReport> getAllReports() {
+
+        return reportRepository.findAll();
+    }
+
+    // GET REPORT BY ID
+
+    public PerformanceReport getReportById(UUID id) {
+
+        return reportRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Report not found"));
+    }
+
+    // UPDATE REPORT
+
+    public PerformanceReport updateReport(
+            UUID id,
+            PerformanceReport reportDetails) {
+
+        PerformanceReport report =
+                reportRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Report not found"));
+
+        if (reportDetails.getUserId() != null) {
+            report.setUserId(
+                    reportDetails.getUserId());
+        }
+
+        if (reportDetails.getReportTypeId() != null) {
+            report.setReportTypeId(
+                    reportDetails.getReportTypeId());
+        }
+
+        if (reportDetails.getReportName() != null) {
+            report.setReportName(
+                    reportDetails.getReportName());
+        }
+
+        if (reportDetails.getFileName() != null) {
+            report.setFileName(
+                    reportDetails.getFileName());
+        }
+
+        if (reportDetails.getFilePath() != null) {
+            report.setFilePath(
+                    reportDetails.getFilePath());
+        }
+
+        if (reportDetails.getGeneratedAt() != null) {
+            report.setGeneratedAt(
+                    reportDetails.getGeneratedAt());
+        }
+
+        return reportRepository.save(report);
+    }
+
+    // DELETE REPORT
+
+    public String deleteReport(UUID id) {
+
+        PerformanceReport report =
+                reportRepository.findById(id)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Report not found"));
+
+        reportRepository.delete(report);
+
+        return "Report deleted successfully";
     }
 }
