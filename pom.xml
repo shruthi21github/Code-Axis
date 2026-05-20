@@ -14,11 +14,11 @@
 	</parent>
 
 	<groupId>com.codeaxis</groupId>
-	<artifactId>rolebasedaccess</artifactId>
+	<artifactId>CodeAxis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>rolebasedaccess</name>
-	<description>Role Based Access Application</description>
+	<name>CodeAxis</name>
+	<description>CodeAxis Application</description>
 
 	<url/>
 

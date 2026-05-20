@@ -13,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -40,7 +41,12 @@ public class Task {
 
     @Id
     @JdbcTypeCode(SqlTypes.BINARY)
-    @Column(name = "pk_task_id", columnDefinition = "BINARY(16)", nullable = false)
+
+    @Column(
+            name = "pk_task_id",
+            columnDefinition = "BINARY(16)",
+            nullable = false
+    )
     private UUID pkTaskId;
 
     /*
@@ -49,20 +55,40 @@ public class Task {
      * ===========================================================================
      */
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_project_id", nullable = false, columnDefinition = "BINARY(16)")
+    @ManyToOne(fetch = FetchType.EAGER)
+
+    @JoinColumn(
+            name = "fk_project_id",
+            nullable = false,
+            columnDefinition = "BINARY(16)"
+    )
     private Project fkProjectId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_user_id", nullable = false, columnDefinition = "BINARY(16)")
+    @ManyToOne(fetch = FetchType.EAGER)
+
+    @JoinColumn(
+            name = "fk_user_id",
+            nullable = false,
+            columnDefinition = "BINARY(16)"
+    )
     private User fkUserId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_task_status_id", nullable = false, columnDefinition = "BINARY(16)")
+    @ManyToOne(fetch = FetchType.EAGER)
+
+    @JoinColumn(
+            name = "fk_task_status_id",
+            nullable = false,
+            columnDefinition = "BINARY(16)"
+    )
     private TaskStatus fkTaskStatusId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_task_priority_id", nullable = false, columnDefinition = "BINARY(16)")
+    @ManyToOne(fetch = FetchType.EAGER)
+
+    @JoinColumn(
+            name = "fk_task_priority_id",
+            nullable = false,
+            columnDefinition = "BINARY(16)"
+    )
     private TaskPriority fkTaskPriorityId;
 
     /*
@@ -71,10 +97,17 @@ public class Task {
      * ===========================================================================
      */
 
-    @Column(name = "task_title", nullable = false, length = 255)
+    @Column(
+            name = "task_title",
+            nullable = false,
+            length = 255
+    )
     private String taskTitle;
 
-    @Column(name = "task_description", columnDefinition = "TEXT")
+    @Column(
+            name = "task_description",
+            columnDefinition = "TEXT"
+    )
     private String taskDescription;
 
     /*
@@ -83,10 +116,18 @@ public class Task {
      * ===========================================================================
      */
 
-    @Column(name = "estimated_hours", precision = 10, scale = 2)
+    @Column(
+            name = "estimated_hours",
+            precision = 10,
+            scale = 2
+    )
     private BigDecimal estimatedHours;
 
-    @Column(name = "actual_hours", precision = 10, scale = 2)
+    @Column(
+            name = "actual_hours",
+            precision = 10,
+            scale = 2
+    )
     private BigDecimal actualHours;
 
     /*
@@ -110,7 +151,10 @@ public class Task {
      * ===========================================================================
      */
 
-    @Column(name = "is_active", nullable = false)
+    @Column(
+            name = "is_active",
+            nullable = false
+    )
     private Boolean isActive;
 
     /*
@@ -119,7 +163,10 @@ public class Task {
      * ===========================================================================
      */
 
-    @Column(name = "is_deleted", nullable = false)
+    @Column(
+            name = "is_deleted",
+            nullable = false
+    )
     private Boolean isDeleted;
 
     @Column(name = "deleted_at")
@@ -131,17 +178,60 @@ public class Task {
      * ===========================================================================
      */
 
-    @Column(name = "created_at", nullable = false)
+    @Column(
+            name = "created_at",
+            nullable = false
+    )
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by", columnDefinition = "BINARY(16)")
+
+    @JoinColumn(
+            name = "created_by",
+            columnDefinition = "BINARY(16)"
+    )
     private User createdBy;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(
+            name = "updated_at",
+            nullable = false
+    )
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "updated_by", columnDefinition = "BINARY(16)")
+
+    @JoinColumn(
+            name = "updated_by",
+            columnDefinition = "BINARY(16)"
+    )
     private User updatedBy;
+
+    /*
+     * ===========================================================================
+     * AUTO UUID + TIMESTAMP
+     * ===========================================================================
+     */
+
+    @PrePersist
+    public void prePersist() {
+
+        if (this.pkTaskId == null) {
+
+            this.pkTaskId = UUID.randomUUID();
+        }
+
+        this.createdAt = LocalDateTime.now();
+
+        this.updatedAt = LocalDateTime.now();
+
+        if (this.isActive == null) {
+
+            this.isActive = true;
+        }
+
+        if (this.isDeleted == null) {
+
+            this.isDeleted = false;
+        }
+    }
 }
