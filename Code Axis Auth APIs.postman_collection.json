@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "e9d39bbd-b192-4964-9738-dc5058c1fc11",
+    "_postman_id": "f6f0560d-3dd8-4b4e-a1df-e63f33f5154c",
     "name": "Code Axis Auth APIs",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "54902166",
-    "_collection_link": "https://go.postman.co/collection/54902166-e9d39bbd-b192-4964-9738-dc5058c1fc11?source=collection_link"
+    "_exporter_id": "54593268",
+    "_collection_link": "https://go.postman.co/collection/54593268-f6f0560d-3dd8-4b4e-a1df-e63f33f5154c?source=collection_link"
   },
   "item": [
     {
@@ -31,7 +31,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"dheeraj\",\n  \"email\": \"6tzqt0h4gm@lnovic.com\",\n  \"password\": \"123456\",\n  \"roleName\": \"USER\"\n}",
+          "raw": "{\n  \"username\": \"srikanth\",\n  \"email\": \"srikanth@test.com\",\n  \"password\": \"123456\",\n  \"roleName\": \"USER\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -83,7 +83,7 @@
           },
           "status": "Created",
           "code": 201,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -142,7 +142,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n\"token\": \"019e310a-8818-7557-a5d4-164719b6de74\"\r\n}",
+          "raw": "{\r\n\"token\": \"019e4427-416c-7f51-bfba-685c5a316173\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -194,7 +194,7 @@
           },
           "status": "OK",
           "code": 200,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -256,7 +256,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"email\": \"6tzqt0h4gm@lnovic.com\",\r\n  \"password\": \"123456\"\r\n}",
+          "raw": "{\r\n  \"email\": \"srikanth@test.com\",\r\n  \"password\": \"123456\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -308,7 +308,7 @@
           },
           "status": "OK",
           "code": 200,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -419,7 +419,7 @@
           },
           "status": "OK",
           "code": 200,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -499,7 +499,7 @@
           },
           "status": "Unauthorized",
           "code": 401,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -555,7 +555,10 @@
       "name": "/api/dashboard/stats",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": ""
+        }
       },
       "response": [
         {
@@ -563,10 +566,6 @@
           "originalRequest": {
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
             "url": {
               "raw": "http://localhost:8080/api/dashboard/stats",
               "protocol": "http",
@@ -583,7 +582,7 @@
           },
           "status": "OK",
           "code": 200,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -638,10 +637,6 @@
           "originalRequest": {
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
             "url": {
               "raw": "http://localhost:8080/api/dashboard/stats",
               "protocol": "http",
@@ -658,7 +653,7 @@
           },
           "status": "Unauthorized",
           "code": 401,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -713,10 +708,6 @@
           "originalRequest": {
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
             "url": {
               "raw": "http://localhost:8080/api/dashboard/stats",
               "protocol": "http",
@@ -733,7 +724,7 @@
           },
           "status": "Unauthorized",
           "code": 401,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -852,7 +843,7 @@
           },
           "status": "Created",
           "code": 201,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -975,7 +966,7 @@
           },
           "status": "OK",
           "code": 200,
-          "_postman_previewlanguage": null,
+          "_postman_previewlanguage": "Text",
           "header": [
             {
               "key": "X-Content-Type-Options",
@@ -1026,6 +1017,1508 @@
           "body": "{\n    \"status\": true,\n    \"message\": \"Task status updated successfully\",\n    \"data\": {\n        \"completedAt\": null,\n        \"deadlineAt\": null,\n        \"priorityName\": \"HIGH\",\n        \"statusName\": \"IN_PROGRESS\",\n        \"taskId\": \"b7ef25ff-5355-11f1-8d98-b05cda617960\",\n        \"taskTitle\": \"Implement Login API\",\n        \"updatedAt\": \"2026-05-19T13:08:24\"\n    }\n}"
         }
       ]
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "apis testing Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNTk5OTksImV4cCI6MTc3OTI2MzU5OX0.XoOoUrqVwDmI-_B5MygwuN_IJRkwomOmF5E_zYOXdvYPdgEfgrilJp3-96nO3vvI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/test/rbac",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "test",
+            "rbac"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/test/rbac",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "test",
+                "rbac"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 06:53:51 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"access\": \"ADMIN and EMPLOYEE allowed\",\n    \"message\": \"RBAC Authentication Working\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "DELETE EMPLOYEE Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNTk5OTksImV4cCI6MTc3OTI2MzU5OX0.XoOoUrqVwDmI-_B5MygwuN_IJRkwomOmF5E_zYOXdvYPdgEfgrilJp3-96nO3vvI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"departmentId\":\"79042219-5354-11f1-8d98-b05cda617960\",\r\n  \"designationId\":\"79068b7b-5354-11f1-8d98-b05cda617960\",\r\n  \"managerEmployeeId\":null,\r\n  \"firstName\":\"Updated\",\r\n  \"lastName\":\"Employee\",\r\n  \"dateOfBirth\":\"2000-01-01\",\r\n  \"joiningDate\":\"2026-05-19\",\r\n  \"salary\":60000,\r\n  \"isActive\":true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/a64b9e80-5354-11f1-8d98-b05cda617960",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "a64b9e80-5354-11f1-8d98-b05cda617960"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"departmentId\":\"79042219-5354-11f1-8d98-b05cda617960\",\r\n  \"designationId\":\"79068b7b-5354-11f1-8d98-b05cda617960\",\r\n  \"managerEmployeeId\":null,\r\n  \"firstName\":\"Updated\",\r\n  \"lastName\":\"Employee\",\r\n  \"dateOfBirth\":\"2000-01-01\",\r\n  \"joiningDate\":\"2026-05-19\",\r\n  \"salary\":60000,\r\n  \"isActive\":true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees/a64b9e80-5354-11f1-8d98-b05cda617960",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "a64b9e80-5354-11f1-8d98-b05cda617960"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 07:05:23 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Employee deleted successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "CREATE TASK Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNjgwMDksImV4cCI6MTc3OTI3MTYwOX0.mrs0ncMkdNLWFfN3u7ihMEDKrHVdwyxY0L94XsfvEvmoF11L4U74QC-Tb5cYN_A1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"projectId\":\"381b8486-5381-11f1-9de3-40c2ba3a26d0\",\r\n  \"userId\":\"019e4427-4096-7f0b-9688-1ced57ba76c7\",\r\n  \"taskStatusId\":\"4756d5d3-5355-11f1-8d98-b05cda617960\",\r\n  \"taskPriorityId\":\"575c4c24-5355-11f1-8d98-b05cda617960\",\r\n  \"taskTitle\":\"Task CRUD\",\r\n  \"taskDescription\":\"Testing Task API\",\r\n  \"estimatedHours\":5,\r\n  \"actualHours\":0,\r\n  \"isActive\":true,\r\n  \"isDeleted\":false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"projectId\":\"381b8486-5381-11f1-9de3-40c2ba3a26d0\",\r\n  \"userId\":\"019e4427-4096-7f0b-9688-1ced57ba76c7\",\r\n  \"taskStatusId\":\"4756d5d3-5355-11f1-8d98-b05cda617960\",\r\n  \"taskPriorityId\":\"575c4c24-5355-11f1-8d98-b05cda617960\",\r\n  \"taskTitle\":\"Task CRUD\",\r\n  \"taskDescription\":\"Testing Task API\",\r\n  \"estimatedHours\":5,\r\n  \"actualHours\":0,\r\n  \"isActive\":true,\r\n  \"isDeleted\":false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 09:11:59 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"pkTaskId\": \"76941883-0335-4726-93f8-f9283a22428d\",\n        \"fkProjectId\": {\n            \"pkProjectId\": \"381b8486-5381-11f1-9de3-40c2ba3a26d0\",\n            \"fkProjectStatus\": {\n                \"pkProjectStatusId\": \"78d89f41-5354-11f1-8d98-b05cda617960\",\n                \"statusName\": \"PLANNING\",\n                \"statusDescription\": \"Project is in planning phase\",\n                \"createdAt\": \"2026-05-19T12:59:29\",\n                \"updatedAt\": \"2026-05-19T12:59:29\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"projectCode\": \"CA001\",\n            \"projectName\": \"CA Project\",\n            \"projectDescription\": \"Code Axis Project\",\n            \"startAt\": null,\n            \"deadlineAt\": null,\n            \"createdAt\": \"2026-05-19T18:19:48\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-19T18:19:48\",\n            \"updatedBy\": null,\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkUserId\": {\n            \"pkUserId\": \"019e4427-4096-7f0b-9688-1ced57ba76c7\",\n            \"fkRoleId\": {\n                \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000012\",\n                \"roleName\": \"USER\",\n                \"roleDescription\": \"Default authenticated application user\",\n                \"roleLevel\": 10,\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-15T10:59:53\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-15T10:59:53\",\n                \"updatedBy\": null\n            },\n            \"username\": \"srikanth\",\n            \"email\": \"srikanth@test.com\",\n            \"phoneNumber\": null,\n            \"passwordHash\": \"$2a$10$vZ/NiOsyvGdymyPFc.386.z3K84K4qGocOLV93zD1LAZAoKCMTy5e\",\n            \"isEmailVerified\": true,\n            \"emailVerifiedAt\": \"2026-05-20T12:22:45\",\n            \"isLocked\": false,\n            \"lockedAt\": null,\n            \"lastLoginAt\": \"2026-05-20T14:36:49\",\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-20T12:21:24\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-20T12:21:24\",\n            \"updatedBy\": null\n        },\n        \"fkTaskStatusId\": {\n            \"pkTaskStatusId\": \"4756d5d3-5355-11f1-8d98-b05cda617960\",\n            \"statusName\": \"BLOCKED\",\n            \"statusDescription\": null,\n            \"createdAt\": \"2026-05-19T13:05:15\",\n            \"updatedAt\": \"2026-05-19T13:05:15\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkTaskPriorityId\": {\n            \"pkTaskPriorityId\": \"575c4c24-5355-11f1-8d98-b05cda617960\",\n            \"priorityName\": \"MEDIUM\",\n            \"createdAt\": \"2026-05-19T13:05:42\",\n            \"updatedAt\": \"2026-05-19T13:05:42\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"taskTitle\": \"Task CRUD\",\n        \"taskDescription\": \"Testing Task API\",\n        \"estimatedHours\": 5,\n        \"actualHours\": 0,\n        \"startAt\": null,\n        \"deadlineAt\": null,\n        \"completedAt\": null,\n        \"isActive\": true,\n        \"isDeleted\": false,\n        \"deletedAt\": null,\n        \"createdAt\": \"2026-05-20T14:41:59.1067824\",\n        \"createdBy\": null,\n        \"updatedAt\": \"2026-05-20T14:41:59.1067824\",\n        \"updatedBy\": null\n    },\n    \"message\": \"Task created successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Attendance checkout Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNTk5OTksImV4cCI6MTc3OTI2MzU5OX0.XoOoUrqVwDmI-_B5MygwuN_IJRkwomOmF5E_zYOXdvYPdgEfgrilJp3-96nO3vvI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userId\":\"019e4427-4096-7f0b-9688-1ced57ba76c7\",\r\n  \"attendanceEventTypeId\":\"67156924-5381-11f1-9de3-40c2ba3a26d0\",\r\n  \"eventAt\":\"2026-05-19T18:00:00\",\r\n  \"notes\":\"Employee checked out\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/attendance",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "attendance"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\":\"019e4427-4096-7f0b-9688-1ced57ba76c7\",\r\n  \"attendanceEventTypeId\":\"67156924-5381-11f1-9de3-40c2ba3a26d0\",\r\n  \"eventAt\":\"2026-05-19T18:00:00\",\r\n  \"notes\":\"Employee checked out\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/attendance",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "attendance"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 07:11:34 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"id\": \"8e684a11-2f5d-488d-ab66-f9c0bb1d67bd\",\n        \"createdAt\": \"2026-05-20T12:41:34.0474089\",\n        \"updatedAt\": \"2026-05-20T12:41:34.0474089\",\n        \"userId\": \"019e4427-4096-7f0b-9688-1ced57ba76c7\",\n        \"attendanceEventTypeId\": \"67156924-5381-11f1-9de3-40c2ba3a26d0\",\n        \"eventAt\": \"2026-05-19T18:00:00\",\n        \"notes\": \"Employee checked out\"\n    },\n    \"message\": \"Attendance created successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "performance report Copy",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNTk5OTksImV4cCI6MTc3OTI2MzU5OX0.XoOoUrqVwDmI-_B5MygwuN_IJRkwomOmF5E_zYOXdvYPdgEfgrilJp3-96nO3vvI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/reports",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "reports"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/reports",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 07:34:11 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": [],\n    \"message\": \"Performance reports fetched successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "update report Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNTk5OTksImV4cCI6MTc3OTI2MzU5OX0.XoOoUrqVwDmI-_B5MygwuN_IJRkwomOmF5E_zYOXdvYPdgEfgrilJp3-96nO3vvI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"reportName\":\"Updated Report\",\r\n  \"fileName\":\"updated_report.pdf\",\r\n  \"filePath\":\"/reports/updated_report.pdf\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/reports/64592c0f-08dc-4597-a9ff-a1779305e54f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "reports",
+            "64592c0f-08dc-4597-a9ff-a1779305e54f"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"reportName\":\"Updated Report\",\r\n  \"fileName\":\"updated_report.pdf\",\r\n  \"filePath\":\"/reports/updated_report.pdf\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/reports/64592c0f-08dc-4597-a9ff-a1779305e54f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "reports",
+                "64592c0f-08dc-4597-a9ff-a1779305e54f"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 07:32:15 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"id\": \"64592c0f-08dc-4597-a9ff-a1779305e54f\",\n        \"createdAt\": \"2026-05-20T12:51:09\",\n        \"updatedAt\": \"2026-05-20T13:02:15.0966081\",\n        \"userId\": \"019e4427-4096-7f0b-9688-1ced57ba76c7\",\n        \"reportTypeId\": \"72d4702f-5381-11f1-9de3-40c2ba3a26d0\",\n        \"reportName\": \"Updated Report\",\n        \"fileName\": \"updated_report.pdf\",\n        \"filePath\": \"/reports/updated_report.pdf\",\n        \"generatedAt\": \"2026-05-19T13:45:00\"\n    },\n    \"message\": \"Performance report updated successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete report Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNTk5OTksImV4cCI6MTc3OTI2MzU5OX0.XoOoUrqVwDmI-_B5MygwuN_IJRkwomOmF5E_zYOXdvYPdgEfgrilJp3-96nO3vvI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/reports/64592c0f-08dc-4597-a9ff-a1779305e54f",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "reports",
+            "64592c0f-08dc-4597-a9ff-a1779305e54f"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/reports/64592c0f-08dc-4597-a9ff-a1779305e54f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "reports",
+                "64592c0f-08dc-4597-a9ff-a1779305e54f"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 07:33:40 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Report deleted successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "READ TASK Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNjgwMDksImV4cCI6MTc3OTI3MTYwOX0.mrs0ncMkdNLWFfN3u7ihMEDKrHVdwyxY0L94XsfvEvmoF11L4U74QC-Tb5cYN_A1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/tasks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 09:14:26 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": [\n        {\n            \"pkTaskId\": \"76941883-0335-4726-93f8-f9283a22428d\",\n            \"fkProjectId\": {\n                \"pkProjectId\": \"381b8486-5381-11f1-9de3-40c2ba3a26d0\",\n                \"fkProjectStatus\": {\n                    \"pkProjectStatusId\": \"78d89f41-5354-11f1-8d98-b05cda617960\",\n                    \"statusName\": \"PLANNING\",\n                    \"statusDescription\": \"Project is in planning phase\",\n                    \"createdAt\": \"2026-05-19T12:59:29\",\n                    \"updatedAt\": \"2026-05-19T12:59:29\",\n                    \"active\": true,\n                    \"deleted\": false\n                },\n                \"projectCode\": \"CA001\",\n                \"projectName\": \"CA Project\",\n                \"projectDescription\": \"Code Axis Project\",\n                \"startAt\": null,\n                \"deadlineAt\": null,\n                \"createdAt\": \"2026-05-19T18:19:48\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-19T18:19:48\",\n                \"updatedBy\": null,\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"fkUserId\": {\n                \"pkUserId\": \"019e4427-4096-7f0b-9688-1ced57ba76c7\",\n                \"fkRoleId\": {\n                    \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000012\",\n                    \"roleName\": \"USER\",\n                    \"roleDescription\": \"Default authenticated application user\",\n                    \"roleLevel\": 10,\n                    \"isActive\": true,\n                    \"isDeleted\": false,\n                    \"deletedAt\": null,\n                    \"createdAt\": \"2026-05-15T10:59:53\",\n                    \"createdBy\": null,\n                    \"updatedAt\": \"2026-05-15T10:59:53\",\n                    \"updatedBy\": null\n                },\n                \"username\": \"srikanth\",\n                \"email\": \"srikanth@test.com\",\n                \"phoneNumber\": null,\n                \"passwordHash\": \"$2a$10$vZ/NiOsyvGdymyPFc.386.z3K84K4qGocOLV93zD1LAZAoKCMTy5e\",\n                \"isEmailVerified\": true,\n                \"emailVerifiedAt\": \"2026-05-20T12:22:45\",\n                \"isLocked\": false,\n                \"lockedAt\": null,\n                \"lastLoginAt\": \"2026-05-20T14:36:49\",\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-20T12:21:24\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-20T12:21:24\",\n                \"updatedBy\": null\n            },\n            \"fkTaskStatusId\": {\n                \"pkTaskStatusId\": \"4756d5d3-5355-11f1-8d98-b05cda617960\",\n                \"statusName\": \"BLOCKED\",\n                \"statusDescription\": null,\n                \"createdAt\": \"2026-05-19T13:05:15\",\n                \"updatedAt\": \"2026-05-19T13:05:15\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"fkTaskPriorityId\": {\n                \"pkTaskPriorityId\": \"575c4c24-5355-11f1-8d98-b05cda617960\",\n                \"priorityName\": \"MEDIUM\",\n                \"createdAt\": \"2026-05-19T13:05:42\",\n                \"updatedAt\": \"2026-05-19T13:05:42\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"taskTitle\": \"Task CRUD\",\n            \"taskDescription\": \"Testing Task API\",\n            \"estimatedHours\": 5,\n            \"actualHours\": 0,\n            \"startAt\": null,\n            \"deadlineAt\": null,\n            \"completedAt\": null,\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-20T14:41:59\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-20T14:41:59\",\n            \"updatedBy\": null\n        },\n        {\n            \"pkTaskId\": \"7db2c472-8efc-42af-a9f4-e2e9a8e3de60\",\n            \"fkProjectId\": {\n                \"pkProjectId\": \"381b8486-5381-11f1-9de3-40c2ba3a26d0\",\n                \"fkProjectStatus\": {\n                    \"pkProjectStatusId\": \"78d89f41-5354-11f1-8d98-b05cda617960\",\n                    \"statusName\": \"PLANNING\",\n                    \"statusDescription\": \"Project is in planning phase\",\n                    \"createdAt\": \"2026-05-19T12:59:29\",\n                    \"updatedAt\": \"2026-05-19T12:59:29\",\n                    \"active\": true,\n                    \"deleted\": false\n                },\n                \"projectCode\": \"CA001\",\n                \"projectName\": \"CA Project\",\n                \"projectDescription\": \"Code Axis Project\",\n                \"startAt\": null,\n                \"deadlineAt\": null,\n                \"createdAt\": \"2026-05-19T18:19:48\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-19T18:19:48\",\n                \"updatedBy\": null,\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"fkUserId\": {\n                \"pkUserId\": \"019e4427-4096-7f0b-9688-1ced57ba76c7\",\n                \"fkRoleId\": {\n                    \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000012\",\n                    \"roleName\": \"USER\",\n                    \"roleDescription\": \"Default authenticated application user\",\n                    \"roleLevel\": 10,\n                    \"isActive\": true,\n                    \"isDeleted\": false,\n                    \"deletedAt\": null,\n                    \"createdAt\": \"2026-05-15T10:59:53\",\n                    \"createdBy\": null,\n                    \"updatedAt\": \"2026-05-15T10:59:53\",\n                    \"updatedBy\": null\n                },\n                \"username\": \"srikanth\",\n                \"email\": \"srikanth@test.com\",\n                \"phoneNumber\": null,\n                \"passwordHash\": \"$2a$10$vZ/NiOsyvGdymyPFc.386.z3K84K4qGocOLV93zD1LAZAoKCMTy5e\",\n                \"isEmailVerified\": true,\n                \"emailVerifiedAt\": \"2026-05-20T12:22:45\",\n                \"isLocked\": false,\n                \"lockedAt\": null,\n                \"lastLoginAt\": \"2026-05-20T14:36:49\",\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-20T12:21:24\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-20T12:21:24\",\n                \"updatedBy\": null\n            },\n            \"fkTaskStatusId\": {\n                \"pkTaskStatusId\": \"4756d5d3-5355-11f1-8d98-b05cda617960\",\n                \"statusName\": \"BLOCKED\",\n                \"statusDescription\": null,\n                \"createdAt\": \"2026-05-19T13:05:15\",\n                \"updatedAt\": \"2026-05-19T13:05:15\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"fkTaskPriorityId\": {\n                \"pkTaskPriorityId\": \"575c4c24-5355-11f1-8d98-b05cda617960\",\n                \"priorityName\": \"MEDIUM\",\n                \"createdAt\": \"2026-05-19T13:05:42\",\n                \"updatedAt\": \"2026-05-19T13:05:42\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"taskTitle\": \"Task CRUD\",\n            \"taskDescription\": \"Testing Task API\",\n            \"estimatedHours\": 5,\n            \"actualHours\": 0,\n            \"startAt\": null,\n            \"deadlineAt\": null,\n            \"completedAt\": null,\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-20T14:38:35\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-20T14:38:35\",\n            \"updatedBy\": null\n        },\n        {\n            \"pkTaskId\": \"b7ef25ff-5355-11f1-8d98-b05cda617960\",\n            \"fkProjectId\": {\n                \"pkProjectId\": \"9490ff1e-2497-4af8-8c7b-708c1546519a\",\n                \"fkProjectStatus\": {\n                    \"pkProjectStatusId\": \"78d89f41-5354-11f1-8d98-b05cda617960\",\n                    \"statusName\": \"PLANNING\",\n                    \"statusDescription\": \"Project is in planning phase\",\n                    \"createdAt\": \"2026-05-19T12:59:29\",\n                    \"updatedAt\": \"2026-05-19T12:59:29\",\n                    \"active\": true,\n                    \"deleted\": false\n                },\n                \"projectCode\": \"PROJ-003\",\n                \"projectName\": \"Code Axis Backend v3\",\n                \"projectDescription\": \"Spring Boot backend development\",\n                \"startAt\": \"2026-05-15T09:00:00\",\n                \"deadlineAt\": \"2026-08-31T18:00:00\",\n                \"createdAt\": \"2026-05-19T13:01:02\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-19T13:01:02\",\n                \"updatedBy\": null,\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"fkUserId\": {\n                \"pkUserId\": \"019e2a9c-494f-7672-83ad-7029368dc96f\",\n                \"fkRoleId\": {\n                    \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000012\",\n                    \"roleName\": \"USER\",\n                    \"roleDescription\": \"Default authenticated application user\",\n                    \"roleLevel\": 10,\n                    \"isActive\": true,\n                    \"isDeleted\": false,\n                    \"deletedAt\": null,\n                    \"createdAt\": \"2026-05-15T10:59:53\",\n                    \"createdBy\": null,\n                    \"updatedAt\": \"2026-05-15T10:59:53\",\n                    \"updatedBy\": null\n                },\n                \"username\": \"rajamouli\",\n                \"email\": \"rajamouli@test.com\",\n                \"phoneNumber\": null,\n                \"passwordHash\": \"$2a$10$A0T3WKRO2KlDVYD.N0wioOwUivIqEiyKQHgOJqNjB4LBQxteOzFSu\",\n                \"isEmailVerified\": false,\n                \"emailVerifiedAt\": null,\n                \"isLocked\": false,\n                \"lockedAt\": null,\n                \"lastLoginAt\": null,\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-15T13:19:06\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-15T13:19:06\",\n                \"updatedBy\": null\n            },\n            \"fkTaskStatusId\": {\n                \"pkTaskStatusId\": \"78df8635-5354-11f1-8d98-b05cda617960\",\n                \"statusName\": \"IN_PROGRESS\",\n                \"statusDescription\": null,\n                \"createdAt\": \"2026-05-19T12:59:29\",\n                \"updatedAt\": \"2026-05-19T12:59:29\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"fkTaskPriorityId\": {\n                \"pkTaskPriorityId\": \"78e60104-5354-11f1-8d98-b05cda617960\",\n                \"priorityName\": \"HIGH\",\n                \"createdAt\": \"2026-05-19T12:59:29\",\n                \"updatedAt\": \"2026-05-19T12:59:29\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"taskTitle\": \"Implement Login API\",\n            \"taskDescription\": null,\n            \"estimatedHours\": null,\n            \"actualHours\": null,\n            \"startAt\": null,\n            \"deadlineAt\": null,\n            \"completedAt\": null,\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-19T13:08:24\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-19T13:08:24\",\n            \"updatedBy\": null\n        }\n    ],\n    \"message\": \"Tasks fetched successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "UPDATE TASK Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNjgwMDksImV4cCI6MTc3OTI3MTYwOX0.mrs0ncMkdNLWFfN3u7ihMEDKrHVdwyxY0L94XsfvEvmoF11L4U74QC-Tb5cYN_A1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"taskTitle\":\"Updated Task\",\r\n  \"taskDescription\":\"Updated Description\",\r\n  \"estimatedHours\":8,\r\n  \"actualHours\":3,\r\n  \"isActive\":true\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tasks/76941883-0335-4726-93f8-f9283a22428d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tasks",
+            "76941883-0335-4726-93f8-f9283a22428d"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"taskTitle\":\"Updated Task\",\r\n  \"taskDescription\":\"Updated Description\",\r\n  \"estimatedHours\":8,\r\n  \"actualHours\":3,\r\n  \"isActive\":true\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/tasks/76941883-0335-4726-93f8-f9283a22428d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks",
+                "76941883-0335-4726-93f8-f9283a22428d"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 09:16:19 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"pkTaskId\": \"76941883-0335-4726-93f8-f9283a22428d\",\n        \"fkProjectId\": {\n            \"pkProjectId\": \"381b8486-5381-11f1-9de3-40c2ba3a26d0\",\n            \"fkProjectStatus\": {\n                \"pkProjectStatusId\": \"78d89f41-5354-11f1-8d98-b05cda617960\",\n                \"statusName\": \"PLANNING\",\n                \"statusDescription\": \"Project is in planning phase\",\n                \"createdAt\": \"2026-05-19T12:59:29\",\n                \"updatedAt\": \"2026-05-19T12:59:29\",\n                \"active\": true,\n                \"deleted\": false\n            },\n            \"projectCode\": \"CA001\",\n            \"projectName\": \"CA Project\",\n            \"projectDescription\": \"Code Axis Project\",\n            \"startAt\": null,\n            \"deadlineAt\": null,\n            \"createdAt\": \"2026-05-19T18:19:48\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-19T18:19:48\",\n            \"updatedBy\": null,\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkUserId\": {\n            \"pkUserId\": \"019e4427-4096-7f0b-9688-1ced57ba76c7\",\n            \"fkRoleId\": {\n                \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000012\",\n                \"roleName\": \"USER\",\n                \"roleDescription\": \"Default authenticated application user\",\n                \"roleLevel\": 10,\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-15T10:59:53\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-15T10:59:53\",\n                \"updatedBy\": null\n            },\n            \"username\": \"srikanth\",\n            \"email\": \"srikanth@test.com\",\n            \"phoneNumber\": null,\n            \"passwordHash\": \"$2a$10$vZ/NiOsyvGdymyPFc.386.z3K84K4qGocOLV93zD1LAZAoKCMTy5e\",\n            \"isEmailVerified\": true,\n            \"emailVerifiedAt\": \"2026-05-20T12:22:45\",\n            \"isLocked\": false,\n            \"lockedAt\": null,\n            \"lastLoginAt\": \"2026-05-20T14:36:49\",\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-20T12:21:24\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-20T12:21:24\",\n            \"updatedBy\": null\n        },\n        \"fkTaskStatusId\": {\n            \"pkTaskStatusId\": \"4756d5d3-5355-11f1-8d98-b05cda617960\",\n            \"statusName\": \"BLOCKED\",\n            \"statusDescription\": null,\n            \"createdAt\": \"2026-05-19T13:05:15\",\n            \"updatedAt\": \"2026-05-19T13:05:15\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkTaskPriorityId\": {\n            \"pkTaskPriorityId\": \"575c4c24-5355-11f1-8d98-b05cda617960\",\n            \"priorityName\": \"MEDIUM\",\n            \"createdAt\": \"2026-05-19T13:05:42\",\n            \"updatedAt\": \"2026-05-19T13:05:42\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"taskTitle\": \"Updated Task\",\n        \"taskDescription\": \"Updated Description\",\n        \"estimatedHours\": 8,\n        \"actualHours\": 3,\n        \"startAt\": null,\n        \"deadlineAt\": null,\n        \"completedAt\": null,\n        \"isActive\": true,\n        \"isDeleted\": false,\n        \"deletedAt\": null,\n        \"createdAt\": \"2026-05-20T14:41:59\",\n        \"createdBy\": null,\n        \"updatedAt\": \"2026-05-20T14:46:19.3132666\",\n        \"updatedBy\": null\n    },\n    \"message\": \"Task updated successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "DELETE TASK Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNjgwMDksImV4cCI6MTc3OTI3MTYwOX0.mrs0ncMkdNLWFfN3u7ihMEDKrHVdwyxY0L94XsfvEvmoF11L4U74QC-Tb5cYN_A1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/tasks/76941883-0335-4726-93f8-f9283a22428d",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tasks",
+            "76941883-0335-4726-93f8-f9283a22428d"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/tasks/76941883-0335-4726-93f8-f9283a22428d",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "tasks",
+                "76941883-0335-4726-93f8-f9283a22428d"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 09:17:58 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"Task deleted successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "UPDATE EMPLOYEE Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIwMTllNDQyNy00MDk2LTdmMGItOTY4OC0xY2VkNTdiYTc2YzciLCJlbWFpbCI6InNyaWthbnRoQHRlc3QuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NzkyNjgwMDksImV4cCI6MTc3OTI3MTYwOX0.mrs0ncMkdNLWFfN3u7ihMEDKrHVdwyxY0L94XsfvEvmoF11L4U74QC-Tb5cYN_A1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"departmentId\":\"79042219-5354-11f1-8d98-b05cda617960\",\r\n  \"designationId\":\"79068b7b-5354-11f1-8d98-b05cda617960\",\r\n  \"managerEmployeeId\":null,\r\n  \"firstName\":\"Updated\",\r\n  \"lastName\":\"Employee\",\r\n  \"dateOfBirth\":\"2000-01-01\",\r\n  \"joiningDate\":\"2026-05-19\",\r\n  \"salary\":60000,\r\n  \"isActive\":true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/a64b9e80-5354-11f1-8d98-b05cda617960",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "a64b9e80-5354-11f1-8d98-b05cda617960"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"departmentId\":\"79042219-5354-11f1-8d98-b05cda617960\",\r\n  \"designationId\":\"79068b7b-5354-11f1-8d98-b05cda617960\",\r\n  \"managerEmployeeId\":null,\r\n  \"firstName\":\"Updated\",\r\n  \"lastName\":\"Employee\",\r\n  \"dateOfBirth\":\"2000-01-01\",\r\n  \"joiningDate\":\"2026-05-19\",\r\n  \"salary\":60000,\r\n  \"isActive\":true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees/a64b9e80-5354-11f1-8d98-b05cda617960",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "a64b9e80-5354-11f1-8d98-b05cda617960"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 09:24:09 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"pkEmployeeId\": \"a64b9e80-5354-11f1-8d98-b05cda617960\",\n        \"fkUser\": {\n            \"pkUserId\": \"019e3b79-e68f-7443-941d-d9b336e7cae0\",\n            \"fkRoleId\": {\n                \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000002\",\n                \"roleName\": \"ADMIN\",\n                \"roleDescription\": \"Operational business administrator\",\n                \"roleLevel\": 90,\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-15T10:59:53\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-15T10:59:53\",\n                \"updatedBy\": null\n            },\n            \"username\": \"microsoft\",\n            \"email\": \"microsoft@yzcalo.com\",\n            \"phoneNumber\": null,\n            \"passwordHash\": \"$2a$10$cZay3TPDJiLs1WVvlqNyd.wz8OxdOYwa1moQxfZxfE85CjlSeBLJu\",\n            \"isEmailVerified\": true,\n            \"emailVerifiedAt\": \"2026-05-18T19:55:41\",\n            \"isLocked\": false,\n            \"lockedAt\": null,\n            \"lastLoginAt\": \"2026-05-19T12:26:52\",\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-18T19:55:05\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-19T13:33:16\",\n            \"updatedBy\": null\n        },\n        \"fkDepartment\": {\n            \"pkDepartmentId\": \"79042219-5354-11f1-8d98-b05cda617960\",\n            \"departmentName\": \"Engineering\",\n            \"departmentDescription\": null,\n            \"createdAt\": \"2026-05-19T12:59:29\",\n            \"updatedAt\": \"2026-05-19T12:59:29\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkDesignation\": {\n            \"pkDesignationId\": \"79068b7b-5354-11f1-8d98-b05cda617960\",\n            \"designationName\": \"Backend Developer\",\n            \"designationDescription\": null,\n            \"createdAt\": \"2026-05-19T12:59:29\",\n            \"updatedAt\": \"2026-05-19T12:59:29\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkManagerEmployee\": null,\n        \"employeeCode\": \"EMP-001\",\n        \"firstName\": \"Updated\",\n        \"lastName\": \"Employee\",\n        \"dateOfBirth\": \"2000-01-01\",\n        \"joiningDate\": \"2026-05-19\",\n        \"salary\": 60000,\n        \"deletedAt\": null,\n        \"createdAt\": \"2026-05-19T13:00:45\",\n        \"createdBy\": null,\n        \"updatedAt\": \"2026-05-20T12:35:23\",\n        \"updatedBy\": null,\n        \"active\": true,\n        \"deleted\": true\n    },\n    \"message\": \"Employee updated successfully\"\n}"
+        },
+        {
+          "name": "UPDATE EMPLOYEE",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"departmentId\":\"79042219-5354-11f1-8d98-b05cda617960\",\r\n  \"designationId\":\"79068b7b-5354-11f1-8d98-b05cda617960\",\r\n  \"managerEmployeeId\":null,\r\n  \"firstName\":\"Updated\",\r\n  \"lastName\":\"Employee\",\r\n  \"dateOfBirth\":\"2000-01-01\",\r\n  \"joiningDate\":\"2026-05-19\",\r\n  \"salary\":60000,\r\n  \"isActive\":true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/employees/a64b9e80-5354-11f1-8d98-b05cda617960",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "employees",
+                "a64b9e80-5354-11f1-8d98-b05cda617960"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "0"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache"
+            },
+            {
+              "key": "Expires",
+              "value": "0"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Wed, 20 May 2026 09:24:09 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": {\n        \"pkEmployeeId\": \"a64b9e80-5354-11f1-8d98-b05cda617960\",\n        \"fkUser\": {\n            \"pkUserId\": \"019e3b79-e68f-7443-941d-d9b336e7cae0\",\n            \"fkRoleId\": {\n                \"pkRoleId\": \"0196d4d7-1000-7000-8000-000000000002\",\n                \"roleName\": \"ADMIN\",\n                \"roleDescription\": \"Operational business administrator\",\n                \"roleLevel\": 90,\n                \"isActive\": true,\n                \"isDeleted\": false,\n                \"deletedAt\": null,\n                \"createdAt\": \"2026-05-15T10:59:53\",\n                \"createdBy\": null,\n                \"updatedAt\": \"2026-05-15T10:59:53\",\n                \"updatedBy\": null\n            },\n            \"username\": \"microsoft\",\n            \"email\": \"microsoft@yzcalo.com\",\n            \"phoneNumber\": null,\n            \"passwordHash\": \"$2a$10$cZay3TPDJiLs1WVvlqNyd.wz8OxdOYwa1moQxfZxfE85CjlSeBLJu\",\n            \"isEmailVerified\": true,\n            \"emailVerifiedAt\": \"2026-05-18T19:55:41\",\n            \"isLocked\": false,\n            \"lockedAt\": null,\n            \"lastLoginAt\": \"2026-05-19T12:26:52\",\n            \"isActive\": true,\n            \"isDeleted\": false,\n            \"deletedAt\": null,\n            \"createdAt\": \"2026-05-18T19:55:05\",\n            \"createdBy\": null,\n            \"updatedAt\": \"2026-05-19T13:33:16\",\n            \"updatedBy\": null\n        },\n        \"fkDepartment\": {\n            \"pkDepartmentId\": \"79042219-5354-11f1-8d98-b05cda617960\",\n            \"departmentName\": \"Engineering\",\n            \"departmentDescription\": null,\n            \"createdAt\": \"2026-05-19T12:59:29\",\n            \"updatedAt\": \"2026-05-19T12:59:29\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkDesignation\": {\n            \"pkDesignationId\": \"79068b7b-5354-11f1-8d98-b05cda617960\",\n            \"designationName\": \"Backend Developer\",\n            \"designationDescription\": null,\n            \"createdAt\": \"2026-05-19T12:59:29\",\n            \"updatedAt\": \"2026-05-19T12:59:29\",\n            \"active\": true,\n            \"deleted\": false\n        },\n        \"fkManagerEmployee\": null,\n        \"employeeCode\": \"EMP-001\",\n        \"firstName\": \"Updated\",\n        \"lastName\": \"Employee\",\n        \"dateOfBirth\": \"2000-01-01\",\n        \"joiningDate\": \"2026-05-19\",\n        \"salary\": 60000,\n        \"deletedAt\": null,\n        \"createdAt\": \"2026-05-19T13:00:45\",\n        \"createdBy\": null,\n        \"updatedAt\": \"2026-05-20T12:35:23\",\n        \"updatedBy\": null,\n        \"active\": true,\n        \"deleted\": true\n    },\n    \"message\": \"Employee updated successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "http://localhost:8080/api/employees/276c7e40-534b-11f1-9de3-40c2ba3a26d0 Copy",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "admin123",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/276c7e40-534b-11f1-9de3-40c2ba3a26d0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "276c7e40-534b-11f1-9de3-40c2ba3a26d0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8080/api/employees/276c7e40-534b-11f1-9de3-40c2ba3a26d0 Copy",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "admin123",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Anurag\",\r\n  \"lastName\": \"Kumar\",\r\n  \"salary\": 60000,\r\n  \"isActive\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employees/276c7e40-534b-11f1-9de3-40c2ba3a26d0",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employees",
+            "276c7e40-534b-11f1-9de3-40c2ba3a26d0"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8080/api/tasks Copy",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "admin123",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "admin",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"projectId\":\"fd125d53-52b2-11f1-9de3-40c2ba3a26d0\",\r\n  \"userId\":\"377af7de-505d-11f1-9de3-40c2ba3a26d0\",\r\n  \"taskStatusId\":\"dca0f4c5-52b3-11f1-9de3-40c2ba3a26d0\",\r\n  \"taskPriorityId\":\"ff9f6549-52b3-11f1-9de3-40c2ba3a26d0\",\r\n  \"taskTitle\":\"Task CRUD\",\r\n  \"taskDescription\":\"Testing Task API\",\r\n  \"estimatedHours\":5,\r\n  \"actualHours\":0,\r\n  \"isActive\":true,\r\n  \"isDeleted\":false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/tasks",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "tasks"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }

@@ -38,5 +38,10 @@
     "name": "app.mail.smtp-enabled",
     "type": "java.lang.String",
     "description": "A description for 'app.mail.smtp-enabled'"
+  },
+  {
+    "name": "spring.web.error.include-message",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.web.error.include-message'"
   }
 ]}
